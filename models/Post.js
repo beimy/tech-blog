@@ -15,7 +15,7 @@ Post.init({
         autoIncrement: true
     },
     title: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
             len: [1]
