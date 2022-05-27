@@ -2,6 +2,8 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const expressHbs = require('express-handlebars');
+const controllers = require('./controllers');
+const errorController = require('./controllers/middleware/errorControllers');
 
 const app = express();
 const PORT = process.env.PORT || 3005;
@@ -37,7 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(require('./controllers/'));
+app.use(errorController.get404);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening at http://localhost:${PORT}`));
