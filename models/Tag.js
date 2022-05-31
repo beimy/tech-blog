@@ -1,21 +1,16 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+class Tag extends Model {}
 
-class Category extends Model {}
-
-Category.init(
+Tag.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      autoIncrement: true,
       primaryKey: true,
+      autoIncrement: true,
     },
-    categoryName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    categoryDescription: {
+    tagName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -25,8 +20,8 @@ Category.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Category'
+    modelName: 'Tag'
   }
 );
 
-module.exports = Category;
+module.exports = Tag  
