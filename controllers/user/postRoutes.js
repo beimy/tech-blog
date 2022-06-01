@@ -89,25 +89,30 @@ router.get('/:id', async (req, res) => {
 // })
   
 // Create a post 
-router.post("/", withAuth, (req, res) => {
-  console.log("creating a post");
-  Post.create({
-    title: req.body.title,
-    content: req.body.post_content,
-    user_id: req.session.user_id
-  })
-  .then((dbPostData) => res.json(dbPostData))
-  .catch((err) => {
-    console.log(err);
-    res.status(500).json(err)
-  });
+router.post('/', withAuth, async(req, res) => {
+   
+  try {
+    const newPostDate = await
+      Post.create({
+        title: req.body.title,
+        post_content: req.body.post_content,
+        user_id: req.session.user_id
+      });
+
+      if(!err){
+        res.status(200).json(`New post successfully created.`)
+      }
+  } catch (err) {
+    res.status(500).json(`unexpected error encountered in Create New Post Route: ${err}`)
+  }
 });
+
 
 // Update a post
 router.put("/:id", withAuth, (req,res) => {
   Post.update({
     title: req.body.title,
-    content: req.body.post_content,
+    post_content: req.body.post_content,
   }, {
     where: {
       id: req.params.id,
