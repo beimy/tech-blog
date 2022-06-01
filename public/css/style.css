@@ -1,0 +1,9 @@
+#post-col {
+    border-width: 1px;
+    border-right-style: solid;
+    border-left-style: solid;
+}
+
+button {
+    margin: 2px;
+}
