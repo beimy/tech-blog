@@ -32,7 +32,13 @@ router.get('/', (req, res, next) => {
     });
 });
 
-  router.post('/login', async(req, res, next) => {
+// router.get('/userpage', async(req, res) => {
+//   res.status(200).render(
+//     pageTitle: 'Login'
+//   )
+// })
+
+router.post('/login', async(req, res, next) => {
     try{
       const userData = await User.findOne({
         logging: console.log,
@@ -57,7 +63,7 @@ router.get('/', (req, res, next) => {
     }catch(err){
       console.error(`Unexpected error encountered in homeRoutes.js POST/login: ${err}`)
     }
-  });
+});
 
   
 
