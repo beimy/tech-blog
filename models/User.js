@@ -35,7 +35,7 @@ User.init(
         len: [8]
       }
     },
-    isAdmin: {
+    is_admin: {
       type: DataTypes.BOOLEAN,
       allowNull: false
     }

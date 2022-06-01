@@ -16,12 +16,16 @@ Post.init(
       allowNull: false,
     },
     body: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     category: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      references: {
+        model: 'category',
+        key: 'id',
+      }
 
     },
     tags: {
