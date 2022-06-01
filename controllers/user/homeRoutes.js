@@ -32,11 +32,20 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.get('/login', (req, res) => {
-  if(req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
+// router.get('/userpage', async(req, res) => {
+//   res.status(200).render(
+//     pageTitle: 'Login'
+//   )
+// })
+
+router.post('/login', async(req, res, next) => {
+    try{
+      const userData = await User.findOne({
+        logging: console.log,
+        where: {
+          email: req.body.userEmail
+        },
+      });
 
   res.render('login-signup-page');
 });
@@ -54,6 +63,7 @@ router.post('/login', async(req, res, next) => {
       res.status(400).json({ message: `The email address provided ${req.body.userEmail} is not registered. Try again with another email or sign up below.`})
       return;
     }
+<<<<<<< HEAD
 
     req.session.save(() => {
       req.session.loggedIn = true;
@@ -66,6 +76,8 @@ router.post('/login', async(req, res, next) => {
   }catch(err){
     console.error(`Unexpected error encountered in homeRoutes.js POST/login: ${err}`)
   }
+=======
+>>>>>>> develop
 });
 
   
