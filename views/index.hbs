@@ -1,28 +1,20 @@
 <div class="container-sm m-0 p-5">
             <div class="row">
-                <ol class="col-2 post-list">
-                    {{#each post as |post|}}
+                <ul class="col-2 post-list">
+                    {{#each posts as |post|}}
                     <li>
                         {{> user-post-info post}}
                     </li>
                     {{/each}}
-                </ol>
+                </ul>
 
-                <div class="col m-2" id="post-col">
-                    <div>
-                        <h2 id="post-title">POST TITLE</h2>
-                        <p id="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fugit beatae sunt nostrum aut enim voluptas sequi omnis alias libero eos. 
-                        Odio nesciunt ratione vitae doloremque dicta eum modi velit ipsa!
-                        </p>
-                        <div class="row px-2">
-                            <button type="button" id="follow-post-btn" class="col-2">Follow</button>
-                            <button type="button" id="comments-btn" class="col-2">Comments</button>
-                            <button type="button" id="Go to Post" class="col-2">Go To Post</button>
-                            <button type="button" id="Expand" class="col-2">Expand...</button>
-                        </div>
-                    </div>   
-                </div>
+                <ul class="col m-2" id="post-col">
+                    {{#each posts as |post|}}
+                    <li>
+                        {{> post-content post}}
+                    </li>
+                    {{/each}}
+                </ul>
 
                 <div class="col-1">
                     <div class="col">

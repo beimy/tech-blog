@@ -7,3 +7,13 @@
 button {
     margin: 2px;
 }
+
+h3 {
+    font-size: medium;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

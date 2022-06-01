@@ -10,9 +10,9 @@
     <p>Post Time:<span id="post-user-time"> {{post-time}}</span></p>
     <h3>Tags</h3>
     <ul id="post-user-tags-list">
-        {{#each post-tags as |post-tag|}}
+        {{#each posts as |post|}}
         <li>
-            {{> post-tags post-tag}}
+            {{> post-tags post}}
         </li>
         {{/each}}
     </ul>
