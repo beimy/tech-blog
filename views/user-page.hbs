@@ -1,62 +1,46 @@
 <div class="container-sm m-0 p-5 min-vh-100">
-            <div class="row min-vh-100 min-vw-100">
-                <div class="border-end col-10">
-                    <div class="row min-vh-75 p-10 border-bottom" id="user-profile-data">
-                        <div class="col-sm-4">
-                            <img class="w-100 h-100 col-5" id="user-profile-img" src="" alt="">
-                        </div>
-                        <div class="col-sm-8">
-                            <h2 class="col-3"> USERNAME </h2>
-                        </div>
-                        <div class="col-sm-4">
-                            <h3>Interests</h3>
-                            <ul class="border h-100" id="interests-list">
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>JAVA</li>
-                                <li>Javascript</li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-8">
-                            <h3>About</h3>
-                            <p class="border h-100">About Section Content</p>
-                        </div>
-                    </div>
-                    <div class="row m-5" id="user-post-data">
-                        <ul class="col-10 m-2 pt-10" id="post-list">
-                                <li class="border-bottom">
-                                        <h2 id="post-title">POST TITLE</h2>
-                                        <p id="post-content" class="border w-100 h-50 overflow-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum nulla dolores et quibusdam vel suscipit earum, blanditiis culpa, minus veniam officia ea voluptas illo eveniet saepe labore perspiciatis hic voluptatem!
-                                        </p>
-                                        <div class="row px-2">
-                                            <button type="button" id="follow-post-btn" class="col-2">Follow</button>
-                                            <button type="button" id="comments-btn" class="col-2">Comments</button>
-                                            <button type="button" id="Go to Post" class="col-2">Go To Post</button>
-                                            <button type="button" id="Expand" class="col-2">Expand...</button>
-                                        </div>
-                                </li>
-                                <li class="border-bottom">
-                                    <h2 id="post-title">POST TITLE</h2>
-                                    <p id="post-content" class="border w-100 h-50 overflow-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum nulla dolores et quibusdam vel suscipit earum, blanditiis culpa, minus veniam officia ea voluptas illo eveniet saepe labore perspiciatis hic voluptatem!
-                                    </p>
-                                    <div class="row px-2">
-                                        <button type="button" id="follow-post-btn" class="col-2">Follow</button>
-                                        <button type="button" id="comments-btn" class="col-2">Comments</button>
-                                        <button type="button" id="Go to Post" class="col-2">Go To Post</button>
-                                        <button type="button" id="Expand" class="col-2">Expand...</button>
-                                    </div>
-                            </li>
-                        </ul>
-                    </div>
+    <div class="row min-vh-100 min-vw-100">
+        <div class="border-end col-10">
+            <div class="row min-vh-75 p-10 border-bottom" id="user-profile-data">
+                <div class="col-sm-4">
+                    <img class="w-100 h-100 col-5" id="user-profile-img" src="{{profile_img}}" alt="">
                 </div>
-                <div class="col-1">
-                    <div class="col">
-                        <button id="home-btn" type="button">Home</button>
-                        <button id="explore-btn" type="button">Explore</button>
-                        <button id="notifications-btn" type="button">Notifications</button>
-                        <button id="my-account-btn" type="button">My Account</button>
-                    </div>
-                    
+                <div class="col-sm-8">
+                    <h2 class="col-3"> {{username}} </h2>
+                </div>
+                <div class="col-sm-4">
+                    <h3>Interests</h3>
+                    <ul class="border h-100" id="interests-list">
+                    {{#each interests as |interest|}}
+                    <li>
+                        {{> interests interest}}
+                    </li>
+                    {{/each}}
+                    </ul>
+                </div>
+                <div class="col-sm-8">
+                    <h3>About</h3>
+                    <p class="border h-100">{{about}}</p>
                 </div>
             </div>
+            <div class="row m-5" id="user-post-data">
+                <ul class="col-10 m-2 pt-10" id="post-list">
+                    {{#each posts as |post|}}
+                    <li class="border-bottom">
+                        {{> post-content post}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
         </div>
+        <div class="col-1">
+            <div class="col">
+                <button id="home-btn" type="button">Home</button>
+                <button id="explore-btn" type="button">Explore</button>
+                <button id="notifications-btn" type="button">Notifications</button>
+                <button id="my-account-btn" type="button">My Account</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
