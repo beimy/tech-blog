@@ -7,17 +7,19 @@ Category.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       autoIncrement: true,
+      allowNull: false,
       primaryKey: true,
+
     },
-    categoryName: {
+    category_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    categoryDescription: {
+    category_description: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: '# Insert Description Here',
     },
   },
   {
@@ -25,7 +27,7 @@ Category.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Category'
+    modelName: 'category'
   }
 );
 
