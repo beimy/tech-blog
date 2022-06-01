@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 
-router.get('/test-user', async(req, res) => {
+router.get('/test-dashboard', async(req, res) => {
   try {
     const testUser = await User.findByPk(1, {
       attributes: ['username', 'email'],
@@ -18,10 +18,16 @@ router.get('/test-user', async(req, res) => {
         }
       ]
     })
-    res.status(200).json(testUser);
+    res.status(200).render('user-page', {
+      testUser,
+      pageTitle: 'Dashboard',
+      loggedIn: true,
+    });
   } catch (err) {
     res.status(500).json(`Unexpected error encountered in Test User Route ${err}`)
   }
 })
+
+
 
 module.exports = router;
