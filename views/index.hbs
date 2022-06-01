@@ -1,29 +1,48 @@
 <div class="container-sm m-0 p-5">
-            <div class="row">
-                <ul class="col-2 post-list">
-                    {{#each posts as |post|}}
-                    <li>
-                        {{> user-post-info post}}
-                    </li>
-                    {{/each}}
-                </ul>
+    <div class="row">
+        <ul class="col-2 post-list">
+            {{#each posts as |post|}}
+            <li>
+                {{> user-post-info post}}
+            </li>
+            {{/each}}
+        </ul>
 
-                <ul class="col m-2" id="post-col">
-                    {{#each posts as |post|}}
-                    <li>
-                        {{> post-content post}}
-                    </li>
-                    {{/each}}
-                </ul>
+        <ul class="col m-2" id="post-col">
+            {{#each posts as |post|}}
+            <li>
+                {{> post-content post}}
+            </li>
+            {{/each}}
+        </ul>
 
-                <div class="col-1">
-                    <div class="col">
-                        <button id="home-btn" type="button">Home</button>
-                        <button id="explore-btn" type="button">Explore</button>
-                        <button id="notifications-btn" type="button">Notifications</button>
-                        <button id="my-account-btn" type="button">My Account</button>
-                    </div>
-                    
-                </div>
+        <div class="col-1">
+            <div class="col">
+                <button id="home-btn" type="button">Home</button>
+                <button id="explore-btn" type="button">Explore</button>
+                <button id="notifications-btn" type="button">Notifications</button>
+                <button id="my-account-btn" type="button">My Account</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="login-signup-modal" class="modal fade" role="form">
+    <div class="modal-form">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
             </div>
         </div>
+</div>
