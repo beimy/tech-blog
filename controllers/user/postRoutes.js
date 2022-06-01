@@ -3,7 +3,7 @@ const { Post } = require('../../models');
 const { Comment } = require('../../models');
 const { User } = require('../../models');
 const { Tag } = require('../../models');
-
+// const withAuth = require('../../utils/auth'); set up the const for when we have the auth folder built out
 router.get('/', async (req, res) => {
 
   try{
@@ -88,5 +88,72 @@ router.get('/:id', async (req, res) => {
 //   }
 // })
   
+// Create a post 
+router.post('/', withAuth, async(req, res) => {
+   
+  try {
+    const newPostDate = await
+      Post.create({
+        title: req.body.title,
+        post_content: req.body.post_content,
+        user_id: req.session.user_id
+      });
+
+      if(!err){
+        res.status(200).json(`New post successfully created.`)
+      }
+  } catch (err) {
+    res.status(500).json(`unexpected error encountered in Create New Post Route: ${err}`)
+  }
+});
+
+
+// Update a post
+router.put("/:id", withAuth, (req,res) => {
+  Post.update({
+    title: req.body.title,
+    post_content: req.body.post_content,
+  }, {
+    where: {
+      id: req.params.id,
+    },
+  })
+  .then((dbPostData) => {
+    if (!dbPostData) {
+      res.status(404).json({
+        message: "No post found with this id"
+      });
+      return;
+    }
+    res.json(dbPostData);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+//Delete a post
+router.delete("/:id", withAuth, (req,res) => {
+  Post.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+  .then((dbPostData) => {
+    if (!dbPostData) {
+      res.status(404).json({
+        message: "No post found with this id"
+      });
+      return;
+    }
+    res.json(dbPostData);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
 
 module.exports = router
