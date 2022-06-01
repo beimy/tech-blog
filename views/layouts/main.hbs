@@ -17,7 +17,7 @@
     <header>
       <nav class="navbar navbar-light bg-light border-bottom">
         <div class="container-fluid">
-            <a class="navbar-brand flex-grow-1" href="#">LOGO</a>
+            <a class="navbar-brand flex-grow-1" href="/">LOGO</a>
 
             <form class="d-inline-flex input-group w-auto">
                 <input
@@ -32,13 +32,12 @@
                 </span>
               </form>
             {{#if loggedIn}}
+            <a href="/user-page">My Blog</a>
             <button type="button" id="loggout-btn" class="btn btn-primary me-3">
                 Log Out
             </button>
             {{else}}
-            <button type="button" id="login-btn" class="btn btn-primary me-3">
-                Login
-            </button>
+            <a href="/login">Login</a>
             {{/if}}
         </div>
       </nav>

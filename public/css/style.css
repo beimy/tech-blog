@@ -21,3 +21,20 @@ ul {
 .hidden {
     display: none;
 }
+
+#post-content {
+    min-height: 150px;
+    max-height: 150px;
+}
+
+li {
+    padding-bottom: 10px;
+}
+
+#user-profile-data {
+    padding-bottom: 50px;
+}
+
+#interests-list li {
+    padding-bottom: 1px;
+}
