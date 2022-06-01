@@ -32,40 +32,49 @@ router.get('/', (req, res, next) => {
     });
 });
 
-  router.post('/login', async(req, res, next) => {
-    try{
-      const userData = await User.findOne({
-        logging: console.log,
-        where: {
-          email: req.body.userEmail
-        },
-      });
+router.get('/login', (req, res) => {
+  if(req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
 
-      if(!userData){
-        res.status(400).json({ message: `The email address provided ${req.body.userEmail} is not registered. Try again with another email or sign up below.`})
-        return;
-      }
+  res.render('login-signup-page');
+});
 
-      req.session.save(() => {
-        req.session.loggedIn = true;
-  
-        res
-          .status(200)
-          .json({ user: dbUserData, message: 'You are now logged in!' });
-      });
-      
-    }catch(err){
-      console.error(`Unexpected error encountered in homeRoutes.js POST/login: ${err}`)
+router.post('/login', async(req, res, next) => {
+  try{
+    const userData = await User.findOne({
+      logging: console.log,
+      where: {
+        email: req.body.userEmail
+      },
+    });
+
+    if(!userData){
+      res.status(400).json({ message: `The email address provided ${req.body.userEmail} is not registered. Try again with another email or sign up below.`})
+      return;
     }
-  });
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+
+      res
+        .status(200)
+        .json({ user: dbUserData, message: 'You are now logged in!' });
+    });
+    
+  }catch(err){
+    console.error(`Unexpected error encountered in homeRoutes.js POST/login: ${err}`)
+  }
+});
 
   
 
-  router.get('/register', (req, res, next) => {
-    res.status(200).render('register', {
-      pageTitle: "Sign Up",
-      loggedIn: false
-    })
-  });
+router.get('/register', (req, res, next) => {
+  res.status(200).render('register', {
+    pageTitle: "Sign Up",
+    loggedIn: false
+  })
+});
 
 module.exports = router
