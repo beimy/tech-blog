@@ -4,6 +4,7 @@ const Post = require('./Post');
 const Category = require('./Category');
 const Tag = require('./Tag');
 
+
  
 User.hasMany(Post);
 User.hasMany(Comment);
@@ -23,6 +24,7 @@ Tag.belongsToMany(Post, {
 Tag.belongsToMany(Comment, {
   through: "comment_tags"
 });
+
 
 
 module.exports = {User, Comment, Post, Category, Tag};

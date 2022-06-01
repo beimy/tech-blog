@@ -1,0 +1,19 @@
+<article class="post-user">
+    <div class="row">
+        <div class="col-sm-5">
+            <p>PIC</p>
+        </div>
+        <div class="col-sm-3">
+            <p id="post-user-username">{{username}}</p>
+        </div>
+    </div>
+    <p>Post Time:<span id="post-user-time"> {{post-time}}</span></p>
+    <h3>Tags</h3>
+    <ul id="post-user-tags-list">
+        {{#each post-tags as |post-tag|}}
+        <li>
+            {{> post-tags post-tag}}
+        </li>
+        {{/each}}
+    </ul>
+</article>

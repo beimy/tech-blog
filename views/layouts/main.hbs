@@ -5,15 +5,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{pageTitle}}</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
   <div class="wrapper">
     <header>
-      <h1>
-        <a href="/">Tech Journeys</a>
-      </h1>
+      <nav class="navbar navbar-light bg-light border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand flex-grow-1" href="#">LOGO</a>
+
+            <form class="d-inline-flex input-group w-auto">
+                <input
+                  type="search"
+                  class="form-control rounded"
+                  placeholder="Search"
+                  aria-label="Search"
+                  aria-describedby="search-addon"
+                />
+                <span class="input-group-text border-0" id="search-addon">
+                  <i class="fas fa-search"></i>
+                </span>
+              </form>
+            {{#if loggedIn}}
+            <button type="button" id="signup-btn" class="btn btn-primary me-3">
+                Sign Up
+            </button>
+            {{else}}
+            <button type="button" id="login-btn" class="btn btn-primary me-3">
+                Login
+            </button>
+            {{/if}}
+        </div>
+      </nav>
     </header>
     <main>
       {{{ body }}}
@@ -22,6 +50,11 @@
       Thanks for visiting!
     </footer>
   </div>
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 </body>
 
