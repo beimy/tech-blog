@@ -89,7 +89,7 @@ router.get('/:id', async (req, res) => {
 // })
   
 // Create a post 
-router.post('/', withAuth, async(req, res) => {
+router.post('/', async(req, res) => {
    
   try {
     const newPostDate = await
@@ -109,7 +109,7 @@ router.post('/', withAuth, async(req, res) => {
 
 
 // Update a post
-router.put("/:id", withAuth, (req,res) => {
+router.put("/:id", (req,res) => {
   Post.update({
     title: req.body.title,
     post_content: req.body.post_content,
@@ -134,7 +134,7 @@ router.put("/:id", withAuth, (req,res) => {
 });
 
 //Delete a post
-router.delete("/:id", withAuth, (req,res) => {
+router.delete("/:id", (req,res) => {
   Post.destroy({
     where: {
       id: req.params.id,
