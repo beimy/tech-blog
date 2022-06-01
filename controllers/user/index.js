@@ -5,12 +5,13 @@ const dashboardRoutes = require('./dashboardRoutes');
 const homeRoutes = require('./homeRoutes');
 const userRoutes = require('./userRoutes');
 const error = require('../error');
-
+const postRoutes = require('./postRoutes');
 
 router.use('/user', userRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/comments', commentRoutes);
 router.use('/', homeRoutes);
+router.use('/posts', postRoutes)
 router.use(error.get404);
 
 module.exports = router;
