@@ -1,0 +1,1 @@
+document.querySelector('login-btn').addEventListener('click', loginFormHandler);
