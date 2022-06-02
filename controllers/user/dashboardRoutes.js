@@ -1,33 +1,41 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 
-router.get('/test-dashboard', async(req, res) => {
-  try {
-    const testUser = await User.findByPk(1, {
-      attributes: ['username', 'email'],
-      include: [
-        {
-          model: Comment,
-          where: user_id = 1,
-          attributes: ['id', 'title', 'comment_content'],
-        },
-        {
-          model: Post,
-          where: user_id = 1,
-          attributes: ['title', 'post_content',]
-        }
-      ]
-    })
-    res.status(200).render('user-page', {
-      testUser,
-      pageTitle: 'Dashboard',
-      loggedIn: true,
-    });
-  } catch (err) {
-    res.status(500).json(`Unexpected error encountered in Test User Route ${err}`)
-  }
-})
+router.get('/test-dashboard', (req, res) => {
+  Post.findAll({
+    where: {
+      user_id: 1
+    },
+    attributes: [
+      'id',
+      'title',
+      'post_content'
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ['username']
+      }
+    ]
+  })
+    .then(dbPostData => {
+      const posts = dbPostData.map(post => post.get({ plain: true }));
+      console.log(dbPostData);
+      console.log('-----------------------');
+      console.log(posts);
 
+      res.render('user-page', { 
+        posts,
+        loggedIn: req.session.loggedIn,
+        pageTitle: "Home",
+        errorCSS: false,
+        mainCSS: true,
+        adminCSS: false,
+        mainJS: true,
+        errorJS: false,
+        });
+    });
+});
 
 
 module.exports = router;
