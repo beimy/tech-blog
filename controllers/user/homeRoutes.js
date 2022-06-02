@@ -32,12 +32,6 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// router.get('/userpage', async(req, res) => {
-//   res.status(200).render(
-//     pageTitle: 'Login'
-//   )
-// })
-
 router.post('/login', async(req, res, next) => {
     try{
       const userData = await User.findOne({
