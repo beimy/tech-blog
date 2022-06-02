@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
+const sequelize = require('../../config/connection');
 
 router.get('/test-dashboard', async(req, res) => {
   try {
@@ -11,15 +12,22 @@ router.get('/test-dashboard', async(req, res) => {
           where: user_id = 1,
           attributes: ['id', 'title', 'comment_content'],
         },
-        {
-          model: Post,
-          where: user_id = 1,
-          attributes: ['title', 'post_content',]
-        }
+      ]
+      
+    })
+    const testPosts = await Post.findAll({
+      where: user_id = 1,
+      attributes: [
+        'id',
+        'title',
+        'post_content'
       ]
     })
+
+
     res.status(200).render('user-page', {
       testUser,
+      testPosts,
       pageTitle: 'Dashboard',
       loggedIn: true,
     });
