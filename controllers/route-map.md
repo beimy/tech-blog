@@ -15,6 +15,9 @@
 
 ### Post Routes
 
+* Test Post-Page: </br>
+  URL: http://localhost:3010/post/post-test
+
 * GET All Posts (not user specific)
     Expected Response: Search posts by ID
     Method: GET

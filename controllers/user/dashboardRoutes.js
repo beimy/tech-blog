@@ -64,6 +64,7 @@ router.get('/', withAuth, async(req, res) => {
 
     res.status(200).render('user-page', {
       userData,
+      username,
       posts,
       comments,
       pageTitle: `${username}'s Dashboard`,

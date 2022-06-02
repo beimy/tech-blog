@@ -8,6 +8,16 @@ POST ROUTES | NO-AUTHENTICATION | SEARCH POSTS
 ================================================
 */
 
+router.get('/post-test', async(req, res) => {
+  try {
+    res.status(200).render('post-page', {
+      pageTitle: 'Test Post-Page'
+    })
+  } catch (err) {
+    res.status(400).json(`Error encountered in test-post route: ${err}`)
+  }
+})
+
 //DEFAULT ROUTE => GET ALL POSTS
 router.get('/', async (req, res) => {
 

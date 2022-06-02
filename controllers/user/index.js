@@ -10,7 +10,7 @@ const loginRoutes = require('./loginRoutes');
 router.use('/dashboard', dashboardRoutes);
 router.use('/comments', commentRoutes);
 router.use('/user-login', loginRoutes);
-router.use('/posts', postRoutes);
+router.use('/post', postRoutes);
 router.use('/', homeRoutes);
 router.use(error.get404);
 
