@@ -214,24 +214,28 @@ router.put("/:id", (req, res) => {
 });
 
 //DELETE POST BY ID
-router.delete("/:id", (req, res) => {
-  Post.destroy({
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((dbPostData) => {
-      if (!dbPostData) {
+router.delete("/:id", withAuth, async (req, res) => {
+  try {
+    const deletePost = await Post.destroy(
+      {
+      where: {
+        id: req.params.id,
+      },
+  }
+  );
+    
+      if (!deletePost) {
         res.status(404).json({
           message: "No post found with this id",
         });
         return;
       }
-      res.json(dbPostData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+      res.status(200).json(deletePost);
+    } catch (err) {
+      res
+      .status(500)
+      .json(`Unexpected error encountered in Delete Post Route: ${err}`);
+    }
+  });
+
 module.exports = router;
