@@ -45,12 +45,19 @@
                         <!-- create post container  -->
                         <div>
                             <form> 
-                                <label for="post-title">Post Title</label><br>
-                                <input type="text" id="post-title" name="post-title" placeholder="Enter Post Title"><br>
-                                <label for="post-body">Body</label><br>
-                                <input class="" type="text" id="post-body" name="post-body"><br>
-                                <label for="post-tags">Add Tags</label><br>
-                                <input class="" type="text" id="post-tags" name="post-tags" placeholder="Search Tags"><br>
+                                <div class="form-group">
+                                    <label for="post-title">Post Title</label><br>
+                                    <input class="form-control" type="text" id="post-title" name="post-title" placeholder="Enter Post Title"><br>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="post-body">Body</label><br>
+                                    <input class="form-control"  type="text" id="post-body" name="post-body"><br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-tags">Add Tags</label><br>
+                                    <input class="form-control"  type="text" id="post-tags" name="post-tags" placeholder="Search Tags"><br>
+                                </div>
+                                <button class="btn btn-primary" id="create-post" type="button">Post</button>
                             </form>
                         </div>
                        
