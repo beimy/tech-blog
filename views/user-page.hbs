@@ -11,11 +11,11 @@
                 <div class="col-sm-4">
                     <h3>Interests</h3>
                     <ul class="border h-100" id="interests-list">
-                    {{#each interests as |interest|}}
-                    <li>
-                        {{> interests interest}}
-                    </li>
-                    {{/each}}
+                        {{#each interests as |interest|}}
+                        <li>
+                            {{> interests interest}}
+                        </li>
+                        {{/each}}
                     </ul>
                 </div>
                 <div class="col-sm-8">
@@ -23,15 +23,7 @@
                     <p class="border h-100">{{about}}</p>
                 </div>
             </div>
-            <div class="row m-5" id="user-post-data">
-                <ul class="col-10 m-2 pt-10" id="post-list">
-                    {{#each posts as |post|}}
-                    <li class="border-bottom">
-                        {{> post-content post}}
-                    </li>
-                    {{/each}}
-                </ul>
-            </div>
+    {{> postContainer }}
         </div>
         <div class="col-1">
             <div class="col">
@@ -40,7 +32,7 @@
                 <button id="notifications-btn" type="button">Notifications</button>
                 <button id="my-account-btn" type="button">My Account</button>
             </div>
-            
+
         </div>
     </div>
 </div>
