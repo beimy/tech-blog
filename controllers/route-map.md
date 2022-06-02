@@ -1,18 +1,31 @@
 # Route Map
 
 ## User Routes
----
 
-* default route: http://localhost:3010/  ==> loads home page
+* default route:
+    Expected response: Renders Home Page
+    Method: GET
+    URL: http://localhost:3010/
+  
 
-* /login ==> send login requests here, make sure request includes user email address and password. see sample login function for more detail
+* Search Posts:
+    Expected Response: Search posts by ID
+    Method: GET
+    URL: 
+
 
 * /posts/  ==> GET all posts and posts data
 * /posts/{post_id} ==> GET posts by id
 * /posts/
 
-
-## Admin Routes
 ---
+## Login Routes
+* login page: http://localhost:3010/user-login ==> loads login page
 
-* not currently defined
+---
+## Admin Routes
+
+* Default Route: 
+    Expected Response: currently none, this is the default header to reach admin functions
+    Method: GET, POST, PUT, DELETE
+    URL: http://localhost:3010/admin

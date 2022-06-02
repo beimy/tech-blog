@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
+const sequelize = require('../../config/connection');
 
 router.get('/test-dashboard', (req, res) => {
   Post.findAll({

@@ -26,14 +26,37 @@ async function signupFormHandler(event) {
     }
 }
   
-async function loginFormHandler(event) {
-  event.preventDefault();
+// async function loginFormHandler(event) {
+//   event.preventDefault();
 
-  const email = document.querySelector('#email-login').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
+//   const email = document.querySelector('#email-login').value.trim();
+//   const password = document.querySelector('#password-login').value.trim();
+ 
+//   if (email && password) {
+//     const response = await fetch('/user-login/validate', {
+//       method: 'post',
+//       body: JSON.stringify({
+//         email,
+//         password
+//       }),
+//       headers: { 'Content-Type': 'application/json' }
+//     });
 
-  if (email && password) {
-    const response = await fetch('/login', {
+//     if (response.ok) {
+//       document.location.replace('/dashboard');
+//     } else {
+//       alert("No user found with that login info");
+//     }
+//   }
+// }
+
+const loginFormHandler = async(event) => {
+  try {
+    event.preventDefault();
+    const email = document.querySelector('#email-login').value.trim();
+    const password = document.querySelector('#password-login').value.trim();
+
+    const response = await fetch('/user-login/validate', {
       method: 'post',
       body: JSON.stringify({
         email,
@@ -42,11 +65,15 @@ async function loginFormHandler(event) {
       headers: { 'Content-Type': 'application/json' }
     });
 
-    if (response.ok) {
+    console.log(response);
+    if(response.ok){
       document.location.replace('/dashboard');
     } else {
-      alert("No user found with that login info");
+      window.alert('Invalid login credentials')
     }
+
+  } catch (err) {
+    console.error(`Error encountered in login handler: ${err}`)
   }
 }
 
