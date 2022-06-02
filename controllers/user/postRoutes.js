@@ -1,9 +1,14 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
-const { Comment } = require('../../models');
-const { User } = require('../../models');
-const { Tag } = require('../../models');
-// const withAuth = require('../../utils/auth'); set up the const for when we have the auth folder built out
+const { Post, Comment, User, Tag } = require('../../models');
+const withAuth = require('../../utils/auth');
+
+/*
+================================================
+POST ROUTES | NO-AUTHENTICATION | SEARCH POSTS
+================================================
+*/
+
+//DEFAULT ROUTE => GET ALL POSTS
 router.get('/', async (req, res) => {
 
   try{
@@ -42,6 +47,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET POST BY ID
 router.get('/:id', async (req, res) => {
   try {
     const postId = req.params.id;
@@ -80,16 +86,54 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-// router.post('/new', withAuth async(req, res) => {
-//   try {
-//     const newPost = 
-//   } catch (err) {
-//     res.status(500).json(`Unexpected error encountered in POST New Post route: ${err}`)
-//   }
-// })
+//GET POSTS BY USER ID
+router.get('/user=:id', async (req, res) => {
+
+  try{
+    const postData = await Post.findAll({
+      where: user_id = '',
+      attributes: [
+        'id',
+        'title',
+        'post_content',
+        'category',
+        'tags',
+        'user_id'
+      ],
+      include: [
+        {
+          model: Comment,
+          attributes: ['id', 'title', 'comment_content', 'user_id', 'created_at'],
+          include: {
+            model: User,
+            attributes: ['username']
+          }
+        },
+        {
+          model: User,
+          attributes: ['username']
+        },
+        {
+          model: Tag,
+          attributes: ['tag_name']
+        }
+      ]
+    });
+
+    res.status(200).json(postData);
+  }catch(err){
+    res.status(500).json(`Unexpected error encountered in GET all Posts route: ${err}`)
+  }
+});
+
+/*
+================================================
+POST ROUTES | AUTHENTICATION-REQUIRED | USER 
+================================================
+*/
   
-// Create a post 
-router.post('/', async(req, res) => {
+// CREATE NEW POST
+router.post('/', withAuth, async(req, res) => {
    
   try {
     const newPostDate = await
@@ -108,7 +152,7 @@ router.post('/', async(req, res) => {
 });
 
 
-// Update a post
+//UPDATE POST BY ID | EDIT POST BY ID
 router.put("/:id", (req,res) => {
   Post.update({
     title: req.body.title,
@@ -133,7 +177,7 @@ router.put("/:id", (req,res) => {
   });
 });
 
-//Delete a post
+//DELETE POST BY ID
 router.delete("/:id", (req,res) => {
   Post.destroy({
     where: {

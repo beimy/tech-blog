@@ -4,17 +4,18 @@ const { User, Post, Comment } = require("../../models");
 
 /*
 ================================================
-LOGIN ROUTES default: localhost:3010/user-login
+LOGIN ROUTES default: localhost:3010/user-login/
 ================================================
 */
 
-
+// DEFAULT => RENDER LOGIN-SIGNUP-PAGE
 router.get('/', async(req, res) => {
   res.status(200).render('login-signup-page', {
     pageTitle: 'Login',
   })
 })
 
+// RENDER REGISTRATION PAGE
 router.get('/register', (req, res, next) => {
   res.status(200).render('register', {
     pageTitle: "Sign Up",
@@ -22,7 +23,7 @@ router.get('/register', (req, res, next) => {
   })
 });
 
-// login validation
+// VALIDATE LOGIN CREDENTIALS
 router.post('/validate', async(req, res) => {
   try {
     const email = req.body.email;
@@ -58,9 +59,10 @@ router.post('/validate', async(req, res) => {
   }
 })
 
-// Create a user
-router.post("/", (req, res) => {
+// REGISTER NEW USER
+router.post("/register", (req, res) => {
   User.create({
+    email: req.body.email,
     username: req.body.username,
     password: req.body.password,
   })
@@ -79,15 +81,30 @@ router.post("/", (req, res) => {
     });
 });
 
-// log out
-router.post("/logout", (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
+// LOGOUT
+router.post('/logout', async(req, res) => {
+  try {
+    console.log(req)
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.status(200).json();
+      });
+    } else {
+      res.status(500).json(`no active session found`);
+    }
+  } catch (err) {
+    res.status(400).json(`unexpected error occurred when logging out: ${err}`)
   }
-});
+})
+
+// router.post("/logout", (req, res) => {
+//   if (req.session.loggedIn) {
+//     req.session.destroy(() => {
+//       res.status(204).end();
+//     });
+//   } else {
+//     res.status(404).end();
+//   }
+// });
 
 module.exports = router;
