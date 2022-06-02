@@ -89,9 +89,34 @@ router.get("/:id", async (req, res) => {
 
     res.status(200).json(postData);
   } catch (err) {
-    res
-      .status(500)
-      .json(`Unexpected error encountered in GET Post by id route: ${err}`);
+    res.status(500).json(`Unexpected error encountered in GET Post by id route: ${err}`)
+  }
+})
+
+// router.post('/new', withAuth async(req, res) => {
+//   try {
+//     const newPost = 
+//   } catch (err) {
+//     res.status(500).json(`Unexpected error encountered in POST New Post route: ${err}`)
+//   }
+// })
+  
+// Create a post 
+router.post('/', async(req, res) => {
+   
+  try {
+    const newPostDate = await
+      Post.create({
+        title: req.body.title,
+        post_content: req.body.post_content,
+        user_id: req.session.user_id
+      });
+
+      if(!err){
+        res.status(200).json(`New post successfully created.`)
+      }
+  } catch (err) {
+    res.status(500).json(`unexpected error encountered in Create New Post Route: ${err}`)
   }
 });
 
