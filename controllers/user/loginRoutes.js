@@ -61,6 +61,7 @@ router.post('/validate', async(req, res) => {
 
 // REGISTER NEW USER
 router.post("/register", (req, res) => {
+  console.log(req.body)
   User.create({
     email: req.body.email,
     username: req.body.username,
@@ -72,7 +73,7 @@ router.post("/register", (req, res) => {
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
 
-        res.json(dbUserData);
+        res.status(200).json(dbUserData);
       });
     })
     .catch((err) => {

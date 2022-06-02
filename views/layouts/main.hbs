@@ -5,14 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
   <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body>
+    /><body>
   <div class="wrapper">
     <header>
       <nav class="navbar navbar-light bg-light border-bottom">
@@ -33,7 +31,7 @@
               </form>
             {{#if loggedIn}}
             <a href="/user-page">My Blog</a>
-            <button type="button" id="loggout-btn" class="btn btn-primary me-3">
+            <button type="button" id="logout-btn" href="/user-login/logout" class="btn btn-primary me-3">
                 Log Out
             </button>
             {{else}}
