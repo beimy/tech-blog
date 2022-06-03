@@ -6,9 +6,10 @@ class Comment extends Model {}
 Comment.init(
   {
     comment_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.INTEGER,      
       primaryKey: true,
+      allowNull: false,
+
       autoIncrement: true,
     },
     comment_title: {
@@ -21,11 +22,22 @@ Comment.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+      // foreignKey: true,
+      // references: {
+      //   model: 'user',
+      //   key: 'user_id'
+      // }
 
     },
     post_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      // foreignKey: true,
+      // references: {
+      //   model: 'post',
+      //   key: 'post_id'
+      // }
     },
     tag_id: {
       type: DataTypes.STRING,

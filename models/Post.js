@@ -6,9 +6,9 @@ class Post extends Model {}
 Post.init(
   {
     post_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.INTEGER,    
       primaryKey: true,
+      allowNull: false,
       autoIncrement: true,
     },
     post_title: {
@@ -23,18 +23,24 @@ Post.init(
     },
     category_id: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'category',
-        key: 'category_id',
-      }
+      // foreignKey: true,
+      // references: {
+      //   model: 'category',
+      //   key: 'category_id',
+      // }
+    },
+    post_url: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'user',
-        key: 'user_id'
-      }
+      // allowNull: false,
+      // foreignKey: true,
+      // references: {
+      //   model: 'user',
+      //   key: 'user_id'
+      // }
     },
   },
   {

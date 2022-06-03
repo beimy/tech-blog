@@ -238,7 +238,7 @@ Letting go can be difficult, but you’ll torture yourself mentally and emotiona
   post_content: 'tHIS POST HAS NO post_content, JUST a random string',
   category_id: 5,
   post_url: 'testpost.tt.blog',
-  user_id: 15,
+  user_id: 14,
 },
 {
   post_title  : 'Test Post #16 The tortoise and The Hair',

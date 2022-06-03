@@ -32,8 +32,6 @@ const seedAll = async() => {
     console.log('-----------SEED COMMENT-TAGS-------------')
     await seedCommentTags();
 
-
-
     process.exit(0);
   }catch(err){
     console.error(`Unexpected error encountered in seeds index: ${err}`)

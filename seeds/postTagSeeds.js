@@ -156,7 +156,7 @@ const postTagData = [
   },
   {
     tag_id: 7,
-    post_id: 1,
+    post_id: 12,
   },
   {
     tag_id: 8,

@@ -100,6 +100,20 @@ const userData = [
     password: 'Iforgot!',
     is_admin: false
   },
+  {
+    username: 'kye1234',
+    email: 'kye1234@bob.com',
+    about: 'This is where the users about information goes.',
+    password: 'Iforgot!',
+    is_admin: false
+  },
+  {
+    username: 'kye12345',
+    email: 'kye12345@bob.com',
+    about: 'This is where the users about information goes.',
+    password: 'Iforgot!',
+    is_admin: false
+  },
 
 ];
 
