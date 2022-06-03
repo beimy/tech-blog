@@ -3,10 +3,10 @@
         <div class="border-end col-10">
             <div class="row min-vh-75 p-10 border-bottom" id="user-profile-data">
                 <div class="col-sm-4">
-                    <img class="w-100 h-100 col-5" id="user-profile-img" src="{{profile_img}}" alt="">
+                    <img class="w-50 h-75 col-5" id="user-profile-img" src="/images/ProfilePlaceholderSuit.png" alt="/images/ProfilePlaceholderSuit.png">
                 </div>
                 <div class="col-sm-8">
-                    <h2 class="col-3">{{posts.[1].user.username}}</h2>
+                    <h2 class="col-3">{{username}}</h2>
                 </div>
                 <div class="col-sm-4">
                     <h3>Interests</h3>
@@ -33,14 +33,6 @@
                 </ul>
             </div>
         </div>
-        <div class="col-1">
-            <div class="col">
-                <button id="home-btn" type="button">Home</button>
-                <button id="explore-btn" type="button">Explore</button>
-                <button id="notifications-btn" type="button">Notifications</button>
-                <button id="my-account-btn" type="button">My Account</button>
-            </div>
-            
-        </div>
+        {{> side-bar }}
     </div>
 </div>

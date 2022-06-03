@@ -1,7 +1,7 @@
 <article class="post-user">
     <div class="row">
         <div class="col-sm-5">
-            <img class="profile-pic w-50px h-50px" src="/images/ProfilePlaceholderSuit.png" alt="image not found" 
+            <img class="profile-pic w-100 h-100" src="/images/ProfilePlaceholderSuit.png" alt="image not found" 
              data-holder-rendered="true">
         </div>
         <div class="col-sm-3">
@@ -9,7 +9,8 @@
         </div>
     </div>
     <p>Post Time:<span id="post-user-time"> {{post-time}}</span></p>
-    <h3>Tags</h3>
+    {{#if tags}}
+    <p>Tags</p>
     <ul id="post-user-tags-list">
         {{#each posts as |post|}}
         <li>
@@ -17,4 +18,5 @@
         </li>
         {{/each}}
     </ul>
+    {{/if}}
 </article>
