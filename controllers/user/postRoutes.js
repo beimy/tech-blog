@@ -1,6 +1,9 @@
-const router = require("express").Router();
-const { Post, Comment, User, Tag } = require("../../models");
-const withAuth = require("../../utils/auth");
+
+const router = require('express').Router();
+const { Post, Comment, User, Tag, Category, Post_Tags } = require('../../models');
+const withAuth = require('../../utils/auth');
+require("../../utils/auth");
+
 
 /*
 ================================================
@@ -20,41 +23,45 @@ router.get("/post-test", async (req, res) => {
 });
 
 //DEFAULT ROUTE => GET ALL POSTS
-router.get("/", async (req, res) => {
-  try {
+
+router.get('/', async (req, res) => {
+  try{
     const postData = await Post.findAll({
       attributes: [
-        "id",
-        "title",
-        "post_content",
-        "category",
-        "tags",
-        "user_id",
+        'post_id',
+        'post_title',
+        'post_content',
       ],
       include: [
         {
-          model: Comment,
-          attributes: [
-            "id",
-            "title",
-            "comment_content",
-            "user_id",
-            "created_at",
-          ],
-          include: {
-            model: User,
-            attributes: ["username"],
-          },
-        },
-        {
+
           model: User,
           attributes: ["username"],
         },
         {
-          model: Tag,
-          attributes: ["tag_name"],
+          model: Category,
+          attributes: ['category_id', 'category_name']
         },
-      ],
+        {
+          model: Tag,
+          as: 'tags',
+        },
+        {
+          model: Comment,
+          attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
+          include: [
+            {
+              model: User,
+              attributes: ['username'],
+            },
+            {
+              model: Tag,
+              as: 'tags'
+            }
+          ]
+        },
+      ]
+
     });
 
     res.status(200).json(postData);
@@ -71,93 +78,94 @@ router.get("/:id", async (req, res) => {
     const postId = req.params.id;
     const postData = await Post.findByPk(postId, {
       attributes: [
-        "id",
-        "title",
-        "post_content",
-        "category",
-        "tags",
-        "user_id",
+        'post_id',
+        'post_title',
+        'post_content',
       ],
       include: [
         {
-          model: Comment,
-          attributes: [
-            "id",
-            "title",
-            "comment_content",
-            "user_id",
-            "created_at",
-          ],
-          include: {
-            model: User,
-            attributes: ["username"],
-          },
-        },
-        {
+
           model: User,
           attributes: ["username"],
         },
         {
-          model: Tag,
-          attributes: ["tag_name"],
+          model: Category,
+          attributes: ['category_id', 'category_name']
         },
-      ],
+        {
+          model: Tag,
+          as: 'tags',
+        },
+        {
+          model: Comment,
+          attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
+          include: [
+            {
+              model: User,
+              attributes: ['username'],
+            },
+            {
+              model: Tag,
+              as: 'tags'
+            }
+          ]
+        },
+      ]
     });
 
-    res.status(200).json(postData);
-  } catch (err) {
-    res
-      .status(500)
-      .json(`Unexpected error encountered in GET Post by id route: ${err}`);
+    res.status(200).json(postData);  
+  }catch(err){
+    res.status(500).json(`Unexpected error encountered in GET Post by id route: ${err}`)
   }
 });
 
 //GET POSTS BY USER ID
-router.get("/user-:id", async (req, res) => {
-  try {
-    const userId = req.body.id
+router.get('/user/:id', async (req, res) => {
+  try{
+    const userId = req.params.id;
     const postData = await Post.findAll({
-      where: user_id = userId,
+      where:{
+        user_id: userId
+      },
       attributes: [
-        "id",
-        "title",
-        "post_content",
-        "category",
-        "tags",
-        "user_id",
+        'post_id',
+        'post_title',
+        'post_content',
       ],
       include: [
-        {
-          model: Comment,
-          attributes: [
-            "id",
-            "title",
-            "comment_content",
-            "user_id",
-            "created_at",
-          ],
-          include: {
-            model: User,
-            attributes: ["username"],
-          },
-        },
         {
           model: User,
           attributes: ["username"],
         },
         {
-          model: Tag,
-          attributes: ["tag_name"],
+          model: Category,
+          attributes: ['category_id', 'category_name']
         },
-      ],
+        {
+          model: Tag,
+          as: 'tags',
+        },
+        {
+          model: Comment,
+          attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
+          include: [
+            {
+              model: User,
+              attributes: ['username'],
+            },
+            {
+              model: Tag,
+              as: 'tags'
+            }
+          ]
+        },
+      ]
     });
 
     res.status(200).json(postData);
-  } catch (err) {
-    res
-      .status(500)
-      .json(`Unexpected error encountered in GET all Posts route: ${err}`);
-  }
+  }catch(err){
+    res.status(500).json(`Unexpected error encountered in GET all Posts By User route: ${err}`)
+ }
 });
 
 /*
@@ -165,19 +173,22 @@ router.get("/user-:id", async (req, res) => {
 POST ROUTES | AUTHENTICATION-REQUIRED | USER 
 ================================================
 */
-
-// CREATE NEW POST
-router.post("/", withAuth, async (req, res) => {
+  
+// CREATE NEW POST - this post was had withAuth removed for testing purposes. add in withAuth when testing from live site
+//change (user_id: req.body.user_id) to (user_id: req.session.user_id) when testing for live site
+router.post('/', async(req, res) => {
+   
   try {
-    const newPostDate = await Post.create({
-      title: req.body.title,
-      post_content: req.body.post_content,
-      user_id: req.session.user_id,
-    });
+    const newPostDate = await
+      Post.create({
+        post_title: req.body.post_title,
+        post_content: req.body.post_content,
+        category_id: req.body.category_id,
+        user_id: req.body.user_id
+      });
 
-    if (!err) {
-      res.status(200).json(`New post successfully created.`);
-    }
+    res.status(200).json(`New post successfully created.`)
+    
   } catch (err) {
     res
       .status(500)

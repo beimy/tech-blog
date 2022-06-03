@@ -5,40 +5,35 @@ class Post extends Model {}
 
 Post.init(
   {
-    id: {
+    post_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    post_title: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: 'You Forgot Something'
     },
     post_content: {
       type: DataTypes.TEXT,
       allowNull: false,
+      defaultValue: 'This area needs to have something in it... That is kind of the point of a post.'
     },
-    category: {
+    category_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
       references: {
         model: 'category',
-        key: 'id',
+        key: 'category_id',
       }
-
-    },
-    tags: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-
     },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'user',
-        key: 'id'
+        key: 'user_id'
       }
     },
   },
@@ -47,7 +42,7 @@ Post.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Post',
+    modelName: 'post',
   }
 );
 

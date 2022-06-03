@@ -1,11 +1,11 @@
 # Route Map
 
-* **default route:**</br>
+* **Default Route:**</br>
     Expected response: Renders Home Page</br>
     Method: GET</br>
     URL: http://localhost:3010/</br>
 
-* **default 404 error route:**</br>
+* **Default 404 Error Route:**</br>
   Expected Response: Renders 404 Page</br>
   Method: GET</br>
   URL: http://localhost:3010/{any invalid route}</br>
@@ -16,18 +16,49 @@
 ### Post Routes
 
 * **Test Post-Page:** </br>
-  URL: http://localhost:3010/post/post-test</br>
 
-* **GET All Posts** (not user specific)</br>
-    Expected Response: Array of all posts</br>
-    Method: GET</br>
-    URL: http://localhost:3010/post/</br>
+  URL: http://localhost:3010/post/post-test </br>
+
+* **GET All Posts:** (no auth required) </br>
+    Expected Response: All posts and associated data including comments, tags, comments tags, user id, category, ect. </br>
+    Method: GET </br>
+    URL: http://localhost:3010/post/ </br>
+
+* **GET Posts By ID:** (no auth required) </br>
+    Request Requirements: Post ID </br>
+    Expected Response: Single post and all associated data where post_id = req.params.id </br>
+    Method: GET <br>
+    URL: http://localhost:3010/post/:id  </br>
+    Example: http://localhost:3010/post/5 </br>
+
+* **GET Post By User Id:** (withAuth is currently disabled for testing but will be activated for live deployment)</br>
+    Request Requirements: User Id </br>
+    Expected Response: All posts associated with one user and those posts associated data </br>
+    Method: GET <br>
+    URL: http://localhost:3010/post/user/:id </br>
+    Example: http://localhost:3010/post/user/1 </br>
+
+* **Create New Post:** </br>
+    Request Requirements: Json Object: </br>
+    ``{
+	      "post_title": "STRING",
+	      "post_content": "TEXT",
+	      "category_id": INTEGER,
+	      "user_id": INTEGER
+      }``
+
+    Expected Response: (200) - success, (500) - fail </br>
+    Method: POST <br>
+    URL: http://localhost:3010/post/ </br>
+
+
 
 * **GET Posts by ID:** </br>
   Request Requirements: Post ID </br>
   Expected response: Single post object</br>
   Method: GET</br>
   URL: http://localhost:3010/post/:id </br>
+
 
 * **GET Posts by User ID:** </br>
   Request requirements: User ID  </br>
@@ -46,6 +77,7 @@
   Expected response: res.status(200)/(500) success/fail
   Method: PUT
   URL: http://localhost:3010/post/:id
+
 
 
 ### Login Routes
@@ -86,3 +118,11 @@
     Expected Response: currently none, this is the default base URL to reach admin routes</br>
     Method: GET, POST, PUT, DELETE</br>
     URL: http://localhost:3010/admin</br>
+
+
+* **Route Map Template:** </br>
+    Request Requirements: "" </br>
+    Expected Response: "" </br>
+    Method: "" <br>
+    URL: "" </br>
+    Example: "" </br>

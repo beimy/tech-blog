@@ -5,13 +5,13 @@ class Comment extends Model {}
 
 Comment.init(
   {
-    id: {
+    comment_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    comment_title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -26,6 +26,10 @@ Comment.init(
     post_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    tag_id: {
+      type: DataTypes.STRING,
+      allowNull: true,
 
     },
   },
@@ -34,7 +38,7 @@ Comment.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Comment'
+    modelName: 'comment'
   }
 );
 
