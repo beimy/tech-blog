@@ -46,37 +46,16 @@
 	      "category_id": INTEGER,
 	      "user_id": INTEGER
       }``
-
     Expected Response: (200) - success, (500) - fail </br>
     Method: POST <br>
     URL: http://localhost:3010/post/ </br>
 
 
-
-* **GET Posts by ID:** </br>
-  Request Requirements: Post ID </br>
-  Expected response: Single post object</br>
-  Method: GET</br>
+* **Edit Post By ID:** Requires withAuth </br>
+  Request Requirements: Params to update example: {title: 'New Post Title', post_content: 'Updated post content'} </br>
+  Expected response: res.status(200)/(500) success/fail </br>
+  Method: PUT </br>
   URL: http://localhost:3010/post/:id </br>
-
-
-* **GET Posts by User ID:** </br>
-  Request requirements: User ID  </br>
-  Expected Response: Array of posts belonging to one user where id=userId  </br>
-  Method: GET </br>
-  URL: http://localhost:3010/post/user-:id </br>
-
-* **Create New Post:** Requires withAuth 
-  Request Requirements: title(NOT NULL), post_content(NOT NULL), category (limit of 1), post_tags
-  Expected Response: res.status(200) => new post created, (500) => error details
-  Method: POST
-  URL: http://localhost:3010/post/
-
-* **Edit Post By ID:** Requires withAuth
-  Request Requirements: Params to update example: {title: 'New Post Title', post_content: 'Updated post content'}
-  Expected response: res.status(200)/(500) success/fail
-  Method: PUT
-  URL: http://localhost:3010/post/:id
 
 
 
