@@ -23,21 +23,10 @@ Comment.init(
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      // foreignKey: true,
-      // references: {
-      //   model: 'user',
-      //   key: 'user_id'
-      // }
-
     },
     post_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      // foreignKey: true,
-      // references: {
-      //   model: 'post',
-      //   key: 'post_id'
-      // }
     },
     tag_id: {
       type: DataTypes.STRING,

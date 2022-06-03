@@ -23,11 +23,6 @@ Post.init(
     },
     category_id: {
       type: DataTypes.INTEGER,
-      // foreignKey: true,
-      // references: {
-      //   model: 'category',
-      //   key: 'category_id',
-      // }
     },
     post_url: {
       type: DataTypes.STRING,
@@ -35,12 +30,6 @@ Post.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
-      // allowNull: false,
-      // foreignKey: true,
-      // references: {
-      //   model: 'user',
-      //   key: 'user_id'
-      // }
     },
   },
   {

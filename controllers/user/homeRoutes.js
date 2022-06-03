@@ -41,10 +41,9 @@ router.get('/', async(req, res) => {
     ]
 
   });
-  // const posts = postData.map(post => post.get({ plain: true }))
-  console.log(postData);
+  const posts = postData.map(post => post.get({ plain: true }))
   res.status(200).render('index', { 
-    // posts,
+    posts,
     loggedIn: req.session.loggedIn,
     pageTitle: "Home",
     errorCSS: false,
