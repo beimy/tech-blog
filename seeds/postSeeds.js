@@ -8,7 +8,6 @@ const postData = [
   There was once a hare who was friends with a tortoise. One day, he challenged the tortoise to a race. Seeing how slow the tortoise was going, the hare thought he’ll win this easily. So he took a nap while the tortoise kept on going. When the hare woke up, he saw that the tortoise was already at the finish line. Much to his chagrin, the tortoise won the race while he was busy sleeping.
   `,
   category_id: 1,
-   
   post_url: 'testpost.tt.blog',
   user_id: 1,
 
@@ -18,10 +17,9 @@ const postData = [
   post_content: `
   Once there was a dog who wandered the streets night and day in search of food. One day, he found a big juicy bone and he immediately grabbed it between his mouth and took it home. On his way home, he crossed a river and saw another dog who also had a bone in its mouth. He wanted that bone for himself too. But as he opened his mouth, the bone he was biting fell into the river and sank. That night, he went home hungry.
   `,
-  category_id: 1,
-   
+  category_id: 2,
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 2,
 
 },
 {
@@ -30,9 +28,8 @@ const postData = [
   After flying a long distance, a thirsty crow was wandering the forest in search of water. Finally, he saw a pot half-filled with water. He tried to drink from it but his beak wasn’t long enough to reach the water inside. He then saw pebbles on the ground and one by one, he put them in the pot until the water rose to the brim. The crow then hastily drank from it and quenched his thirst.
   `,
   category_id: 1,
-   
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 3,
 
 },
 {
@@ -40,25 +37,21 @@ const postData = [
   post_content: `
   Once there was a hungry fox who stumbled upon a vineyard. After seeing the round, juicy grapes hanging in a bunch, the fox drooled. But no matter how high he jumped, he couldn’t reach for it. So he told himself that it was probably sour and left. That night, he had to sleep on an empty stomach.
   `,
-  category_id: 1,
-   
+  category_id: 2,
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 4,
 
 },
 {
   post_title  : 'Test Post #5 The And and the Grasshopper',
   post_content: `
   The ant and the grasshopper were good friends. In the summer, the ant works hard to fill his storage with food. While the grasshopper was enjoying the fine weather and playing all day. When winter came, the ant was lying cozily in his home surrounded by the food he stored during the summer. While the grasshopper was in his home, hungry and freezing. He asked the ant for food and the ant gave him some. But it wasn’t enough to last the entire winter. When he tried to ask the ant again, the latter replied: “I’m sorry my friend but my food is just enough for my family to last until the end of winter. If I give you more, we too will starve. We had the entire summer to prepare for the winter but you chose to play instead.”
-
 Moral of the story:
-
 Winter, in this story, represents a time in our life where food and resources are scarce. While summer is that time where everything is abundant. So if you have a lot right now, save some of it for the winter.
   `,
   category_id: 1,
-   
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 5,
 },
 {
   post_title  : 'Test Post #6 The Ugly Duckling',
@@ -66,9 +59,8 @@ Winter, in this story, represents a time in our life where food and resources ar
   Most of us have probably heard of this story as this is one of the most popular fairy tales in the world. The story revolves around a duckling who from the moment of his birth has always felt different from his siblings. He was always picked on because he didn’t look like the rest of them. One day, he had enough and ran away from the pond he grew up in. He wandered near and far looking for a family who would accept him. Months passed and seasons changed but everywhere he went, nopost_content wanted him because he was such an ugly duck. Then one day, he came upon a family of swans. Upon looking at them, he realized that during the months he spent looking for a family to call his own, he had grown into a beautiful swan. Now he finally understood why he never looked like the rest of his siblings because he isn’t a duck but a swan.
   `,
   category_id: 1,
-   
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 6,
 
 },
 {
@@ -81,24 +73,20 @@ Moral of the story:
 The good you did will always have a way of coming back to you. So do good deeds and be kind to others and the world will be kind to you.
   `,
   category_id: 1,
-   
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 7,
 
 },
 {
   post_title  : 'Test Post #8 The Elephant and The ants',
   post_content: `
   There was once a proud elephant who always bullied smaller animals. He would go to the anthill near his home and spray water at the ants. The ants, with their size, could do nothing but cry. The elephant just laughed and threatened the ants that he would crush them to death. One day, the ants had enough and decided to teach the elephant a lesson. They went straight into the elephant’s trunk and started biting him. The elephant could only howl in pain. He realized his mistake and apologized to the ants and all the animals he bullied.
-
 Moral of the story:
-
 Be humble and treat everyone with kindness. If you think you’re stronger than others, then use your strength to protect them instead of harming them.
   `,
-  category_id: 1,
-   
+  category_id: 2,
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 8,
 
 },
 {
@@ -116,10 +104,9 @@ Hungry, Midas groaned, “I’ll starve! Perhaps this was not such an excellent 
 
 Seeing his dismay, Midas’ beloved daughter threw her arms around him to comfort him, and she, too, turned to gold. “The golden touch is no blessing,” Midas cried.
   `,
-  category_id: 1,
-   
+  category_id: 2,
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 9,
 
 },
 {
@@ -146,10 +133,9 @@ We’ve all had experiences where the curse turns into a blessing; rejection tur
 
 Life is indeed a box of chocolates—you never know what you’re gonna get. Yet the father isn’t delusional or apathetic, but equanimous through life’s ups and downs. And there’s a subtle expectation that fortune will follow his misfortune. It’s important to have foundational beliefs that keep you composed, to appreciate and celebrate the good, and to process trials knowing they soon shall pass.
   `,
-  category_id: 1,
-   
+  category_id: 3,
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 10,
 
 },
 {
@@ -175,10 +161,9 @@ The old chief simply replied,
 …
 It’s no surprise that expressing gratitude increases positive experiences. Whatever you decide to feed will grow. Focusing on something causes your brain’s reticular activating system (RAS) to flag anything related as important. If your default is toward negativity, you’ll always see the glass half empty. Start feeding the good wolf to see, and live, the silver lining.
   `,
-  category_id: 1,
-   
+  category_id: 3,
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 11,
 
 },
 {
@@ -199,10 +184,9 @@ Ekido did not speak again until that night when they reached a lodging temple. T
 …
 Letting go can be difficult, but you’ll torture yourself mentally and emotionally by holding on. Breathe deep, and let it go. Life doesn’t always follow the script; rules are bent and broken; the ideal doesn’t match the real. But carrying wounds long after the battle is done is a mark of immaturity.
   `,
-  category_id: 1,
-   
+  category_id: 4,
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 12,
 
 },  
 {
@@ -219,9 +203,9 @@ Letting go can be difficult, but you’ll torture yourself mentally and emotiona
   He is survived by his 4 stepbrothers;   I Know My Rights; I want it now; Someone Else Is To Blame; I’m A Victim.
   Not many attended his funeral because so few realized he was gone.   If you still remember him, pass this on. If not, join the majority and do nothing.....
    `,
-  category_id: 1,
+  category_id: 4,
   post_url: 'testpost.tt.blog',
-  user_id: 1,
+  user_id: 13,
 
 },
 {
@@ -244,7 +228,7 @@ Letting go can be difficult, but you’ll torture yourself mentally and emotiona
   In fact, I observed that many people who went to the latipsoh for a cure died during the curing ceremonies, which appear to be very harsh. One curing ceremony which takes place in this temple involves allowing the medicine men to cut out and throw away parts of their bodies. The Nacirema believe that this ceremony will remove the evil from their bodies and improve their health. The medicine men who conduct these ceremonies own a large collection of special knives which the client is never allowed to see. 
   The Nacirema also allow the maidens of the temple to place sharp wires in their bodies and to remove small amounts of their blood in order to cure them.Our review of the ritual life of the Nacirema has certainly shown them to be a magic-ridden people. It is hard to understand how they have managed to exist so long under the burdens they have imposed upon themselves. nReprinted by permission of the American Anthropological Association from Horace Miner, American Anthropologist 58 (1956): 503-507.` ,
 
-  category_id: 1,
+  category_id: 5,
   post_url: 'testpost.tt.blog',
   user_id: 1,
 
@@ -252,11 +236,98 @@ Letting go can be difficult, but you’ll torture yourself mentally and emotiona
 {
   post_title  : 'Test Post #15 Blarg',
   post_content: 'tHIS POST HAS NO post_content, JUST a random string',
-  category_id: 1,
+  category_id: 5,
+  post_url: 'testpost.tt.blog',
+  user_id: 15,
+},
+{
+  post_title  : 'Test Post #16 The tortoise and The Hair',
+  post_content: `
+  There was once a hare who was friends with a tortoise. One day, he challenged the tortoise to a race. Seeing how slow the tortoise was going, the hare thought he’ll win this easily. So he took a nap while the tortoise kept on going. When the hare woke up, he saw that the tortoise was already at the finish line. Much to his chagrin, the tortoise won the race while he was busy sleeping.
+  `,
+  category_id: 6,
+  post_url: 'testpost.tt.blog',
+  user_id: 8,
+
+},
+{
+  post_title  : 'Test Post #17 The Dog and The Bone',
+  post_content: `
+  Once there was a dog who wandered the streets night and day in search of food. One day, he found a big juicy bone and he immediately grabbed it between his mouth and took it home. On his way home, he crossed a river and saw another dog who also had a bone in its mouth. He wanted that bone for himself too. But as he opened his mouth, the bone he was biting fell into the river and sank. That night, he went home hungry.
+  `,
+  category_id: 6,
+  post_url: 'testpost.tt.blog',
+  user_id: 7,
+
+},
+{
+  post_title  : 'Test Post #18 The Thirsty Crow',
+  post_content: `
+  After flying a long distance, a thirsty crow was wandering the forest in search of water. Finally, he saw a pot half-filled with water. He tried to drink from it but his beak wasn’t long enough to reach the water inside. He then saw pebbles on the ground and one by one, he put them in the pot until the water rose to the brim. The crow then hastily drank from it and quenched his thirst.
+  `,
+  category_id: 7,
+  post_url: 'testpost.tt.blog',
+  user_id: 6,
+
+},
+{
+  post_title  : 'Test Post #19 The Fox and The Grapes',
+  post_content: `
+  Once there was a hungry fox who stumbled upon a vineyard. After seeing the round, juicy grapes hanging in a bunch, the fox drooled. But no matter how high he jumped, he couldn’t reach for it. So he told himself that it was probably sour and left. That night, he had to sleep on an empty stomach.
+  `,
+  category_id: 7,
+  post_url: 'testpost.tt.blog',
+  user_id: 5,
+
+},
+{
+  post_title  : 'Test Post #20 The And and the Grasshopper',
+  post_content: `
+  The ant and the grasshopper were good friends. In the summer, the ant works hard to fill his storage with food. While the grasshopper was enjoying the fine weather and playing all day. When winter came, the ant was lying cozily in his home surrounded by the food he stored during the summer. While the grasshopper was in his home, hungry and freezing. He asked the ant for food and the ant gave him some. But it wasn’t enough to last the entire winter. When he tried to ask the ant again, the latter replied: “I’m sorry my friend but my food is just enough for my family to last until the end of winter. If I give you more, we too will starve. We had the entire summer to prepare for the winter but you chose to play instead.”
+Moral of the story:
+Winter, in this story, represents a time in our life where food and resources are scarce. While summer is that time where everything is abundant. So if you have a lot right now, save some of it for the winter.
+  `,
+  category_id: 8,
+  post_url: 'testpost.tt.blog',
+  user_id: 4,
+},
+{
+  post_title  : 'Test Post #21 The Ugly Duckling',
+  post_content: `
+  Most of us have probably heard of this story as this is one of the most popular fairy tales in the world. The story revolves around a duckling who from the moment of his birth has always felt different from his siblings. He was always picked on because he didn’t look like the rest of them. One day, he had enough and ran away from the pond he grew up in. He wandered near and far looking for a family who would accept him. Months passed and seasons changed but everywhere he went, nopost_content wanted him because he was such an ugly duck. Then one day, he came upon a family of swans. Upon looking at them, he realized that during the months he spent looking for a family to call his own, he had grown into a beautiful swan. Now he finally understood why he never looked like the rest of his siblings because he isn’t a duck but a swan.
+  `,
+  category_id: 8,
+  post_url: 'testpost.tt.blog',
+  user_id: 3,
+
+},
+{
+  post_title  : 'Test Post #22 The Lion and The Slave',
+  post_content: `
+  There was once a slave who was treated cruelly by his master. One day, he couldn’t take it anymore and ran away to the forest to escape. There he chanced upon a lion who couldn’t walk because of the thorn in its paw. Although he’s scared, the slave mustered his courage and took out the thorn in the lion’s paw. When the lion was finally free of the thorn, he ran into the forest and didn’t harm the slave. Sometime later, the slave was caught by his master along with some animals in the forest. The master then ordered the slave to be thrown into the lion’s den. When the slave saw the lion, he recognized it as the same lion he helped in the forest. The slave was able to escape the den unharmed and he freed all the other animals.
+
+Moral of the story:
+
+The good you did will always have a way of coming back to you. So do good deeds and be kind to others and the world will be kind to you.
+  `,
+  category_id: 9,
+  post_url: 'testpost.tt.blog',
+  user_id: 2,
+
+},
+{
+  post_title  : 'Test Post #23 The Elephant and The ants',
+  post_content: `
+  There was once a proud elephant who always bullied smaller animals. He would go to the anthill near his home and spray water at the ants. The ants, with their size, could do nothing but cry. The elephant just laughed and threatened the ants that he would crush them to death. One day, the ants had enough and decided to teach the elephant a lesson. They went straight into the elephant’s trunk and started biting him. The elephant could only howl in pain. He realized his mistake and apologized to the ants and all the animals he bullied.
+Moral of the story:
+Be humble and treat everyone with kindness. If you think you’re stronger than others, then use your strength to protect them instead of harming them.
+  `,
+  category_id: 9,
   post_url: 'testpost.tt.blog',
   user_id: 1,
 
-},  
+},
+
 ]
 
 const postSeeds = () => Post.bulkCreate(postData);

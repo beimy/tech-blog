@@ -38,7 +38,7 @@ Comment.belongsTo(Post, {
 
 Post.belongsToMany(Tag, {
   through: Post_Tags,
-  as: 'tag',
+  as: 'tags',
   foreignKey: 'post_id'
 });
 
@@ -50,7 +50,7 @@ Tag.belongsToMany(Post, {
 
 Comment.belongsToMany(Tag, {
   through: Comment_Tags,
-  as: "tag",
+  as: "tags",
   foreignKey: "comment_id"
 });
 
