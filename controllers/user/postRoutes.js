@@ -164,20 +164,21 @@ POST ROUTES | AUTHENTICATION-REQUIRED | USER
 ================================================
 */
   
-// CREATE NEW POST
-router.post('/', withAuth, async(req, res) => {
+// CREATE NEW POST - this post was had withAuth removed for testing purposes. add in withAuth when testing from live site
+//change (user_id: req.body.user_id) to (user_id: req.session.user_id) when testing for live site
+router.post('/', async(req, res) => {
    
   try {
     const newPostDate = await
       Post.create({
-        title: req.body.title,
+        post_title: req.body.post_title,
         post_content: req.body.post_content,
-        user_id: req.session.user_id
+        category_id: req.body.category_id,
+        user_id: req.body.user_id
       });
 
-      if(!err){
-        res.status(200).json(`New post successfully created.`)
-      }
+    res.status(200).json(`New post successfully created.`)
+      
   } catch (err) {
     res.status(500).json(`unexpected error encountered in Create New Post Route: ${err}`)
   }
