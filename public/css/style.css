@@ -38,3 +38,12 @@ li {
 #interests-list li {
     padding-bottom: 1px;
 }
+
+.side-bar-btn {
+    width: 100px;
+    white-space: nowrap;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
