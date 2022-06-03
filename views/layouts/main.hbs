@@ -30,7 +30,7 @@
                 </span>
               </form>
             {{#if loggedIn}}
-            <a href="/user-page">My Blog</a>
+            <a href="/dashboard">My Blog</a>
             <button type="button" id="logout-btn" href="/user-login/logout" class="btn btn-primary me-3">
                 Log Out
             </button>
@@ -43,7 +43,7 @@
     <main>
       {{{ body }}}
     </main>
-    <footer>
+    <footer class="footer navbar-fixed-botom">
       Thanks for visiting!
     </footer>
   </div>

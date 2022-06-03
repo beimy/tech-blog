@@ -100,19 +100,24 @@ async function autoLogin(email, password, username) {
 
 function toggleSignUp(event) {
   $(".signup-form").removeClass("hidden");
-  $("#signup-toggle").addClass("hidden");
+  $("#signup-toggle").removeClass("btn-light");
+  $("#signup-toggle").addClass("btn-primary");
 
 
   $(".login-form").addClass("hidden");
-  $("#login-toggle").removeClass("hidden");
+  $("#login-toggle").removeClass("btn-primary");
+  $("#login-toggle").addClass("btn-light");
 }
 
 function toggleLogin(event) {
   $(".login-form").removeClass("hidden");
-  $("#login-toggle").addClass("hidden");
+  $("#login-toggle").removeClass("btn-light");
+  $("#login-toggle").addClass("btn-primary");
 
   $(".signup-form").addClass("hidden");
-  $("#signup-toggle").removeClass("hidden");
+  $("#signup-toggle").removeClass("btn-primary");
+  $("#signup-toggle").addClass("btn-light");
+
 }
   
 
