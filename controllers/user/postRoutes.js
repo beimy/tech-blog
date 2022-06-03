@@ -1,5 +1,7 @@
 
 const router = require('express').Router();
+const { request } = require('http');
+const { isNull } = require('lodash');
 const { Post, Comment, User, Tag, Category, Post_Tags } = require('../../models');
 const withAuth = require('../../utils/auth');
 require("../../utils/auth");
@@ -84,9 +86,8 @@ router.get("/:id", async (req, res) => {
       ],
       include: [
         {
-
           model: User,
-          attributes: ["username"],
+          attributes: ["username", "user_id"],
         },
         {
           model: Category,
@@ -197,32 +198,32 @@ router.post('/', async(req, res) => {
 });
 
 //UPDATE POST BY ID | EDIT POST BY ID
-router.put("/:id", (req, res) => {
-  Post.update(
+// withAuth has been removed for testing and will need to be added back in before deployment to prevent users from editing posts they dont own.
+router.put('/:id', async(req, res) => {
+  try {
+    const postId = req.params.id;
+    const postTitle = req.body.title;
+    const postContent = req.body.content;
+    const postCategory = req.body.category;
+
+    Post.update(
     {
-      title: req.body.title,
-      post_content: req.body.post_content,
+      post_title: postTitle,
+      post_content: postContent,
+      category_id: postCategory
     },
     {
       where: {
-        id: req.params.id,
+        post_id: postId, 
       },
-    }
-  )
-    .then((dbPostData) => {
-      if (!dbPostData) {
-        res.status(404).json({
-          message: "No post found with this id",
-        });
-        return;
-      }
-      res.json(dbPostData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+    },
+    )
+    res.status(200).json({message: `Post "${postId}" has been updated`})
+    
+  } catch (err) {
+    res.status(500).json({message: `Unexpected error encountered in Edit Post Route: ${err}`});
+  }
+})
 
 //DELETE POST BY ID
 router.delete("/:id", withAuth, async (req, res) => {

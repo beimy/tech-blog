@@ -51,11 +51,24 @@
     URL: http://localhost:3010/post/ </br>
 
 
-* **Edit Post By ID:** Requires withAuth </br>
-  Request Requirements: Params to update example: {title: 'New Post Title', post_content: 'Updated post content'} </br>
+* **Edit Post By ID:** (withAuth currently disabled for testing, will need to be reactivated before live deployment) </br>
+  Request Requirements: Json Object:  </br>
+  ``{
+	"title": "STRING",
+	"content": "TEXT",
+	"category": INTEGER
+} ``
   Expected response: res.status(200)/(500) success/fail </br>
   Method: PUT </br>
   URL: http://localhost:3010/post/:id </br>
+  Notes: This only updates title, content, and category - tags, comments, and user data cannot be updated by the user through this route. 
+
+* **Delete Post By ID:** </br>
+    Request Requirements: post_id, withAuth </br>
+    Expected Response: 200 - success, (500) - fail </br>
+    Method: DELETE <br>
+    URL: http://localhost:3010/post/:id </br>
+    Example: http://localhost:3010/post/1 </br>
 
 
 
