@@ -29,6 +29,10 @@ User.init(
         isEmail: true
       }
     },
+    about: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
