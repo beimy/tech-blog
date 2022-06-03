@@ -27,26 +27,30 @@ router.get('/', async (req, res) => {
         'post_id',
         'post_title',
         'post_content',
-        'category_id',
-        'user_id',
       ],
       include: [
-        {
-          model: Comment,
-          attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        },
         {
           model: User,
           attributes: ['username']
         },
         {
+          model: Comment,
+          attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
+          include: [
+            {
+              model: User,
+              attributes: ['username'],
+            },
+            {
+              model: Tag,
+              as: 'tag'
+            }
+          ]
+
+        },
+        {
           model: Tag,
           as: 'tag',
-          // attributes: ['tag_id','tag_name']
         },
         {
           model: Category,
@@ -76,12 +80,16 @@ router.get('/:id', async (req, res) => {
       ],
       include: [
         {
+          model: Category,
+          attributes: ['category_id', 'category_name']
+        },
+        {
           model: Comment,
           attributes: ['id', 'title', 'comment_content', 'user_id', 'created_at'],
           include: {
             model: User,
             attributes: ['username']
-          }
+          },
         },
         {
           model: User,
