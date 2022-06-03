@@ -4,7 +4,7 @@ class Tag extends Model {}
 
 Tag.init(
   {
-    id: {
+    tag_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -20,7 +20,7 @@ Tag.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Tag'
+    modelName: 'tag'
   }
 );
 

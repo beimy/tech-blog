@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, Comment, User, Tag } = require('../../models');
+const { Post, Comment, User, Tag, Category, Post_Tags } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 /*
@@ -24,17 +24,16 @@ router.get('/', async (req, res) => {
   try{
     const postData = await Post.findAll({
       attributes: [
-        'id',
-        'title',
+        'post_id',
+        'post_title',
         'post_content',
-        'category',
-        'tags',
-        'user_id'
+        'category_id',
+        'user_id',
       ],
       include: [
         {
           model: Comment,
-          attributes: ['id', 'title', 'comment_content', 'user_id', 'created_at'],
+          attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
           include: {
             model: User,
             attributes: ['username']
@@ -46,7 +45,12 @@ router.get('/', async (req, res) => {
         },
         {
           model: Tag,
-          attributes: ['tag_name']
+          as: 'tag',
+          // attributes: ['tag_id','tag_name']
+        },
+        {
+          model: Category,
+          attributes: ['category_id', 'category_name']
         }
       ]
     });
