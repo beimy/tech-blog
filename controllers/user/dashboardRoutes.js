@@ -13,12 +13,12 @@ router.get('/', withAuth, async(req, res) => {
         {
           model: Comment,
           where: user_id = userId,
-          attributes: ['id', 'title', 'comment_content'],
+          attributes: ['comment_id', 'comment_title', 'comment_content'],
         },
         {
           model: Post,
           where: user_id = userId,
-          attributes: ['title', 'post_content',]
+          attributes: ['post_title', 'post_content',]
         }
       ]
     })
