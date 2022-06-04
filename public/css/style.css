@@ -1,0 +1,49 @@
+#post-col {
+    border-width: 1px;
+    border-right-style: solid;
+    border-left-style: solid;
+}
+
+button {
+    margin: 2px;
+}
+
+h3 {
+    font-size: medium;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+#post-content {
+    min-height: 150px;
+    max-height: 150px;
+}
+
+li {
+    padding-bottom: 10px;
+}
+
+#user-profile-data {
+    padding-bottom: 50px;
+}
+
+#interests-list li {
+    padding-bottom: 1px;
+}
+
+.side-bar-btn {
+    width: 100px;
+    white-space: nowrap;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
