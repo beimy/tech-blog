@@ -32,14 +32,14 @@ router.post('/validate', async(req, res) => {
       where: {
         email: email
       },
-      attributes: ['id', 'username', 'email', 'password']
+      attributes: ['user_id', 'username', 'email', 'password']
     });
     const userPwd = userData.dataValues.password;
     console.log(userData.username)
 
     if(userPwd === password){
       req.session.save(() => {
-        req.session.user_id = userData.id;
+        req.session.user_id = userData.user_id;
         req.session.username = userData.username;
         req.session.loggedIn = true;
   
@@ -53,8 +53,8 @@ router.post('/validate', async(req, res) => {
       res.status(400).json(`incorrect password`);
     }
 
-  } catch (error) {
-    res.status(400).json(`Error encountered in test-validate login route: ${err}`)
+  } catch(error) {
+    res.status(400).json(`Error encountered in test-validate login route: ${error}`)
     console.error(error)
   }
 })

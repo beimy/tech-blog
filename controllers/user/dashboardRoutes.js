@@ -23,8 +23,8 @@ router.get('/', withAuth, async(req, res) => {
       ]
     })
     const username = userData.dataValues.username;
-    const posts = userData.Posts.map(post => post.get({ plain: true }));
-    const comments = userData.Comments.map(comment => comment.get({ plain: true }));
+    const posts = userData.posts.map(post => post.get({ plain: true }));
+    const comments = userData.comments.map(comment => comment.get({ plain: true }));
     
     res.status(200).render('user-page', {
       userData,
