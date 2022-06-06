@@ -1,0 +1,41 @@
+
+
+<div class="d-flex">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Login</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bg-dark" id="myModal" tabindex="-1" aria-labelledby="adminLoginModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h1 class="text-center mb-2 mt-4">Log In</h1>
+        <h6 class="text-center mb-5 fw-lighter">Please enter your email address and password to log in.</h6>
+          <form class="text-center">
+            <div class="mb-5">
+              
+              <input type="email" class="form-control mb-2" id="emailInput" aria-describedby="emailHelp">
+              <label for="emailInput" class="form-label text-center">Email address</label>
+
+            </div>
+            <div class="mb-5">
+              
+              <input type="password" class="form-control mb-2" id="passwordInput">
+              <label for="passwordInput" class="form-label ">Password</label>
+
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg mb-4" id="login">Login</button>
+
+          <p class="text-center">Not a member? <a href="http://localhost:3010/register">Sign-up here!</a></p>
+      </form>
+      </div>
+      <div class="modal-footer text-center">
+        
+        <button type="button" class="btn btn-secondary m-2" href="http://localhost:3010/register">Sign Up</button>
+        <button type="button" class="btn btn-secondary m-2" href="#">Forgot Password</button>
+        <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
