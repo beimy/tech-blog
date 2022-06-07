@@ -1,9 +1,14 @@
 <div class="form-group row" style="margin-bottom: 10px;">
     <div class="col-12">
-        <label class="mb-0" for="comment-textarea">Reply</label>
-        <textarea class="form-control col-5" id="comment-textarea" name="comment-textarea" rows="4"></textarea>
+        <label class="mb-0" for="comment-textarea">Reply
+            <textarea class="form-control col-12" id="comment-textarea" name="comment-textarea" rows="4" cols="100"></textarea>
+        </label>
     </div>
     <div class="float-md-end col-3">
-        <button class="btn btn-primary" style="max-width: 150px; max-height: 100px" id="sendComment-btn" type="button">Comment</button>
+        <button class="btn btn-primary" 
+        style="max-width: 150px; max-height: 100px" 
+        id="sendComment-btn" 
+        type="button"
+        data-post_id={{post_id}}>Comment</button>
     </div>
 </div>
