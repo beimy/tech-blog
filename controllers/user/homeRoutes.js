@@ -46,11 +46,9 @@ router.get('/', async(req, res) => {
     posts,
     loggedIn: req.session.loggedIn,
     pageTitle: "Home",
-    errorCSS: false,
+    userNav: true,
     mainCSS: true,
-    adminCSS: false,
     mainJS: true,
-    errorJS: false,
 
   })
 })

@@ -1,4 +1,4 @@
-<div>
+{{!-- <div>
     <h2 id="post-title">{{post_title}}</h2>
     <p id="post-content" class="border w-100 h-50 overflow-auto">{{post_content}}
     </p>
@@ -8,4 +8,19 @@
         <button type="button" id="Go to Post" class="col-2">Go To Post</button>
         <button type="button" id="Expand" class="col-2">Expand...</button>
     </div>
-</div>   
+</div>    --}}
+
+<div class="card mb-3 ms-2" style="max-width: 1400px; width: 70%vw; max-height: 450px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="/images/ProfilePlaceholderSuit.png" class="img-fluid rounded-start" alt="profile picture">
+    </div>
+    <div class="col">
+      <div class="card-body" >
+        <h5 class="card-title h-25"> {{post_title}} </h5>
+        <p class="card-text mh-50 overflow-auto" id="post-content"> {{post_content}} </p>
+        <p class="card-text h-25"><small class="text-muted">Last updated {{post.updated_at}}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
