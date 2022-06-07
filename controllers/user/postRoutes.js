@@ -188,7 +188,7 @@ router.post('/', async(req, res) => {
         post_title: req.body.post_title,
         post_content: req.body.post_content,
         category_id: req.body.category_id,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
       });
 
     res.status(200).json(`New post successfully created.`)

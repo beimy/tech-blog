@@ -57,7 +57,10 @@
   {{#if loggedIn}}
     <script src="/javascript/logout.js"></script>
     <script src="/javascript/side-bar-loggedIn.js"></script>
+  {{else}}
+    <script src="/javascript/side-bar-nouser.js"></script>
   {{/if}}
+
 
   {{#if errorJS }}
     <script src="/javascript/404.js"></scrip>
