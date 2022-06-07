@@ -62,7 +62,9 @@ router.get('/', async(req, res) => {
     
         })
     } catch (err) {
-        res.status(500).json(`Unexpected error occured in search route /search ${err}`)
+        res.status(500).json(`Unexpected error occured in search route /search ${err}`);
+    } finally {
+
     }
     
 })

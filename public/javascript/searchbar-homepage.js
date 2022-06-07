@@ -1,4 +1,3 @@
-
 async function searchBarFormHandler(e) {
     e.preventDefault();
     const searchText = e.target.value;
@@ -29,9 +28,16 @@ async function searchBarFormHandler(e) {
                 }
             });
 
-            getAllMatchPosts(matchedPostIds);
+            if(!matchedPostIds[0]){
+                console.log('matched post is empty');
+                alert('No search results found!');
+                document.location.reload();
+                return;
+            } else {
+                getAllMatchPosts(matchedPostIds);
+                
+            }
 
-            //console.log(matchedPostIds);
         } else {
             alert(response.statusText);
         }
@@ -42,33 +48,26 @@ async function searchBarFormHandler(e) {
 }
 
 async function getAllMatchPosts(matchedPostIds) {
+    console.log(matchedPostIds);
 
-    let postDataArr = [];
-    let urlString = `/search/?`;
-
-    for(var i = 0; i < matchedPostIds.length; i++){
-        if(i == 0){
-            urlString += 'id=' + matchedPostIds[i];
-        } else {
-            urlString += '&id=' + matchedPostIds[i];
-        }
-    }
-
-    console.log(urlString);
-
-    document.location.replace(urlString);
-
-    // const response = await fetch (urlString, {
-    //     method: "get",
-    //     headers: { 'Content-Type': 'application/json' }
-    // });
-
-    // if(response.ok) {
-    //     return;
-    // } else {
-    //     alert(response.statusText);
-    // }
+    if(matchedPostIds) {
+        let postDataArr = [];
+        let urlString = `/search/?`;
     
+        for(var i = 0; i < matchedPostIds.length; i++){
+            if(i == 0){
+                urlString += 'id=' + matchedPostIds[i];
+            } else {
+                urlString += '&id=' + matchedPostIds[i];
+            }
+        }
+    
+        console.log(urlString);
+    
+        document.location.replace(urlString);
+    } else {
+        alert('No match found with that search criteria');
+    }
 }
 
 function cleanSearch(searchText) {
