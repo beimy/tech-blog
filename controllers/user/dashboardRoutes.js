@@ -33,6 +33,8 @@ router.get('/', withAuth, async(req, res) => {
       comments,
       pageTitle: `${username}'s Dashboard`,
       loggedIn: true,
+      userNav: true,
+      mainCSS: true,
     });
     
   } catch (err) {

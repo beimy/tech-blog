@@ -84,6 +84,4 @@ function cleanSearch(searchText) {
     return upperArr.concat(lowerArr);
 }
 
-
-
 document.querySelector('#searchBar').addEventListener('change', searchBarFormHandler);

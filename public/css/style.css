@@ -22,7 +22,7 @@ ul {
     display: none;
 }
 
-#post-content {
+.post-content {
     min-height: 150px;
     max-height: 225px;
 }
@@ -40,10 +40,12 @@ li {
 }
 
 .side-bar-btn {
-    width: 100px;
+    width: 120px;
+    height: 30px;
     white-space: nowrap;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 14px;
+    margin-bottom: 10px;
 }
