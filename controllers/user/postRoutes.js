@@ -18,6 +18,9 @@ router.get("/post-test", async (req, res) => {
   try {
     res.status(200).render("post-page", {
       pageTitle: "Test Post-Page",
+      userNav: true,
+      mainCSS: true,
+      createPostCSS: true
     });
   } catch (err) {
     res.status(400).json(`Error encountered in test-post route: ${err}`);
