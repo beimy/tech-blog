@@ -46,8 +46,20 @@ async function goToPostHandler(event) {
 
   }
 }
+
+function collapseToggle() {
+  $myCommentSection = $(this).parents("#comment-card").find("#commentSection");
+  
+  if($myCommentSection.hasClass("collapse")) {
+    $myCommentSection.removeClass("collapse");
+  } else {
+    $myCommentSection.addClass("collapse");
+  }
+  console.log($myCommentSection);
+}
   
 $(document).on("click", "#goToPost-btn", goToPostHandler);
+$(document).on("click", "#comments-btn", collapseToggle);
 
 $('#login').on('click', function() {
   //this is an example of how the event listenersa should look, it may need to be edited to actually grab the text of the correct input fields.

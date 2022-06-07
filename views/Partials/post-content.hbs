@@ -10,21 +10,28 @@
     </div>
 </div>    --}}
 
-<div class="card mb-3 ms-2" style="max-width: 1400px; width: 70%vw; max-height: 450px;">
+<div class="card mb-3 ms-2" style="max-width: 1400px; width: 70%vw; max-height: 800px;">
   <div class="row g-0">
     <div class="col-md-3">
       {{> user-post-info}}
     </div>
     <div class="col">
-      <div class="card-body">
+      <div class="card-body ps-8" id="comment-card">
         <h5 class="card-title h-25"> {{post_title}} </h5>
         <p class="card-text mh-50 overflow-auto post-content" id="post-content"> {{post_content}} </p>
-        <p class="card-text h-25"><small class="text-muted">Last updated {{post.updated_at}}</small></p>
         <div class="row px-2">
           <button type="button" id="follow-post-btn" class="col-2">Follow</button>
           <button type="button" id="comments-btn" class="col-2">Comments</button>
           <button type="button" id="goToPost-btn" class="col-2" data-post_id={{post_id}}>Go To Post</button>
           <button type="button" id="Expand" class="col-2">Expand...</button>
+        </div>
+        <div class="collapse flex overflow-auto" id="commentSection">
+          {{> commentForm }}
+          <div id="comment-list" class="mt-20px">
+            {{#each comments as |comment|}}
+              {{> comment comment }}
+            {{/each}}
+          </div>
         </div>
       </div>
     </div>
