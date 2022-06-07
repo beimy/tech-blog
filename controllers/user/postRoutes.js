@@ -18,9 +18,6 @@ router.get("/post-test", async (req, res) => {
   try {
     res.status(200).render("post-page", {
       pageTitle: "Test Post-Page",
-      userNav: true,
-      mainCSS: true,
-      createPostCSS: true
     });
   } catch (err) {
     res.status(400).json(`Error encountered in test-post route: ${err}`);
@@ -188,7 +185,7 @@ router.post('/', async(req, res) => {
         post_title: req.body.post_title,
         post_content: req.body.post_content,
         category_id: req.body.category_id,
-        user_id: req.session.user_id
+        user_id: req.body.user_id
       });
 
     res.status(200).json(`New post successfully created.`)
