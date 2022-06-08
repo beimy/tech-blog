@@ -66,7 +66,7 @@ router.get("/user/:id", async (req, res) => {
 
 //Create a comment
 router.post("/", (req, res) => {
-  if (req.session) {
+  console.log(req.body.comment_title)
     Comment.create({
       comment_title: req.body.comment_title,
       comment_content: req.body.comment_content,
@@ -75,10 +75,10 @@ router.post("/", (req, res) => {
     })
       .then((dbCommentData) => res.json(dbCommentData))
       .catch((err) => {
-        console.log(err);
+        console.log(`{Error Encountered in create comment route: $err}`);
         res.status(400).json(err);
       });
-  }
+  
 });
 
 // edit a comment
