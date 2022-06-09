@@ -5,24 +5,31 @@ const Category = require('./Category');
 const Tag = require('./Tag');
 const Post_Tags = require('./Post_Tags');
 const Comment_Tags = require('./Comment_Tags')
+const Post_Comment = require('./Post_Comments')
 
  
 
 
 User.hasMany(Post, {
-  foreignKey: 'user_id'
 });
 Post.belongsTo(User, {
-  foreignKey: 'post_id'
 });
 
+User.hasMany(Comment, {
+});
 Comment.belongsTo(User, {
+});
+
+
+Post.hasMany(Comment, {
+  as: 'comment',
+  through: Post_Comment,
   foreignKey: 'comment_id'
 });
-User.hasMany(Comment, {
-  foreignKey: 'user_id'
-});
-
+// Comment.belongsTo(Post, {
+//   as: 'comment',
+//   through: Post_Comment
+// });
 
 Category.hasMany(Post, {
   foreignKey: 'category_id'
@@ -31,12 +38,8 @@ Post.belongsTo(Category, {
   foreignKey: 'category_id'
 });
 
-Post.hasMany(Comment, {
-  foreignKey: 'post_id'
-});
-Comment.belongsTo(Post, {
-  foreignKey: 'comment_id'
-});
+
+
 
 Post.belongsToMany(Tag, {
   through: Post_Tags,

@@ -15,7 +15,7 @@ Comment.init(
     },
     comment_title: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     comment_content: {
       type: DataTypes.TEXT,
@@ -28,15 +28,15 @@ Comment.init(
         model: 'user',
         key: "user_id"
       }
-    },
-    post_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'post',
-        key: 'post_id'
+    // },
+    // post_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'post',
+    //     key: 'post_id'
 
-      }
+    //   }
     },
     tag_id: {
       type: DataTypes.STRING,

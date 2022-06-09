@@ -16,6 +16,11 @@ Post.init(
       allowNull: false,
       defaultValue: 'You Forgot Something'
     },
+    post_summary: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: 'No summary is currently available for this post. View full post for more details on this content.'
+    },
     post_content: {
       type: DataTypes.TEXT,
       allowNull: false,
