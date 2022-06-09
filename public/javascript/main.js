@@ -46,8 +46,53 @@ async function goToPostHandler(event) {
 
   }
 }
+
+function collapseToggle() {
+  $myCommentSection = $(this).parents("#comment-card").find("#commentSection");
+  
+  if($myCommentSection.hasClass("collapse")) {
+    $myCommentSection.removeClass("collapse");
+  } else {
+    $myCommentSection.addClass("collapse");
+  }
+  console.log($myCommentSection);
+}
+
+async function commentFormHandler(event) {
+  event.preventDefault();
+  const comment_content = $(this).parents(".form-group").find("#comment-textarea").val();
+  const post_id = $(this).data("post_id");
+  const comment_title = 'Comment Title';
+  
+  if(comment_content) {
+    try{
+      const response = await fetch('/comments', {
+        method: 'POST',
+        body: JSON.stringify({
+          comment_title,
+          comment_content,
+          post_id
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+  
+      if(response.ok) {
+        document.location.reload();
+      } else {
+        alert(response.statusText);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  } else {
+    alert('No comment text found');
+  }
+    
+}
   
 $(document).on("click", "#goToPost-btn", goToPostHandler);
+$(document).on("click", "#comments-btn", collapseToggle);
+$(document).on("click", "#sendComment-btn", commentFormHandler);
 
 $('#login').on('click', function() {
   //this is an example of how the event listenersa should look, it may need to be edited to actually grab the text of the correct input fields.

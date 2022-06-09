@@ -71,7 +71,7 @@ router.post("/", (req, res) => {
       comment_title: req.body.comment_title,
       comment_content: req.body.comment_content,
       post_id: req.body.post_id,
-      user_id: req.body.user_id,
+      user_id: req.session.user_id,
     })
       .then((dbCommentData) => res.json(dbCommentData))
       .catch((err) => {
