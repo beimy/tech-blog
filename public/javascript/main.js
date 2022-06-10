@@ -28,14 +28,14 @@ async function goToPostHandler(event) {
 
   try {
     if($postId) {
-      const response = await fetch(`/post/${$postId}`, {
+      const response = await fetch(`/post/view/${$postId}`, {
         method: "GET",
         headers: { 'Content-Type': 'application/json' }
       });
 
       if(response.ok) {
         console.log('Found post by id');
-        alert(`Would go to page at post id: ${$postId}`);
+        window.location.replace(`/post/view/${$postId}`);
       } else {
         alert("No post with that id found");
       }

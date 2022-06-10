@@ -120,6 +120,65 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// DISPLAY SINGLE POST PAGE
+router.get("/view/:id", async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const postData = await Post.findByPk(postId, {
+      attributes: [
+        'post_id',
+        'post_title',
+        'post_content',
+      ],
+      include: [
+        {
+          model: User,
+          attributes: ["username", "user_id"],
+        },
+        {
+          model: Category,
+          attributes: ['category_id', 'category_name']
+        },
+        {
+          model: Tag,
+          as: 'tags',
+        },
+        {
+          model: Comment,
+          attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
+          include: [
+            {
+              model: User,
+              attributes: ['username'],
+            },
+            {
+              model: Tag,
+              as: 'tags'
+            }
+          ]
+        },
+      ]
+    })
+
+    const username = postData.dataValues.user.username;
+    const comments = postData.comments.map(comment => comment.get({ plain: true }));
+    console.log(postData.dataValues.post_title)
+
+    res.status(200).render('post-page', {
+      postData,
+      username,
+      comments,
+      pageTitle: `view-post`,
+      loggedIn: req.session.loggedIn,
+      userNav: true,
+      mainCSS: true,
+      mainJS: true,
+    });  
+  }catch(err){
+    res.status(500).json(`Unexpected error encountered in GET Post by id route: ${err}`)
+  }
+});
+
 //GET POSTS BY USER ID
 router.get('/user/:id', async (req, res) => {
   try{
