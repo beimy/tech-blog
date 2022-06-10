@@ -48,7 +48,13 @@
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4" class="form-control" />
+                  <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()?/\`~]).{8,}" type="password" id="form3Example4" class="form-control" />
+                  <label class="form-label" for="form3Example4">Password</label>
+                </div>
+
+                <!-- Re-input password -->
+                <div class="form-outline mb-4">
+                  <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()?/\`~]).{8,}" type="password" id="form3Example4" class="form-control" />
                   <label class="form-label" for="form3Example4">Password</label>
                 </div>
 

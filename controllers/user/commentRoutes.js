@@ -64,22 +64,23 @@ router.get("/user/:id", async (req, res) => {
   }
 });
 
-//Create a comment
+
 router.post("/", (req, res) => {
-  console.log(req.body.comment_title)
-    Comment.create({
-      comment_title: req.body.comment_title,
-      comment_content: req.body.comment_content,
-      post_id: req.body.post_id,
-      user_id: req.session.user_id,
-    })
-      .then((dbCommentData) => res.json(dbCommentData))
-      .catch((err) => {
-        console.log(`{Error Encountered in create comment route: $err}`);
-        res.status(400).json(err);
-      });
   
+  Comment.create({
+    comment_title: req.body.comment_title,
+    comment_content: req.body.comment_content,
+    post_id: req.body.post_id,
+    user_id: req.body.user_id,
+  })
+    .then((dbCommentData) => res.json(dbCommentData))
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+
 });
+
 
 // edit a comment
 router.put("/:id", (req, res) => {
