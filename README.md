@@ -1,4 +1,4 @@
-# Teune Tech Blog
+# The Rabbit Hole Tech Blog
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
  ## Table of Contents
@@ -15,24 +15,48 @@
  ## Overall Description 
  - - - 
 
-I have a problem. And that problem is I get distracted. A lot. And when I get distracted or go on a random tangent, I tend to follow a single thread of an idea way farther than i should, until I land in some weird territory where I have no idea whats going on and no idea how to ask the right questions. These tangents are something ive begun to refer to as rabbit holes, and they're a great learning experience, but more often than not the information uncovered or discovered ends up getting lost. Thats where this application comes in. Teune Tech Blog is the baby version of what will eventually be a much larger idea, but for now its somewhere to store the record of my rabbit hole adventures and quests for answers on whatever shiny bit of something catches my attention on any particular day. Enjoy!
+A fullstack development application that creates a seeded database and fully rendered front end display for a Tech Blog application. This application utilizes Object-Relational Mapping to interact with the database, while the file formatting is done implementing Model View Controller settings. The application is built using best practices from the RESTful CRUD operations concept. It supports account creation with secure password hashing and storage  with authentication through regular expressions, and the ability to login. Users while logged in have the ability to create, edit, and delete their own posts, as well as being able to view posts made by other users. Furthermore, a User is able to create, edit and delete comments they have made on posts. This application was created using MySQL, which utilizes Node.js, MySQL2, Express.js, handlebars, Nodemon, and Sequelize.
+ 
 
- ![Alt text]()
+## Link to Deployed Application
+
 
  ## Installation Instructions
  - - -
-This application is still in the pre-release bet6a stage.
-once deployed this will be a full standalone web application. no installation required no matter what device your viewing from. 
+To install the dependencies you run:
+```sh
+npm install
+```
+If you plan on editing of the data, Nodemon is a helpful tool which can be downloaded with: 
+```
+npm install --save-dev nodemon
+```
+Please review <a href ="https://www.npmjs.com/package/nodemon">Nodemon</a> documentation if you are unfamiliar with the package.
 
- ## Instructions/How To Use
+
+ ## Usage
  - - -
  
- There is the option to create a login if you would like to be able to save specific stories to your dashboard or use any of the other interactive features of the site, but if your mostly just interested in browsing around, no login required. 
-
- ## Contribution Guidelines
- - - -
-
-This particular project is currently no looking for any additional collaborators, however that may change in the future, so if you're interested in becoming a contributor feel free to reach out. 
+Run the following command at the root of your project starting with:
+```
+mysql -u root -p
+``` 
+Next, enter your password for MySQL. Once you are in your server run: 
+```
+SOURCE db/schema.sql
+quit
+``` 
+Then run:
+```
+npm run seed
+```
+Finally, choose between running: 
+```
+npm start
+OR
+nodemon server.js
+```
+You can download <a href="https://insomnia.rest/download">Insomnia</a> to manipulate/test the data with the GET, POST, PUT, DELETE request.
 
  ## Application Tests
  - - -
@@ -44,8 +68,3 @@ no tests conditions are currently active
   This project is licensed under the MIT license.
   For more information about this license and what it entails visit: https://opensource.org/licenses/MIT
 
- ## Contact Information
- - - -
-I hope you enjoy the application, if you have any questions, comments, concerns, feedback, ect, 
-please open a new issue or feel free to reach out directly, my email for this project is vincent@vtportfolio.net
-Don't forget to check out some of my other projects on github while your here: https://github.com/cobalt88
