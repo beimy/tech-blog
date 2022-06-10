@@ -8,6 +8,9 @@ async function logout() {
     
         if(response.ok) {
             document.location.replace('/');
+            document.cookie.split(";")
+                .forEach(function(c) { 
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
         } else {
             alert(response.statusText);
         }
