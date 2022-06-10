@@ -236,15 +236,47 @@ router.get('/user/:id', async (req, res) => {
 
 
 // GET POSTS BY TAG ID
-router.get('/tag:id', async(req,res) => {
+router.get('/tag/:id', async(req,res) => {
   try {
-    const response = await Post.findAll({
+    const response = await Post_Tags.findAll({
       where: {
         tag_id: req.params.id
       },
       attributes: [
-        'tag_name',
-        'tag_description'
+        'tag_id',
+        'post_id'
+      ], 
+      include: [
+        {
+          model: Tag,
+          key: 'tag_id',
+          attributes: ['tag_name', 'tag_description']
+        },
+        {
+          model: Post,
+          key: 'post_id',
+          attributes: ['post_id', 'post_title','post_summary', 'post_content', 'category_id', 'post_url', 'user_id', 'created_at', 'updated_at' ],
+          include: [
+            {
+              model: User,
+              attributes: ['username']
+            },
+            {
+              model: Category,
+              attributes: ['category_name']
+            },
+            {
+              model: Comment,
+              attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id'],
+              include: [
+                {
+                  model: User,
+                  attributes: ['username']
+                }
+              ]
+            }
+          ]
+        }
       ]
     })
     res.status(200).json(response);
