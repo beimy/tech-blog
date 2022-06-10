@@ -27,6 +27,13 @@
     Method: GET <br>
     URL: http://localhost:3010/tag/post </br>
 
+* **Get all Comment_Tags:** </br>
+    Request Requirements: none </br>
+    Expected Response: all tags associated with comments and the comments data </br>
+    Method: GET <br>
+    URL: http://localhost:3010/tag/post </br>
+
+
 ### Post Routes
 
 * **Test Post-Page:** </br>
@@ -51,6 +58,13 @@
     Method: GET <br>
     URL: http://localhost:3010/post/user/:id </br>
     Example: http://localhost:3010/post/user/1 </br>
+
+* **GET Posts by Tag ID:** </br>
+    Request Requirements: Tag ID </br>
+    Expected Response: all posts and post data related to the specific tag ID </br>
+    Method: GET <br>
+    URL: http://localhost:3010/post/tag/:id </br>
+    Example: http://localhost:3010/post/tag/1 </br>
 
 * **Create New Post:** </br>
     Request Requirements: Json Object: </br>

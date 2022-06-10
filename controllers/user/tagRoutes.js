@@ -43,6 +43,13 @@ router.get('/post', async(req,res) => {
             'post_title',
             'post_summary',
             'post_url'
+          ],
+          include: [
+            {
+              model: User,
+              key: 'user_id',
+              attributes: ['username']
+            }
           ]
         },
         {
@@ -63,6 +70,51 @@ router.get('/post', async(req,res) => {
   }
 });
 
+
+
+
+// GET ALL COMMENT_TAGS
+router.get('/comment', async(req,res) => {
+  try {
+    const commentTags = await Comment_Tags.findAll({
+      attributes: [
+        'tag_id',
+        'comment_id'
+      ],
+      include: [
+        {
+          model: Tag,
+          key: 'tag_id',
+          attributes: [
+            'tag_name',
+            'tag_description'
+          ]
+        },
+        {
+          model: Comment,
+          key: 'comment_id',
+          attributes: [
+            'comment_title',
+            'comment_content',
+            'user_id'
+          ], 
+          include: [
+            {
+              model: User,
+              key: 'user_id',
+              attributes: ['username']
+            }
+          ]
+        }
+      ]
+    })
+    res.status(200).json(commentTags);
+  } catch (err) {
+    res.status(500).json({message: `Unexpected error encountered in (route name here): ${err}`});
+    console.log(err);
+  }
+});
+
 // GET TAG BY ID
 router.get('/:id', async(req,res) => {
   try {
@@ -75,18 +127,6 @@ router.get('/:id', async(req,res) => {
         'tag_description'
       ]
     })
-    res.status(200).json(response);
-  } catch (err) {
-    res.status(500).json({message: `Unexpected error encountered in (route name here): ${err}`});
-    console.log(err);
-  }
-});
-
-
-// GET ALL COMMENT_TAGS
-router.get('/', async(req,res) => {
-  try {
-    
     res.status(200).json(response);
   } catch (err) {
     res.status(500).json({message: `Unexpected error encountered in (route name here): ${err}`});
