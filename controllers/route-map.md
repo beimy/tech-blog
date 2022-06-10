@@ -13,6 +13,20 @@
 ---
 ## User Routes
 
+### Tag Routes
+
+* **GET all tags:** </br>
+    Request Requirements: "none" </br>
+    Expected Response: list of all tags with tag_id, tag_name, and tag_description </br>
+    Method: GET <br>
+    URL: http://localhost:3010/tag/ </br>
+
+* **GET all Post_Tags:** </br>
+    Request Requirements: none </br>
+    Expected Response: list of all post tags and their relationships </br>
+    Method: GET <br>
+    URL: http://localhost:3010/tag/post </br>
+
 ### Post Routes
 
 * **Test Post-Page:** </br>

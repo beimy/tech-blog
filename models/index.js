@@ -61,6 +61,14 @@ Tag.belongsToMany(Comment, {
   foreignKey: 'tag_id'
 });
 
+Post_Tags.belongsTo(Post, {
+  foreignKey: 'post_id'
+})
+
+Post_Tags.belongsTo(Tag, {
+  foreignKey: 'tag_id'
+})
+
 
 
 module.exports = {

@@ -29,7 +29,7 @@ Post_Tags.init(
     sequelize,
     timestamps: true,
     freezeTableName: true,
-    modelName: 'post_tag',
+    modelName: 'post_tags',
   }
 )
 
