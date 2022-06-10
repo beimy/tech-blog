@@ -15,7 +15,7 @@ function accountBtnHandler() {
 }
 
 function newPostBtnHandler() {
-    document.location.replace('post/post-test');
+    document.location.replace('post/create');
 }
 
 $(document).on('click', '#home-btn', homeBtnHandler);
