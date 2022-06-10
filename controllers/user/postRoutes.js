@@ -160,8 +160,9 @@ router.get("/view/:id", async (req, res) => {
       ]
     })
 
-    const username = postData.dataValues.username;
+    const username = postData.dataValues.user.username;
     const comments = postData.comments.map(comment => comment.get({ plain: true }));
+    console.log(postData.dataValues.post_title)
 
     res.status(200).render('post-page', {
       postData,
@@ -171,6 +172,7 @@ router.get("/view/:id", async (req, res) => {
       loggedIn: req.session.loggedIn,
       userNav: true,
       mainCSS: true,
+      mainJS: true,
     });  
   }catch(err){
     res.status(500).json(`Unexpected error encountered in GET Post by id route: ${err}`)
