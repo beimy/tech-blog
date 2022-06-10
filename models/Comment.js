@@ -38,11 +38,6 @@ Comment.init(
 
       }
     },
-    tag_id: {
-      type: DataTypes.STRING,
-      allowNull: true,
-
-    },
   },
   {
     sequelize,
