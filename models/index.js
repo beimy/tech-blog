@@ -69,7 +69,13 @@ Post_Tags.belongsTo(Tag, {
   foreignKey: 'tag_id'
 })
 
+Comment_Tags.belongsTo(Comment, {
+  foreignKey: 'comment_id'
+})
 
+Comment_Tags.belongsTo(Tag, {
+  foreignKey: 'tag_id'
+})
 
 module.exports = {
   User, 
