@@ -1,17 +1,23 @@
-<div>
-    <form> 
-        <div class="form-group">
-            <label for="post-title">Post Title</label><br>
-            <input class="form-control" type="text" id="post-title" name="post-title" placeholder="Enter Post Title"><br>
-        </div>  
-        <div class="form-group">
-            <label for="post-body">Body</label><br>
-            <textarea class="form-control"  type="text" id="post-body" name="post-body"></textarea><br>
+<div class="container-sm m-0 p-5 main-vh-100">
+    <div class="row d-flex">
+        <div id="post-header" class="col-8 m-0">
+            <div class="col-2" id="post-title">
+                <p>POST TITLE</p>
+                <p>TAGS:</p>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="post-tags">Add Tags</label><br>
-            <input class="form-control"  type="text" id="post-tags" name="post-tags" placeholder="Search Tags"><br>
+        <div id="post-header-data" class="col-2">
+            <p>Posted at:<span>00/00/0000</span> <span>00:00PM</span></p>
+            <label class="form-label select-label">Sort by:</label>
+            <select class="select">
+                <option value="1">Newest</option>
+                <option value="2">Oldest</option>
+            </select>
+
         </div>
-        <button class="btn btn-primary" id="create-post" type="button">Post</button>
-    </form>
+
+
+
+        {{> side-bar }}
+    </div>
 </div>

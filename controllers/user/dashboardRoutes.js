@@ -35,6 +35,7 @@ router.get('/', withAuth, async(req, res) => {
       loggedIn: true,
       userNav: true,
       mainCSS: true,
+      mainJS: true
     });
     
   } catch (err) {
