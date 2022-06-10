@@ -16,10 +16,10 @@
  - - - 
 
 A fullstack development application that creates a seeded database and fully rendered front end display for a Tech Blog application. This application utilizes Object-Relational Mapping to interact with the database, while the file formatting is done implementing Model View Controller settings. The application is built using best practices from the RESTful CRUD operations concept. It supports account creation with secure password hashing and storage  with authentication through regular expressions, and the ability to login. Users while logged in have the ability to create, edit, and delete their own posts, as well as being able to view posts made by other users. Furthermore, a User is able to create, edit and delete comments they have made on posts. This application was created using MySQL, which utilizes Node.js, MySQL2, Express.js, handlebars, Nodemon, and Sequelize.
-
- ![Alt text]()
+ 
 
 ## Link to Deployed Application
+
 
  ## Installation Instructions
  - - -
