@@ -1,10 +1,22 @@
-<div class="col-1 px-1">
-    <div class="col">
-        <button id="home-btn" type="button" class="side-bar-btn">Home</button>
-        <button id="explore-btn" type="button" class="side-bar-btn">Explore</button>
-        <button id="new-post-btn" type="button" class="side-bar-btn">Create Post</button>
+{{#if loggedIn}}
+<div class="col-2 px-1 float-right d-flex justify-content-end d-none d-lg-block">
+    <div class="justify-content-end">
+        <button id="home-btn" type="button" class="side-bar-btn float-end">Dashboard</button>
+        <button id="explore-btn" type="button" class="side-bar-btn float-end">Explore</button>
+        <button id="new-post-btn" type="button" class="side-bar-btn float-end">Create Post</button>
         {{!-- <button id="notifications-btn" type="button" class="side-bar-btn">Notifications</button> --}}
         {{!-- <button id="my-account-btn" type="button" class="side-bar-btn">My Account</button> --}}
     </div>   
 </div>
+{{else}}
+<div class="col-2 px-1 float-right d-flex justify-content-end d-none d-lg-block">
+    <div class="justify-content-end">
+        <button type="button" class="side-bar-btn float-end" data-bs-toggle="modal" data-bs-target="#myModal">Dashboard</button>
+        <button id="explore-btn" type="button" class="side-bar-btn float-end">Explore</button>
+        <button type="button" class="side-bar-btn float-end" data-bs-toggle="modal" data-bs-target="#myModal">Create Post</button>
+        {{!-- <button id="notifications-btn" type="button" class="side-bar-btn">Notifications</button> --}}
+        {{!-- <button id="my-account-btn" type="button" class="side-bar-btn">My Account</button> --}}
+    </div>   
+</div>
+{{/if}}
 

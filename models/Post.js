@@ -16,6 +16,11 @@ Post.init(
       allowNull: false,
       defaultValue: 'You Forgot Something'
     },
+    post_summary: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: 'No summary is currently available for this post. View full post for more details on this content.'
+    },
     post_content: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -23,6 +28,11 @@ Post.init(
     },
     category_id: {
       type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'category',
+        key: 'category_id'
+      }
     },
     post_url: {
       type: DataTypes.STRING,
@@ -30,7 +40,16 @@ Post.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'user',
+        key: 'user_id'
+      }
     },
+    timestamp: {
+      type: DataTypes.DATE,
+      allowNull: true
+    }
   },
   {
     sequelize,

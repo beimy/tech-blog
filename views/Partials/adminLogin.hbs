@@ -1,7 +1,11 @@
-{{> searchBar}}
+
+
+<div class="d-flex">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Login</button>
+</div>
 
 <!-- Modal -->
-<div class="modal fade bg-dark" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade bg-dark" id="myModal" tabindex="-1" aria-labelledby="adminLoginModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
@@ -22,11 +26,12 @@
             </div>
             <button type="submit" class="btn btn-primary btn-lg mb-4" id="login">Login</button>
 
-          <p class="text-center">Not a member? <a href="http://localhost:3010/user-login/register">Sign-up here!</a></p>
+          <p class="text-center">Not a member? <a href="http://localhost:3010/register">Sign-up here!</a></p>
       </form>
       </div>
       <div class="modal-footer text-center">
         
+        <button type="button" class="btn btn-secondary m-2" href="http://localhost:3010/register">Sign Up</button>
         <button type="button" class="btn btn-secondary m-2" href="#">Forgot Password</button>
         <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
       </div>

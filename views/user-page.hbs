@@ -1,5 +1,5 @@
-<div class="container-sm m-0 p-5 min-vh-100">
-    <div class="row min-vh-100 min-vw-100">
+<div class="container-sm p-5 min-vh-100">
+    <div class="row d-flex">
         <div class="border-end col-10">
             <div class="row min-vh-75 p-10 border-bottom" id="user-profile-data">
                 <div class="col-sm-4">
@@ -24,13 +24,13 @@
                 </div>
             </div>
             <div class="row m-5" id="user-post-data">
-                <ul class="col-10 m-2 pt-10" id="post-list">
+                <div class="col-10" id="post-list">
                     {{#each posts as |post|}}
-                    <li class="border-bottom">
+                    <div class="border-bottom">
                         {{> post-content post}}
-                    </li>
+                    </div>
                     {{/each}}
-                </ul>
+                </div>
             </div>
         </div>
         {{> side-bar }}

@@ -13,11 +13,15 @@ POST ROUTES | NO-AUTHENTICATION | SEARCH POSTS
 ================================================
 */
 
-//TEST ROUTE FOR RENDERING NEW POSTS PAGE
-router.get("/post-test", async (req, res) => {
+// ROUTE TO DISPLAY THE CREATE POST PAGE
+router.get("/create", async (req, res) => {
   try {
-    res.status(200).render("post-page", {
+    res.status(200).render("create-post-page", {
       pageTitle: "Test Post-Page",
+      mainCSS: true,
+      mainJS: true,
+      userNav: true,
+      createPostCSS: true
     });
   } catch (err) {
     res.status(400).json(`Error encountered in test-post route: ${err}`);
@@ -83,6 +87,55 @@ router.get("/:id", async (req, res) => {
         'post_id',
         'post_title',
         'post_content',
+        'user_id',
+        'timestamp',
+        'createdAt'
+      ],
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+        {
+          model: Category,
+          attributes: ['category_id', 'category_name']
+        },
+        {
+          model: Tag,
+          as: 'tags',
+        },
+        {
+          model: Comment,
+          attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
+          include: [
+            {
+              model: User,
+              attributes: ['username'],
+            },
+            {
+              model: Tag,
+              as: 'tags'
+            }
+          ]
+        },
+      ]
+    });
+
+    res.status(200).json(postData);  
+  }catch(err){
+    res.status(500).json(`Unexpected error encountered in GET Post by id route: ${err}`)
+  }
+});
+
+// DISPLAY SINGLE POST PAGE
+router.get("/view/:id", async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const postData = await Post.findByPk(postId, {
+      attributes: [
+        'post_id',
+        'post_title',
+        'post_content',
       ],
       include: [
         {
@@ -112,9 +165,21 @@ router.get("/:id", async (req, res) => {
           ]
         },
       ]
-    });
+    })
 
-    res.status(200).json(postData);  
+    const username = postData.dataValues.user.username;
+    const comments = postData.comments.map(comment => comment.get({ plain: true }));
+
+    res.status(200).render('post-page', {
+      postData,
+      username,
+      comments,
+      pageTitle: `view-post`,
+      loggedIn: req.session.loggedIn,
+      userNav: true,
+      mainCSS: true,
+      mainJS: true,
+    });  
   }catch(err){
     res.status(500).json(`Unexpected error encountered in GET Post by id route: ${err}`)
   }
@@ -169,6 +234,58 @@ router.get('/user/:id', async (req, res) => {
  }
 });
 
+
+// GET POSTS BY TAG ID
+router.get('/tag/:id', async(req,res) => {
+  try {
+    const response = await Post_Tags.findAll({
+      where: {
+        tag_id: req.params.id
+      },
+      attributes: [
+        'tag_id',
+        'post_id'
+      ], 
+      include: [
+        {
+          model: Tag,
+          key: 'tag_id',
+          attributes: ['tag_name', 'tag_description']
+        },
+        {
+          model: Post,
+          key: 'post_id',
+          attributes: ['post_id', 'post_title','post_summary', 'post_content', 'category_id', 'post_url', 'user_id', 'created_at', 'updated_at' ],
+          include: [
+            {
+              model: User,
+              attributes: ['username']
+            },
+            {
+              model: Category,
+              attributes: ['category_name']
+            },
+            {
+              model: Comment,
+              attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id'],
+              include: [
+                {
+                  model: User,
+                  attributes: ['username']
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    })
+    res.status(200).json(response);
+  } catch (err) {
+    res.status(500).json({message: `Unexpected error encountered in (route name here): ${err}`});
+    console.log(err);
+  }
+});
+
 /*
 ================================================
 POST ROUTES | AUTHENTICATION-REQUIRED | USER 
@@ -185,7 +302,7 @@ router.post('/', async(req, res) => {
         post_title: req.body.post_title,
         post_content: req.body.post_content,
         category_id: req.body.category_id,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
       });
 
     res.status(200).json(`New post successfully created.`)
@@ -196,6 +313,7 @@ router.post('/', async(req, res) => {
       .json(`unexpected error encountered in Create New Post Route: ${err}`);
   }
 });
+
 
 //UPDATE POST BY ID | EDIT POST BY ID
 // withAuth has been removed for testing and will need to be added back in before deployment to prevent users from editing posts they dont own.

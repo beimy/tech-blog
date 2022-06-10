@@ -34,12 +34,12 @@
 
         <div>
           <label for="email-signup">email:</label>
-          <input type="text" id="email-signup" />
+          <input type="email" id="email-signup" />
         </div>
 
         <div>
           <label for="password-signup">password:</label>
-          <input type="password" id="password-signup" />
+          <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()?/\`~]).{8,}" type="password" id="password-signup" />
         </div>
         
         <div>

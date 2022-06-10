@@ -1,20 +1,18 @@
-<div class="container-sm m-0 p-5">
-    <div class="row d-flex">
-        <ul class="col-2 post-list">
+<div class="container-sm w-100">
+    <div class="row d-flex pt-4">
+        {{!-- <ul class="col-2 post-list">
             {{#each posts as |post|}}
             <li>
                 {{> user-post-info post}}
             </li>
             {{/each}}
-        </ul>
+        </ul> --}}
 
-        <ul class="col m-2" id="post-col">
+        <div class="col-10" id="post-col">
             {{#each posts as |post|}}
-            <li>
                 {{> post-content post}}
-            </li>
             {{/each}}
-        </ul>
+        </div>
 
         {{> side-bar}}
     </div>

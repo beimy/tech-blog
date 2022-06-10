@@ -9,6 +9,8 @@ router.get('/', async(req, res) => {
       'post_id',
       'post_title',
       'post_content',
+      'created_at',
+      'updated_at'
     ],
     include: [
       {
@@ -39,20 +41,30 @@ router.get('/', async(req, res) => {
         ]
       },
     ]
-
   });
-  const posts = postData.map(post => post.get({ plain: true }))
+
+  const tagData = await Tag.findAll({
+    attributes: [
+      'tag_id',
+      'tag_name',
+      'tag_description'
+    ],
+  })
+
+  const posts = postData.map(post => post.get({ plain: true }));
+  const tags = tagData.map(tag => tag.get({ plain: true }));
   res.status(200).render('index', { 
+    tags,
     posts,
     loggedIn: req.session.loggedIn,
     pageTitle: "Home",
-    errorCSS: false,
+    userNav: true,
     mainCSS: true,
-    adminCSS: false,
     mainJS: true,
-    errorJS: false,
 
   })
 })
+
+
 
 module.exports = router

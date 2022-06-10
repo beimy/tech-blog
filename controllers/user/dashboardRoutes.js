@@ -18,13 +18,16 @@ router.get('/', withAuth, async(req, res) => {
         {
           model: Post,
           where: user_id = userId,
-          attributes: ['post_title', 'post_content',]
+          attributes: ['post_title', 'post_content', 'created_at', 'updated_at']
         }
       ]
     })
     const username = userData.dataValues.username;
     const posts = userData.posts.map(post => post.get({ plain: true }));
     const comments = userData.comments.map(comment => comment.get({ plain: true }));
+
+    console.log('-----------------------------')
+    console.log(posts);
     
     res.status(200).render('user-page', {
       userData,
@@ -33,6 +36,9 @@ router.get('/', withAuth, async(req, res) => {
       comments,
       pageTitle: `${username}'s Dashboard`,
       loggedIn: true,
+      userNav: true,
+      mainCSS: true,
+      mainJS: true
     });
     
   } catch (err) {

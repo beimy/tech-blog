@@ -4,11 +4,11 @@
             <img class="profile-pic w-100 h-100" src="/images/ProfilePlaceholderSuit.png" alt="image not found" 
              data-holder-rendered="true">
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-7">
             <p id="post-user-username">{{user.username}}</p>
         </div>
     </div>
-    <p>Post Time:<span id="post-user-time"> {{post-time}}</span></p>
+    <p><small> Posted:<span id="post-user-time"> {{format_date created_at}} at {{format_time created_at}}</span></small></p>
     {{#if tags}}
     <p>Tags</p>
     <ul id="post-user-tags-list">
@@ -19,4 +19,5 @@
         {{/each}}
     </ul>
     {{/if}}
+    <p class="h-25"><small class="text-muted">Last updated: {{format_date created_at}} at {{format_time created_at}}</small></p>
 </article>
