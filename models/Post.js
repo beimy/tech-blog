@@ -37,6 +37,10 @@ Post.init(
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    timestamp: {
+      type: DataTypes.DATE,
+      allowNull: true
+    }
   },
   {
     sequelize,

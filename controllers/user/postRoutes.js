@@ -87,11 +87,14 @@ router.get("/:id", async (req, res) => {
         'post_id',
         'post_title',
         'post_content',
+        'user_id',
+        'timestamp',
+        'createdAt'
       ],
       include: [
         {
           model: User,
-          attributes: ["username", "user_id"],
+          attributes: ["username"],
         },
         {
           model: Category,
