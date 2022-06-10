@@ -8,7 +8,7 @@
             <p id="post-user-username">{{user.username}}</p>
         </div>
     </div>
-    <p>Post Time:<span id="post-user-time"> {{post-time}}</span></p>
+    <p>Post Time:<span id="post-user-time"> {{created_at}}</span></p>
     {{#if tags}}
     <p>Tags</p>
     <ul id="post-user-tags-list">
@@ -19,5 +19,5 @@
         {{/each}}
     </ul>
     {{/if}}
-    <p class="h-25"><small class="text-muted">Last updated {{post.updated_at}}</small></p>
+    <p class="h-25"><small class="text-muted">Last updated: {{updated_at}}</small></p>
 </article>
