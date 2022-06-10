@@ -11,7 +11,7 @@ TAG ROUTES - localhost:3010/tag
 // GET ALL TAGS
 router.get('/', async(req,res) => {
   try {
-    const response = await Tag.findAll({
+    const tagData = await Tag.findAll({
       attributes: [
         'tag_id',
         'tag_name',
@@ -19,7 +19,7 @@ router.get('/', async(req,res) => {
       ],
      
     })
-    res.status(200).json(response);
+    res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json({message: `Unexpected error encountered in (route name here): ${err}`});
     console.log(err);

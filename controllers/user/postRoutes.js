@@ -234,6 +234,26 @@ router.get('/user/:id', async (req, res) => {
  }
 });
 
+
+// GET POSTS BY TAG ID
+router.get('/tag:id', async(req,res) => {
+  try {
+    const response = await Post.findAll({
+      where: {
+        tag_id: req.params.id
+      },
+      attributes: [
+        'tag_name',
+        'tag_description'
+      ]
+    })
+    res.status(200).json(response);
+  } catch (err) {
+    res.status(500).json({message: `Unexpected error encountered in (route name here): ${err}`});
+    console.log(err);
+  }
+});
+
 /*
 ================================================
 POST ROUTES | AUTHENTICATION-REQUIRED | USER 
