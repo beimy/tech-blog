@@ -84,4 +84,32 @@ function cleanSearch(searchText) {
     return upperArr.concat(lowerArr);
 }
 
+async function searchByTag(e) {
+    console.log('hello')
+}
+
+// async function populateTagList() {
+//     try {
+//         const response = await fetch('/tag/post', {
+//             method: 'GET',
+//             headers: { 'Content-Type' : 'application/json'}
+            
+//         });
+//         const tagData = await response.json();
+//         console.log(tagData)
+//         if(response.ok) {
+//             console.log('Success');
+//             return tagData;
+//         } else {
+//             alert("Cannot find Tags");
+//         }
+
+//     } catch (err) {
+//         console.error(err);
+//     }
+    
+// }
+
 document.querySelector('#searchBar').addEventListener('change', searchBarFormHandler);
+document.querySelector('#tag-dataList').addEventListener('submit', searchByTag);
+// window.onload = populateTagList;
