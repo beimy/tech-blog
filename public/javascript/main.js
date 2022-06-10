@@ -62,14 +62,14 @@ async function commentFormHandler(event) {
   event.preventDefault();
   const comment_content = $(this).parents(".form-group").find("#comment-textarea").val();
   const post_id = $(this).data("post_id");
-  const comment_title = 'Comment Title';
+
+  console.log(post_id)
   
   if(comment_content) {
     try{
-      const response = await fetch('/comments', {
+      const response = await fetch('/comments/', {
         method: 'POST',
         body: JSON.stringify({
-          comment_title,
           comment_content,
           post_id
         }),

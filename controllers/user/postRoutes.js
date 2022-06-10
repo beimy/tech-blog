@@ -13,11 +13,15 @@ POST ROUTES | NO-AUTHENTICATION | SEARCH POSTS
 ================================================
 */
 
-//TEST ROUTE FOR RENDERING NEW POSTS PAGE
-router.get("/post-test", async (req, res) => {
+// ROUTE TO DISPLAY THE CREATE POST PAGE
+router.get("/create", async (req, res) => {
   try {
-    res.status(200).render("post-page", {
+    res.status(200).render("create-post-page", {
       pageTitle: "Test Post-Page",
+      mainCSS: true,
+      mainJS: true,
+      userNav: true,
+      createPostCSS: true
     });
   } catch (err) {
     res.status(400).json(`Error encountered in test-post route: ${err}`);
@@ -165,7 +169,6 @@ router.get("/view/:id", async (req, res) => {
 
     const username = postData.dataValues.user.username;
     const comments = postData.comments.map(comment => comment.get({ plain: true }));
-    console.log(postData.dataValues.post_title)
 
     res.status(200).render('post-page', {
       postData,
@@ -247,7 +250,7 @@ router.post('/', async(req, res) => {
         post_title: req.body.post_title,
         post_content: req.body.post_content,
         category_id: req.body.category_id,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
       });
 
     res.status(200).json(`New post successfully created.`)

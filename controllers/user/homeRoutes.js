@@ -9,6 +9,8 @@ router.get('/', async(req, res) => {
       'post_id',
       'post_title',
       'post_content',
+      'created_at',
+      'updated_at'
     ],
     include: [
       {
