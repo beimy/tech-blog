@@ -43,7 +43,7 @@ router.get('/', withAuth, async(req, res) => {
     const comments = userData.comments.map(comment => comment.get({ plain: true }));
 
     console.log('-----------------------------')
-    console.log(posts);
+    console.log(comments);
     
     res.status(200).render('user-page', {
       userData,

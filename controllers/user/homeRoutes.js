@@ -53,6 +53,12 @@ router.get('/', async(req, res) => {
 
   const posts = postData.map(post => post.get({ plain: true }));
   const tags = tagData.map(tag => tag.get({ plain: true }));
+  
+
+
+  console.log('-----------------------------')
+
+
   res.status(200).render('index', { 
     tags,
     posts,
