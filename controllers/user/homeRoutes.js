@@ -55,8 +55,8 @@ router.get('/', async(req, res) => {
     const posts = postData.map(post => post.get({ plain: true }));
     const tags = tagData.map(tag => tag.get({ plain: true }));
     
-    console.log('-----------------------------')
-  
+    console.log('------------Made it into the home route-----------------')
+    
     res.status(200).render('index', { 
       tags,
       posts,
@@ -67,7 +67,8 @@ router.get('/', async(req, res) => {
       mainJS: true,
     })
   } catch (err) {
-    res.status(500).json(`Error encountered in home route: ${err}`)
+    res.status(500).json(`Error encountered in home route: ${err}`);
+    console.log(err);
   }
 })
 
