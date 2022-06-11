@@ -31,13 +31,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'))
 
 
-// const hbs = expressHbs.create({ 
-//   layoutsDir: 'views/layouts',
-//   defaultLayout: 'main',
-//   partialsDir: 'views/partials',
-//   extname: 'hbs',
-//   helpers 
-// });
+const hbs = expressHbs.create({ 
+  layoutsDir: 'views/layouts',
+  defaultLayout: 'main',
+  partialsDir: 'views/partials',
+  extname: 'hbs',
+  helpers 
+});
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
