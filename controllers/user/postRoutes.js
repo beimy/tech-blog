@@ -16,7 +16,7 @@ POST ROUTES | NO-AUTHENTICATION | SEARCH POSTS
 // ROUTE TO DISPLAY THE CREATE POST PAGE
 router.get("/create", async (req, res) => {
   try {
-    res.status(200).render("createPostPage", {
+    res.status(200).render("create-post-page", {
       pageTitle: "create-post",
       mainCSS: true,
       mainJS: true,
@@ -302,7 +302,7 @@ router.post('/', async(req, res) => {
         post_title: req.body.post_title,
         post_content: req.body.post_content,
         category_id: req.body.category_id,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
       });
 
     res.status(200).json(`New post successfully created. ${newPost}`)
