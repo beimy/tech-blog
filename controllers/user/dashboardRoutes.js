@@ -18,7 +18,13 @@ router.get('/', withAuth, async(req, res) => {
         {
           model: Post,
           where: user_id = userId,
-          attributes: ['post_title', 'post_content', 'created_at', 'updated_at']
+          attributes: ['post_title', 'post_content', 'created_at', 'updated_at', 'post_id'],
+          include: [
+            {
+              model: Comment,
+              attributes : ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at']
+            }
+          ]
         }
       ]
     })
@@ -27,7 +33,7 @@ router.get('/', withAuth, async(req, res) => {
     const comments = userData.comments.map(comment => comment.get({ plain: true }));
 
     console.log('-----------------------------')
-    console.log(posts);
+    console.log(comments);
     
     res.status(200).render('user-page', {
       userData,
