@@ -10,7 +10,7 @@ LOGIN ROUTES default: localhost:3010/user-login/
 
 // DEFAULT => RENDER LOGIN-SIGNUP-PAGE
 router.get('/', async(req, res) => {
-  res.status(200).render('login-signup-page', {
+  res.status(200).render('loginSignUpPage', {
     pageTitle: 'Login',
   })
 })

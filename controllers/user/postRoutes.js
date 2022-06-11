@@ -16,8 +16,8 @@ POST ROUTES | NO-AUTHENTICATION | SEARCH POSTS
 // ROUTE TO DISPLAY THE CREATE POST PAGE
 router.get("/create", async (req, res) => {
   try {
-    res.status(200).render("create-post-page", {
-      pageTitle: "Test Post-Page",
+    res.status(200).render("createPostPage", {
+      pageTitle: "create-post",
       mainCSS: true,
       mainJS: true,
       userNav: true,
@@ -170,7 +170,7 @@ router.get("/view/:id", async (req, res) => {
     const username = postData.dataValues.user.username;
     const comments = postData.comments.map(comment => comment.get({ plain: true }));
 
-    res.status(200).render('post-page', {
+    res.status(200).render('postPage', {
       postData,
       username,
       comments,
