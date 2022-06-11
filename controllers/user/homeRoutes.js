@@ -60,7 +60,7 @@ router.get('/', async(req, res) => {
     res.status(200).render('home', { 
       tags,
       posts,
-      // loggedIn: req.session.loggedIn,
+      loggedIn: req.session.loggedIn,
       pageTitle: "Home",
       userNav: true,
       mainCSS: true,
