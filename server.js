@@ -31,6 +31,7 @@ app.engine('handlebars', handlebars.engine({
   layoutsDir:  path.join(__dirname, '/views/layouts'),
   defaultLayout: 'main',
   partialsDir: path.join(__dirname, '/views/partials'),
+  extname: 'handlebars',
   helpers 
 }));
 app.set('view engine', 'handlebars');
