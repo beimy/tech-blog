@@ -1,4 +1,3 @@
-
 const router = require('express').Router();
 const { request } = require('http');
 const { isNull } = require('lodash');
@@ -136,6 +135,8 @@ router.get("/view/:id", async (req, res) => {
         'post_id',
         'post_title',
         'post_content',
+        'created_at',
+        'updated_at'
       ],
       include: [
         {
@@ -169,9 +170,16 @@ router.get("/view/:id", async (req, res) => {
 
     const username = postData.dataValues.user.username;
     const comments = postData.comments.map(comment => comment.get({ plain: true }));
+    const post = postData.get({ plain: true });
+    const post_id = postId;
+    
+
+    console.log('------------------------');
+    console.log(post);
 
     res.status(200).render('post-page', {
-      postData,
+      post,
+      post_id,
       username,
       comments,
       pageTitle: `view-post`,
