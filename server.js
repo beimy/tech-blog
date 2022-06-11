@@ -27,6 +27,7 @@ const bodyParser = require('body-parser');
 const hbs = expressHbs.create({ 
   layoutsDir: 'views/layouts',
   defaultLayout: 'main',
+  partialsDir: 'views/partials',
   extname: 'hbs',
   helpers 
 });
