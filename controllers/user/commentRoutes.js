@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { User, Post, Comment, Tag } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+
 //Get all comments
 router.get("/", (req, res) => {
   Comment.findAll({
@@ -66,14 +67,14 @@ router.get("/user/:id", async (req, res) => {
 
 
 router.post("/", (req, res) => {
-  
+  console.log(req.session)
   Comment.create({
     comment_title: req.body.comment_title,
     comment_content: req.body.comment_content,
     post_id: req.body.post_id,
     user_id: req.session.user_id,
   })
-    .then((dbCommentData) => res.json(dbCommentData))
+    .then((dbCommentData) => res.status(200).json(dbCommentData))
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);

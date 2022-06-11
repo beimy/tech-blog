@@ -297,15 +297,15 @@ POST ROUTES | AUTHENTICATION-REQUIRED | USER
 router.post('/', async(req, res) => {
    
   try {
-    const newPostDate = await
+    const newPost = await
       Post.create({
         post_title: req.body.post_title,
         post_content: req.body.post_content,
         category_id: req.body.category_id,
-        user_id: req.session.user_id
+        user_id: req.body.user_id
       });
 
-    res.status(200).json(`New post successfully created.`)
+    res.status(200).json(`New post successfully created. ${newPost}`)
     
   } catch (err) {
     res
