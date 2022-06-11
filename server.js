@@ -1,12 +1,13 @@
 const path = require('path');
 const express = require('express');
+const app = express();
 const session = require('express-session');
-const expressHbs = require('express-handlebars');
+const handlebars = require('express-handlebars');
 const controllers = require('./controllers');
 const helpers = require('./utils/helpers');
 const bodyParser = require('body-parser');
 
-const app = express();
+
 const PORT = process.env.PORT || 3010;
 
 const sequelize = require('./config/connection');
@@ -28,21 +29,22 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.set('views', path.join(__dirname, 'views'))
 
 
-const hbs = expressHbs.create({ 
-  layoutsDir: __dirname + 'views/layouts',
+
+const hbs = handlebars.create({ 
+  layoutsDir: __dirname + '/views/layouts',
   defaultLayout: 'main',
-  partialsDir: __dirname + 'views/partials',
   extname: 'hbs',
+  partialsDir: __dirname + '/views/partials',
   helpers 
 });
 
-app.engine('hbs', hbs.engine);
+
 app.set('view engine', 'hbs');
+app.engine('hbs', hbs.engine);
 
-
+app.set('views', path.join(__dirname, 'views'))
 
 app.use(controllers);
 
