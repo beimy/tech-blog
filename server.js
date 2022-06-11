@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3010;
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const hbs = require('hbs');
 
 const sess = {
   secret: 'Not sure yet',
@@ -33,6 +34,7 @@ app.engine('handlebars', handlebars.engine({
   helpers 
 }));
 app.set('view engine', 'handlebars');
+hbs.registerPartials(__dirname + '/views/partials');
 
 app.use(controllers);
 
