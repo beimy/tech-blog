@@ -135,7 +135,7 @@ router.get('/:id', async(req,res) => {
 });
 
 //CREATE NEW POST_TAG RELATIONSHIP
-router.post('/', async(req,res) => {
+router.post('/', withAuth, async(req,res) => {
   try {
     
     res.status(200).json(response);
@@ -146,7 +146,7 @@ router.post('/', async(req,res) => {
 });
 
 // CREATE NEW COMMENT_TAG RELATIONSHIP
-router.post('/', async(req,res) => {
+router.post('/', withAuth, async(req,res) => {
   try {
     
     res.status(200).json(response);
@@ -157,7 +157,7 @@ router.post('/', async(req,res) => {
 });
 
 // DELETE POST_TAG
-router.delete('/', async(req,res) => {
+router.delete('/', withAuth, async(req,res) => {
   try {
     
     res.status(200).json(response);
@@ -168,7 +168,7 @@ router.delete('/', async(req,res) => {
 });
 
 //DELETE COMMENT_TAG 
-router.delete('/', async(req,res) => {
+router.delete('/', withAuth, async(req,res) => {
   try {
     
     res.status(200).json(response);

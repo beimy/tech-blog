@@ -294,7 +294,7 @@ POST ROUTES | AUTHENTICATION-REQUIRED | USER
   
 // CREATE NEW POST - this post was had withAuth removed for testing purposes. add in withAuth when testing from live site
 //change (user_id: req.body.user_id) to (user_id: req.session.user_id) when testing for live site
-router.post('/', async(req, res) => {
+router.post('/', withAuth, async(req, res) => {
    
   try {
     const newPostDate = await
@@ -317,7 +317,7 @@ router.post('/', async(req, res) => {
 
 //UPDATE POST BY ID | EDIT POST BY ID
 // withAuth has been removed for testing and will need to be added back in before deployment to prevent users from editing posts they dont own.
-router.put('/:id', async(req, res) => {
+router.put('/:id', withAuth, async(req, res) => {
   try {
     const postId = req.params.id;
     const postTitle = req.body.title;

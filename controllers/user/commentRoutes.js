@@ -31,6 +31,7 @@ router.get("/", (req, res) => {
     });
 });
 
+// Get Comment by id
 router.get("/user/:id", async (req, res) => {
   try {
     const response = await Comment.findAll({
@@ -64,8 +65,8 @@ router.get("/user/:id", async (req, res) => {
   }
 });
 
-
-router.post("/", (req, res) => {
+// Create a new comment
+router.post("/", withAuth, (req, res) => {
   
   Comment.create({
     comment_title: req.body.comment_title,
@@ -83,7 +84,7 @@ router.post("/", (req, res) => {
 
 
 // edit a comment
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
   Comment.update(
     {
       comment_content: req.body.comment_content,
@@ -108,7 +109,7 @@ router.put("/:id", (req, res) => {
 });
 
 // delete a comment
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
   Comment.destroy({
     where: {
       comment_id: req.params.id,
