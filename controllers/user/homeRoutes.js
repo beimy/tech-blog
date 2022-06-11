@@ -57,10 +57,10 @@ router.get('/', async(req, res) => {
     
     console.log('------------Made it into the home route-----------------')
     
-    res.status(200).render('index', { 
+    res.status(200).render('home', { 
       tags,
       posts,
-      loggedIn: req.session.loggedIn,
+      // loggedIn: req.session.loggedIn,
       pageTitle: "Home",
       userNav: true,
       mainCSS: true,
