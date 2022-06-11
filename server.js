@@ -31,10 +31,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const hbs = handlebars.create({ 
-  layoutsDir: path.join( __dirname + '/views/layouts'),
+  layoutsDir:  __dirname + '/views/layouts',
   defaultLayout: 'main',
   extname: 'hbs',
-  partialsDir: path.join(__dirname + '/views/partials'),
+  partialsDir: __dirname + '/views/partials',
   helpers 
 });
 
@@ -42,7 +42,7 @@ const hbs = handlebars.create({
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs.engine);
 
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', __dirname, 'views')
 
 // Register Partials
 const partialsDir = path.join(__dirname + '/views/partials');
