@@ -170,7 +170,7 @@ router.get("/view/:id", async (req, res) => {
     const username = postData.dataValues.user.username;
     const comments = postData.comments.map(comment => comment.get({ plain: true }));
 
-    res.status(200).render('postPage', {
+    res.status(200).render('post-page', {
       postData,
       username,
       comments,

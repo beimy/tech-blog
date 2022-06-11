@@ -51,7 +51,7 @@ router.get('/', async(req, res) => {
     
         });
         const posts = postData.map(post => post.get({ plain: true }))
-        res.status(200).render('index', { 
+        res.status(200).render('home', { 
         posts,
         loggedIn: req.session.loggedIn,
         pageTitle: "search",
@@ -128,7 +128,7 @@ router.get('/tag/:id', async(req,res) => {
       const tags = tagData.map(tag => tag.get({ plain: true }));
       console.log(posts)
 
-      res.status(200).render('index', {
+      res.status(200).render('home', {
           tags,
           posts,
           loggedIn: req.session.loggedIn,
