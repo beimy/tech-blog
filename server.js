@@ -28,9 +28,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.engine('handlebars', handlebars.engine({
-  layoutsDir:  path.join(__dirname, '/views/layouts'),
+  layoutsDir:  __dirname + '/views/layouts',
   defaultLayout: 'main',
-  partialsDir: path.join(__dirname, '/views/partials'),
+  partialsDir: __dirname + '/views/partials',
   extname: 'handlebars',
   helpers 
 }));
