@@ -27,8 +27,11 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.engine('handlebars', handlebars.create({
-  helpers
+app.engine('handlebars', handlebars.engine({
+  layoutsDir:  __dirname + '/views/layouts',
+  defaultLayout: 'main',
+  partialsDir: __dirname + '/views/partials',
+  helpers 
 }));
 app.set('view engine', 'handlebars');
 
