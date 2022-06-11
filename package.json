@@ -4,24 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon run server.js",
+    "start": "node server.js",
     "seed": "node seeds/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beimy/tech-blog.git"
+    "url": "https://github.com/cobalt88/Rbbit-Holes"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/beimy/tech-blog/issues"
+    "url": "https://github.com/cobalt88/Rbbit-Holes/issues"
   },
-  "homepage": "https://github.com/beimy/tech-blog#readme",
+  "homepage": "https://github.com/cobalt88/Rbbit-Holes#readme",
   "devDependencies": {
-    "@faker-js/faker": "^7.1.0",
-    "jest": "^28.1.0",
     "nodemon": "^2.0.16"
   },
   "dependencies": {
