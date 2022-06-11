@@ -22,22 +22,8 @@ module.exports = {
   format_time: date => {
 
       const newDate = new Date(date);
-      // console.log(date.toLocaleString())
       return newDate.toLocaleString();
+  },
 
-    // let hour = new Date(date).getHours();
-    // let pm = false;
-    // if (hour >= 12) {
-    //   hour = hour - 12
-    //   pm = true;
-    // };
-
-    // if(pm) {
-    //   return `${hour}:${new Date(date).getMinutes()}pm`;
-    // } else {
-    //   return `${hour}:${new Date(date).getMinutes()}am`;
-    // }
-    
-  }
   
 };

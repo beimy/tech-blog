@@ -20,7 +20,6 @@ const loginFunction = async(userEmail, userPassword) => {
 };
 
 $('#login').on('click', function() {
-  //this is an example of how the event listenersa should look, it may need to be edited to actually grab the text of the correct input fields.
   const userEmail = $(this).siblings()[0].children[0].value.trim();
   const userPassword = $(this).siblings()[1].children[0].value.trim();
 
