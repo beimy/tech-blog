@@ -27,18 +27,13 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const hbs = handlebars.create({ 
-  layoutsDir:  __dirname + '/views/layouts',
-  defaultLayout: 'main',
-  extname: 'hbs',
-  partialsDir: __dirname + '/views/partials',
-  helpers 
-});
+const hbs = handlebars.create({ helpers });
 
-app.set('view engine', 'hbs');
 app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
 
-app.set('views', 'views');
+
+// app.set('views', 'views');
 
 app.use(controllers);
 
