@@ -1,8 +1,9 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const expressHbs = require('express-handlebars');
+const expHbs = require('express-handlebars');
 const controllers = require('./controllers');
+
 
 const app = express();
 const PORT = process.env.PORT || 3010;
@@ -24,7 +25,7 @@ app.use(session(sess));
 
 const helpers = require('./utils/helpers');
 const bodyParser = require('body-parser');
-const hbs = expressHbs.create({ 
+const hbs = expHbs.create({ 
   layoutsDir: 'views/layouts',
   defaultLayout: 'main',
   extname: 'hbs',
