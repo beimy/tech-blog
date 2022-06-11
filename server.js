@@ -32,9 +32,9 @@ app.set('views', path.join(__dirname, 'views'))
 
 
 const hbs = expressHbs.create({ 
-  layoutsDir: 'views/layouts',
+  layoutsDir: __dirname + 'views/layouts',
   defaultLayout: 'main',
-  partialsDir: 'views/partials',
+  partialsDir: __dirname + 'views/partials',
   extname: 'hbs',
   helpers 
 });
