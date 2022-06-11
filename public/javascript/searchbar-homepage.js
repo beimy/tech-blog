@@ -84,17 +84,31 @@ function cleanSearch(searchText) {
     return upperArr.concat(lowerArr);
 }
 
-function searchByTag(e) {
-    const searchedTag = e.target.value;
+async function searchByTag(e) {
+    try{
+        const searchedTag = e.target.value;
 
-    let listArr = [];
-    for(var i = 0; i < $(this).next().children().length; i++) {
-        listArr.push($(this).next().children());
+        let searchedTagId;
+        for(var i = 0; i < $(this).next().children().length; i++) {
+            if(searchedTag == $(this).next().children()[i].value) {
+                searchedTagId = $(this).next().children()[i].dataset.tag_id;
+            }
+        }
+        
+        const response = await fetch(`/search/tag/${searchedTagId}`, {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        if(response.ok) {
+            document.location.replace(`/search/tag/${searchedTagId}`);
+        } else {
+            alert(response.statusText);
+        }
+    } catch(err) {
+        response.console.error(err);
     }
-
-    console.log(listArr)
-
-    console.log($(this).next().children());
+    
 
 }
 
