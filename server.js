@@ -1,14 +1,16 @@
 const path = require('path');
 const express = require('express');
-const session = require('express-session');
 const expHbs = require('express-handlebars');
+const helpers = require('./utils/helpers');
 const controllers = require('./controllers');
-
 
 const app = express();
 const PORT = process.env.PORT || 3010;
 
 const sequelize = require('./config/connection');
+
+const session = require('express-session');
+
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
@@ -21,9 +23,6 @@ const sess = {
   })
 };
 
-app.use(session(sess));
-
-const helpers = require('./utils/helpers');
 const bodyParser = require('body-parser');
 const hbs = expHbs.create({ 
   layoutsDir: 'views/layouts',
@@ -34,12 +33,13 @@ const hbs = expHbs.create({
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-app.set('views', 'views')
+// app.set('views', 'views')
 
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session(sess));
 
 app.use(controllers);
 
