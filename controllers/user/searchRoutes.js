@@ -17,6 +17,8 @@ router.get('/', async(req, res) => {
             'post_id',
             'post_title',
             'post_content',
+            'created_at',
+            'updated_at'
         ],
         include: [
             {
@@ -58,6 +60,7 @@ router.get('/', async(req, res) => {
         adminCSS: false,
         mainJS: true,
         errorJS: false,
+        userNav: true,
     
         })
     } catch (err) {

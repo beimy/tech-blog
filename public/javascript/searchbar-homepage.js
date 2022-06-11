@@ -84,32 +84,21 @@ function cleanSearch(searchText) {
     return upperArr.concat(lowerArr);
 }
 
-async function searchByTag(e) {
-    console.log('hello')
+function searchByTag(e) {
+    const searchedTag = e.target.value;
+
+    let listArr = [];
+    for(var i = 0; i < $(this).next().children().length; i++) {
+        listArr.push($(this).next().children());
+    }
+
+    console.log(listArr)
+
+    console.log($(this).next().children());
+
 }
 
-// async function populateTagList() {
-//     try {
-//         const response = await fetch('/tag/post', {
-//             method: 'GET',
-//             headers: { 'Content-Type' : 'application/json'}
-            
-//         });
-//         const tagData = await response.json();
-//         console.log(tagData)
-//         if(response.ok) {
-//             console.log('Success');
-//             return tagData;
-//         } else {
-//             alert("Cannot find Tags");
-//         }
 
-//     } catch (err) {
-//         console.error(err);
-//     }
-    
-// }
-
+document.querySelector('#tag-dataList').addEventListener('change', searchByTag);
 document.querySelector('#searchBar').addEventListener('change', searchBarFormHandler);
-document.querySelector('#tag-dataList').addEventListener('submit', searchByTag);
-// window.onload = populateTagList;
+// document.querySelector('#tag-dataList').addEventListener('click', searchByTag);

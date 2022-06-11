@@ -4,12 +4,9 @@
     <input class="form-control-sm" list="tag-list" id="tag-dataList" style="font-size: 10px" placeholder="">
         <datalist id="tag-list">
             {{#each tags as |tag|}}
-            <option value="{{tag_name}}"></option>
+            <option class="tag-list-item" data-tag_id="{{tag_id}}" value="{{tag_name}}"></option>
             {{/each}}
-            {{!-- <option value="HTML">
-            <option value="CSS">
-            <option value="Javascript">
-            <option value="Express"> --}}
+
         </datalist>
     <form class="d-flex justify-content-end">
         <input
