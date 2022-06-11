@@ -44,19 +44,6 @@ app.engine('hbs', hbs.engine);
 
 app.set('views', __dirname, 'views')
 
-// Register Partials
-const partialsDir = __dirname + '/views/partials';
-const filenames = fs.readdirSync(partialsDir);
-
-filenames.forEach(function (filename) {
-  const matches = /^([^.]+).hbs$/.exec(filename);
-  if (!matches) {
-    return;
-  }
-  const name = matches[1];
-  const template = fs.readFileSync(partialsDir + '/' + filename, 'utf8');
-  Handlebars.registerPartial(name, template);
-});
 
 app.use(controllers);
 
