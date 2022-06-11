@@ -27,7 +27,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.engine('handlebars', handlebars.create({defaultLayout: 'base'}));
+app.engine('handlebars', handlebars.create({
+  helpers
+}));
 app.set('view engine', 'handlebars');
 
 // const hbs = handlebars.create({ helpers });
