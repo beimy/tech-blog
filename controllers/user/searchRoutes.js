@@ -124,8 +124,9 @@ router.get('/tag/:id', async(req,res) => {
         ],
       })
     
-      const posts = response.map(post => post.get({ plain: true }));
+      const posts = response.map(postTag => postTag.post.get({ plain: true }));
       const tags = tagData.map(tag => tag.get({ plain: true }));
+      console.log('---------------------------')
       console.log(posts)
 
       res.status(200).render('home', {

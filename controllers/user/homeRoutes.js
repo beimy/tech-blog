@@ -56,6 +56,7 @@ router.get('/', async(req, res) => {
     const tags = tagData.map(tag => tag.get({ plain: true }));
     
     console.log('------------Made it into the home route-----------------')
+    console.log(posts);
     
     res.status(200).render('home', { 
       tags,
