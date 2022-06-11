@@ -3,6 +3,8 @@ const express = require('express');
 const session = require('express-session');
 const expressHbs = require('express-handlebars');
 const controllers = require('./controllers');
+const helpers = require('./utils/helpers');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3010;
@@ -22,25 +24,25 @@ const sess = {
 
 app.use(session(sess));
 
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('views', path.join(__dirname, 'views'))
 
-const helpers = require('./utils/helpers');
-const bodyParser = require('body-parser');
-const hbs = expressHbs.create({ 
-  layoutsDir: 'views/layouts',
-  defaultLayout: 'main',
-  partialsDir: 'views/partials',
-  extname: 'hbs',
-  helpers 
-});
+
+// const hbs = expressHbs.create({ 
+//   layoutsDir: 'views/layouts',
+//   defaultLayout: 'main',
+//   partialsDir: 'views/partials',
+//   extname: 'hbs',
+//   helpers 
+// });
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(controllers);
 
