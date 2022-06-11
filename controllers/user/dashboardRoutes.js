@@ -45,7 +45,7 @@ router.get('/', withAuth, async(req, res) => {
     console.log('-----------------------------')
     console.log(comments);
     
-    res.status(200).render('user-page', {
+    res.status(200).render('userPage', {
       userData,
       username,
       posts,
