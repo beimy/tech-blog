@@ -38,7 +38,8 @@ const hbs = handlebars.create({
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs.engine);
 
-app.set('views', 'views')
+app.set('views', 'views');
+app.set('partials', 'views/partials');
 
 app.use(controllers);
 
