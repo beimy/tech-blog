@@ -22,6 +22,9 @@ const sess = {
 
 app.use(session(sess));
 
+
+app.set('views', path.join(__dirname, 'views'))
+
 const helpers = require('./utils/helpers');
 const bodyParser = require('body-parser');
 const hbs = expressHbs.create({ 
@@ -34,8 +37,6 @@ const hbs = expressHbs.create({
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, './views'))
-
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -44,5 +45,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(controllers);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`Server listening at http://localhost:${PORT}`));
+  app.listen(PORT, () => console.log(`Server listening on PORT: ${PORT}`));
 });
