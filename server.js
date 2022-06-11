@@ -40,6 +40,7 @@ const hbs = handlebars.create({
   helpers 
 });
 
+hbs.registerPartials(__dirname + '/views/partials')
 
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs.engine);
