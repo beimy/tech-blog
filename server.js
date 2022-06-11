@@ -6,7 +6,8 @@ const handlebars = require('express-handlebars');
 const controllers = require('./controllers');
 const helpers = require('./utils/helpers');
 const bodyParser = require('body-parser');
-
+const fs = require('fs');
+const Handlebars = require('handlebars');
 
 const PORT = process.env.PORT || 3010;
 
@@ -29,14 +30,11 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-
 const hbs = handlebars.create({ 
-  layoutsDir: __dirname + '/views/layouts',
+  layoutsDir: path.join( __dirname + '/views/layouts'),
   defaultLayout: 'main',
   extname: 'hbs',
-  partialsDir: __dirname + '/views/partials',
+  partialsDir: path.join(__dirname + '/views/partials'),
   helpers 
 });
 
@@ -45,6 +43,20 @@ app.set('view engine', 'hbs');
 app.engine('hbs', hbs.engine);
 
 app.set('views', path.join(__dirname, 'views'))
+
+// Register Partials
+const partialsDir = path.join(__dirname + '/views/partials');
+const filenames = fs.readdirSync(partialsDir);
+
+filenames.forEach(function (filename) {
+  const matches = /^([^.]+).hbs$/.exec(filename);
+  if (!matches) {
+    return;
+  }
+  const name = matches[1];
+  const template = fs.readFileSync(partialsDir + '/' + filename, 'utf8');
+  Handlebars.registerPartial(name, template);
+});
 
 app.use(controllers);
 
