@@ -19,7 +19,7 @@ router.get('/', async(req, res) => {
 router.get('/register', (req, res, next) => {
   res.status(200).render('registrationPage', {
     pageTitle: "Sign Up",
-    loggedIn: false
+    
   })
 });
 
