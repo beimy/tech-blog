@@ -51,7 +51,7 @@ router.get('/', withAuth, async(req, res) => {
       posts,
       comments,
       pageTitle: `${username}'s Dashboard`,
-      loggedIn: true,
+      loggedIn: req.session.loggedIn,
       userNav: true,
       mainCSS: true,
       mainJS: true
