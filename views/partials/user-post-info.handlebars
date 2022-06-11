@@ -12,9 +12,9 @@
     {{#if tags}}
     <p>Tags</p>
     <ul id="post-user-tags-list">
-        {{#each posts as |post|}}
+        {{#each tags as |tag|}}
         <li>
-            {{> post_tags post}}
+            {{> post_tags tag}}
 
         </li>
         {{/each}}

@@ -6,7 +6,18 @@
                     <div class="col-12 " id="post-title">
                         <h2 class="mb-0">{{post.post_title}}</h2>
                         <p class="mb-0"><small>Author: <span>{{username}}</span></small></p>
-                        <p><small>Tags:</small></p>
+                        {{#if post.tags}}
+                        <label for="#tag-list">
+                            <small>Tags:</small>
+                            <ul id="tag-list" class="d-inline">
+                                {{#each post.tags as |tag|}}
+                                <li class="d-inline">
+                                    {{tag.tag_name}}
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </label>
+                        {{/if}}
                     </div>
                 </div>
                 <div id="post-header-data" class="col-4 d-flex float-end">

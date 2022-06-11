@@ -34,6 +34,10 @@ router.get('/', withAuth, async(req, res) => {
                 }
               ]
             },
+            {
+              model: Tag,
+              as: 'tags',
+            }
           ]
         }
       ]
