@@ -27,12 +27,12 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const hbs = handlebars.create({ helpers });
+app.engine('handlebars', handlebars({defaultLayout: 'base'}));
+app.set('view engine', 'handlebars');
 
-app.engine('hbs', hbs.engine);
-app.set('view engine', 'hbs');
-
-
+// const hbs = handlebars.create({ helpers });
+// app.engine('hbs', hbs.engine);
+// app.set('view engine', 'hbs');
 // app.set('views', 'views');
 
 app.use(controllers);
