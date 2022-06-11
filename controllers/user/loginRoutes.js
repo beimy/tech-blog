@@ -35,12 +35,12 @@ router.post('/validate', async(req, res) => {
       attributes: ['user_id', 'username', 'email', 'password']
     });
     const userPwd = userData.dataValues.password;
-    console.log(userData.username)
+
 
     if(userPwd === password){
       req.session.save(() => {
-        req.session.user_id = userData.user_id;
-        req.session.username = userData.username;
+        req.session.user_id = userData.dataValues.user_id;
+        req.session.username = userData.dataValues.username;
         req.session.loggedIn = true;
   
         res.status(200).json({
