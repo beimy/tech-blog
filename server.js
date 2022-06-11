@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3010;
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const hbs = require('hbs');
-
+hbs.registerPartials(__dirname + '/views/partials');
 const sess = {
   secret: 'Not sure yet',
   cookie: {},
@@ -28,13 +28,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.engine('handlebars', handlebars.engine({
-  layoutsDir:  '/views/layouts',
+  layoutsDir:  path.join(__dirname, '/views/layouts'),
   defaultLayout: 'main',
-  partialsDir: [path.join(__dirname, '/views/partials')],
+  partialsDir: path.join(__dirname, '/views/partials'),
   helpers 
 }));
 app.set('view engine', 'handlebars');
-hbs.registerPartials(__dirname + '/views/partials');
+
 
 app.use(controllers);
 
