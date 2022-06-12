@@ -1,10 +1,12 @@
-const submitFunction = async(e) => {
-    e.preventDefault();
 
-    const user_email = $('#email').val();
-    const username = $('#username').val();
-    const password1 = $('#pass1').val();
-    const password2 = $('#pass2').val();
+
+
+const submitFunction = async(e) => {
+  e.preventDefault();
+  const user_email = $('#email').val();
+  const username = $('#username').val();
+  const password1 = $('#pass1').val();
+  const password2 = $('#pass2').val();
 
     if(user_email && username && password1 && password2) {
       try {
@@ -14,22 +16,21 @@ const submitFunction = async(e) => {
           const response = await fetch('/user-login/register', {
             method: 'post',
             body: JSON.stringify({
-              email : user_email,
-              username,
-              password,
+              email: user_email,
+              username: username,
+              password: password,
             }),
             headers: { 'Content-Type': 'application/json' }
           });
 
-          console.log(response)
           if(response.ok){
-            console.log(`It Worked! ${response}`);
-            autoLogin(user_email, password);
+            console.log(`It Worked! new user has been registered.`);
+             autoLogin(user_email, password);
           } else {
-            console.log(`It didnt work.`)
+            console.log(`It didn't work.`)
           }
         }else{
-          console.alert('Passwords do not match!')
+          window.alert('Passwords do not match!')
         }
       } catch (err) {
         console.error(`error encountered in submit function: ${err}`)
@@ -38,20 +39,25 @@ const submitFunction = async(e) => {
     
 }
 
-async function autoLogin(email, password) {
+
+const autoLogin = async(e, p) => {
   try {
+    const email = e;
+    const password = p;
+    console.log(`Email: ${email}, Password: ${password}`);
+
     const response = await fetch('/user-login/validate', {
       method: 'POST',
       body: JSON.stringify({
-        email,
-        password
+        email: email,
+        password: password
       }),
       headers: {'Content-Type' : 'application/json'}
     });
 
     if(response.ok) {
-      console.log('user found, logging in');
-      autoNavigateToDash();
+      window.alert('Thank you for registering, you are now being redirected to your dashboard.');
+      window.location.replace('/');
     } else {
       console.log('user not found');
     }
@@ -59,14 +65,6 @@ async function autoLogin(email, password) {
     console.error(`error encountered in auto login:  ${err}`);
   }
 };
-
-async function autoNavigateToDash() {
-  try {
-    window.location.replace('/dashboard');
-  } catch (err) {
-    console.error(`error encoutered in autoNavigateToDash: ${err}`)
-  }
-}
 
 $('#registerBtn').on('click', submitFunction);
 

@@ -28,6 +28,7 @@ router.post('/validate', async(req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
+    
     const userData = await User.findOne({
       where: {
         email: email

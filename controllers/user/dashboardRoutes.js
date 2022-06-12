@@ -3,21 +3,33 @@ const { User, Post, Comment, Tag } = require('../../models');
 const withAuth = require('../../utils/auth');
 const sequelize = require('../../config/connection');
 
-
+/*
+================================================
+USER DASHBOARD ROUTE - /dashboard
+================================================
+*/
 router.get('/', withAuth, async(req, res) => {
   try {
-    const userId = req.session.user_id;
-    const userData = await User.findByPk(userId, {
+    const userId = parseInt(req.session.user_id);
+    console.log(userId)
+    const userData = await User.findOne({
+      where: {
+        user_id: userId
+      },
       attributes: ['username', 'email'],
       include: [
         {
           model: Comment,
-          where: user_id = userId,
+          where: {
+            user_id: userId
+          },
           attributes: ['comment_id', 'comment_title', 'comment_content'],
         },
         {
           model: Post,
-          where: user_id = userId,
+          where: {
+            user_id: userId
+          },
           attributes: ['post_id', 'post_title', 'post_content', 'created_at', 'updated_at'],
           include: [
             {
@@ -39,7 +51,7 @@ router.get('/', withAuth, async(req, res) => {
       ]
     })
 
-    console.log('-------------------------------')
+    console.log('---------------Made it to the dashboard route----------------')
     console.log(userData)
 
     const username = userData.username;
@@ -59,8 +71,8 @@ router.get('/', withAuth, async(req, res) => {
       mainJS: true
     });
     
-  } catch (err) {
-    res.status(500).json(`Unexpected error encountered in Test User Route ${err}`)
+  } catch (err) { 
+    res.status(500).json(`Unexpected error encountered in Dashboard Route ${err}`)
   }
 })
 
