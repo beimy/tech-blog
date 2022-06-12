@@ -12,7 +12,6 @@ const submitFunction = async(e) => {
       try {
         if( password1 === password2 ){
           const password = password1;
-          console.log('passwords are good');
           const response = await fetch('/user-login/register', {
             method: 'post',
             body: JSON.stringify({
@@ -24,7 +23,6 @@ const submitFunction = async(e) => {
           });
 
           if(response.ok){
-            console.log(`It Worked! new user has been registered.`);
              autoLogin(user_email, password);
           } else {
             console.log(`It didn't work.`)
@@ -44,7 +42,6 @@ const autoLogin = async(e, p) => {
   try {
     const email = e;
     const password = p;
-    console.log(`Email: ${email}, Password: ${password}`);
 
     const response = await fetch('/user-login/validate', {
       method: 'POST',
@@ -59,7 +56,7 @@ const autoLogin = async(e, p) => {
       window.alert('Thank you for registering, you are now being redirected to your dashboard.');
       window.location.replace('/');
     } else {
-      console.log('user not found');
+      window.alert('user not found');
     }
   } catch (err) {
     console.error(`error encountered in auto login:  ${err}`);
