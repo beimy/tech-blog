@@ -3,40 +3,49 @@ const { User, Post, Comment, Tag } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 
-//Get all comments
-router.get("/", (req, res) => {
-  Comment.findAll({
-    attributes: ["comment_id", "comment_title", "comment_content"],
-    include: [
-      {
-        model: User,
-        attributes: ["username", "user_id"],
-      },
-      {
-        model: Post,
-        attributes: ["post_id", "post_title"],
-      },
-      {
-        model: Tag,
-        as: "tags",
-        attributes: ["tag_id", "tag_name"],
-      },
-    ],
-  })
-    .then((dbCommentData) => res.json(dbCommentData))
-    .catch((err) => {
-      console.log(`Error encountered in get all comments route: ${err}`);
-      res
-        .status(500)
-        .json(`Error encountered in get all comments route: ${err}`);
-    });
-});
+/*
+================================================
+COMMENT ROUTES - /comments
+================================================
+*/
 
-router.get("/user/:id", async (req, res) => {
+// GET ALL COMMENTS
+
+router.get("/", async(req, res) => {
   try {
-    const response = await Comment.findAll({
+    const dbCommentData = await Comment.findAll({
+      attributes: ["comment_id", "comment_title", "comment_content"],
+      include: [
+        {
+          model: User,
+          attributes: ["username", "user_id"],
+        },
+        {
+          model: Post,
+          attributes: ["post_id", "post_title"],
+        },
+        {
+          model: Tag,
+          as: "tags",
+          attributes: ["tag_id", "tag_name"],
+        },
+      ],
+    })
+    res.status(200).json(dbCommentData);
+  } catch (err) {
+    res
+    .status(500)
+    .json(`Error encountered in get all comments route: ${err}`);
+  }
+})
+
+//GET ALL COMMENTS BY USER ID - withAuth
+
+router.get("/user", withAuth, async(req, res) => {
+  try {
+    const dbCommentData = await Comment.findAll({
       where: {
-        user_id: req.params.id,
+        user_id: req.session.user_id,
       },
       attributes: ["comment_id", "comment_title", "comment_content"],
       include: [
@@ -55,7 +64,7 @@ router.get("/user/:id", async (req, res) => {
         },
       ],
     });
-    res.status(200).json(response);
+    res.status(200).json(dbCommentData);
   } catch (err) {
     res
       .status(500)

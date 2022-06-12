@@ -6,8 +6,8 @@ const loginFunction = async(userEmail, userPassword) => {
       const response = await fetch('/user-login/validate', {
         method: 'post',
         body: JSON.stringify({
-          email,
-          password,
+          email: email,
+          password: password,
         }),
         headers: { 'Content-Type': 'application/json' }
       });

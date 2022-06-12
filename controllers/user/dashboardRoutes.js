@@ -8,11 +8,10 @@ const sequelize = require('../../config/connection');
 USER DASHBOARD ROUTE - /dashboard
 ================================================
 */
-router.get('/', withAuth, async(req, res) => {
+router.get('/', async(req, res) => {
   try {
     const userId = parseInt(req.session.user_id);
-    console.log(userId)
-    const userData = await User.findOne({
+   const userData = await User.findAll({
       where: {
         user_id: userId
       },
@@ -54,7 +53,7 @@ router.get('/', withAuth, async(req, res) => {
     console.log('---------------Made it to the dashboard route----------------')
     console.log(userData)
 
-    const username = userData.username;
+    // const username = userData.dataValues.username;
     const posts = userData.posts.map(post => post.get({ plain: true }));
     const comments = userData.comments.map(comment => comment.get({ plain: true }));
     
@@ -64,7 +63,7 @@ router.get('/', withAuth, async(req, res) => {
       username,
       posts,
       comments,
-      pageTitle: `${username}'s Dashboard`,
+      // pageTitle: `${username}'s Dashboard`,
       loggedIn: true,
       userNav: true,
       mainCSS: true,

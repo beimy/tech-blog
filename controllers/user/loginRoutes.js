@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { keyBy } = require("lodash");
+const bcrypt = require('bcrypt');
 const { User, Post, Comment } = require("../../models");
 
 /*
@@ -7,13 +8,6 @@ const { User, Post, Comment } = require("../../models");
 LOGIN ROUTES default: localhost:3010/user-login/
 ================================================
 */
-
-// DEFAULT => RENDER LOGIN-SIGNUP-PAGE
-router.get('/', async(req, res) => {
-  res.status(200).render('loginSignUpPage', {
-    pageTitle: 'Login',
-  })
-})
 
 // RENDER REGISTRATION PAGE
 router.get('/register', (req, res, next) => {
@@ -36,21 +30,22 @@ router.post('/validate', async(req, res) => {
       attributes: ['user_id', 'username', 'email', 'password']
     });
 
-    const validPassword = userData.checkPassword(password);
+    const userPassword = userData.dataValues.password;
+
+    const validPassword = await bcrypt.compare(password, userPassword);
 
     if(validPassword){
+      console.log(userData)
       req.session.save(() => {
-        req.session.user_id = userData.user_id;
-        req.session.username = userData.username;
+        req.session.user_id = userData.dataValues.user_id;
+        req.session.username = userData.dataValues.username;
         req.session.loggedIn = true;
   
-        res.status(200).json({
-          user: userData,
-          message: "You are now logged in!",
-        });
+        res.status(200).json(userData);
       }); 
     } else {
       res.status(400).json(`incorrect password`);
+      console.log('incorrect password')
     }
 
   } catch(error) {
