@@ -123,6 +123,36 @@ In the interest of making this map more human-readable the example urls's are al
     Example: http://localhost:3010/post/1 </br>
 
 
+### Comment Routes
+
+* **Get all comments:** </br>
+    Request Requirements: none </br>
+    Expected Response: json object of all comments with user, tag, and post data. </br>
+    Method: GET <br>
+    URL: http://localhost:3010/comments </br>
+    Example: "" </br>
+
+* **Get comments by user ID:** </br>
+    Request Requirements: "" </br>
+    Expected Response: "" </br>
+    Method: "" <br>
+    URL: "" </br>
+    Example: "" </br>
+
+* **Edit a comment:** </br>
+    Request Requirements: "" </br>
+    Expected Response: "" </br>
+    Method: "" <br>
+    URL: "" </br>
+    Example: "" </br>
+
+* **Delete a comment:** </br>
+    Request Requirements: "" </br>
+    Expected Response: "" </br>
+    Method: "" <br>
+    URL: "" </br>
+    Example: "" </br>
+
 
 ### Login Routes
 
