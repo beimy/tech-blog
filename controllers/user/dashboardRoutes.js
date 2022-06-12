@@ -20,9 +20,11 @@ router.get('/', async(req, res) => {
         {
           model: Comment,
           where: {
-            user_id: userId
+            user_id: userId,
+
           },
           attributes: ['comment_id', 'comment_title', 'comment_content'],
+          required: false
         },
         {
           model: Post,
@@ -30,6 +32,7 @@ router.get('/', async(req, res) => {
             user_id: userId
           },
           attributes: ['post_id', 'post_title', 'post_content', 'created_at', 'updated_at'],
+          required: false,
           include: [
             {
               model: Comment,
@@ -55,7 +58,7 @@ router.get('/', async(req, res) => {
     })
 
     console.log('---------------Made it to the dashboard route----------------')
-    console.log(req.session)
+    console.log(userData)
   
     const tempUserData = userData[0];
     console.log(tempUserData)
