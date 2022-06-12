@@ -2,6 +2,10 @@ function homeBtnHandler() {
     document.location.replace('/dashboard');
 }
 
+function aboutBtnHandler() {
+    document.location.replace('/dashboard');
+}
+
 function exploreBtnHandler() {
     document.location.replace('/');
 }
