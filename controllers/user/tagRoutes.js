@@ -135,9 +135,12 @@ router.get('/:id', async(req,res) => {
 });
 
 //CREATE NEW POST_TAG RELATIONSHIP
-router.post('/', async(req,res) => {
+router.post('/post', async(req,res) => {
   try {
-    
+    const response = await Post_Tags.create({
+      tag_id: req.body.tag_id,
+      post_id: req.body.post_id
+    })
     res.status(200).json(response);
   } catch (err) {
     res.status(500).json({message: `Unexpected error encountered in (route name here): ${err}`});
@@ -146,9 +149,12 @@ router.post('/', async(req,res) => {
 });
 
 // CREATE NEW COMMENT_TAG RELATIONSHIP
-router.post('/', async(req,res) => {
+router.post('/comment', async(req,res) => {
   try {
-    
+    const response = await Comment_Tags.create({
+      tag_id: req.body.tag_id,
+      comment_id: req.body.comment_id
+    })
     res.status(200).json(response);
   } catch (err) {
     res.status(500).json({message: `Unexpected error encountered in (route name here): ${err}`});
