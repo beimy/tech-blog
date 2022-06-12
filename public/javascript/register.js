@@ -1,6 +1,3 @@
-
-
-
 const submitFunction = async(e) => {
   e.preventDefault();
   const user_email = $('#email').val();
@@ -54,7 +51,7 @@ const autoLogin = async(e, p) => {
 
     if(response.ok) {
       window.alert('Thank you for registering, you are now being redirected to your dashboard.');
-      window.location.replace('/');
+      window.location.replace('/dashboard');
     } else {
       window.alert('user not found');
     }

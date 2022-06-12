@@ -12,7 +12,7 @@ LOGIN ROUTES default: localhost:3010/user-login/
 // RENDER REGISTRATION PAGE
 router.get('/register', (req, res, next) => {
   res.status(200).render('registrationPage', {
-    pageTitle: "Sign Up",
+    pageTitle: "Sign Up - Rabbit Hole",
     registerJS: true
   })
 });

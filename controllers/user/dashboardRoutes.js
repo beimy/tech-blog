@@ -63,51 +63,21 @@ router.get('/', async(req, res) => {
     const tempUserData = userData[0];
     console.log(tempUserData)
 
-    if(tempUserData) {
-      const username = tempUserData.username;
-      const posts = tempUserData.posts.map(post => post.get({ plain: true }));
-      const comments = tempUserData.comments.map(comment => comment.get({ plain: true }));
-
-      res.status(200).render('user-page', {
-        userData,
-        username,
-        posts,
-        comments,
-        // pageTitle: `${username}'s Dashboard`,
-        loggedIn: true,
-        userNav: true,
-        mainCSS: true,
-        mainJS: true
-      });
-    } else {
-      const username = "no name found";
-      const posts = [];
-      const comments = [];
-
-      res.status(200).render('user-page', {
-        userData,
-        username,
-        posts,
-        comments,
-        // pageTitle: `${username}'s Dashboard`,
-        loggedIn: true,
-        userNav: true,
-        mainCSS: true,
-        mainJS: true
-      });
-    }
+    const username = tempUserData.username;
+    const posts = tempUserData.posts.map(post => post.get({ plain: true }));
+    const comments = tempUserData.comments.map(comment => comment.get({ plain: true }));
     
-    // res.status(200).render('user-page', {
-    //   userData,
-    //   username,
-    //   posts,
-    //   comments,
-    //   // pageTitle: `${username}'s Dashboard`,
-    //   loggedIn: true,
-    //   userNav: true,
-    //   mainCSS: true,
-    //   mainJS: true
-    // });
+    res.status(200).render('user-page', {
+      userData,
+      username,
+      posts,
+      comments,
+      pageTitle: `${username} - Rabbit Hole`,
+      loggedIn: true,
+      userNav: true,
+      mainCSS: true,
+      mainJS: true
+    });
     
   } catch (err) { 
     res.status(500).json(`Unexpected error encountered in Dashboard Route ${err}`)

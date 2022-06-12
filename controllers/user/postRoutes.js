@@ -16,7 +16,7 @@ POST ROUTES | NO-AUTHENTICATION | SEARCH POSTS
 router.get("/create", async (req, res) => {
   try {
     res.status(200).render("create-post-page", {
-      pageTitle: "create-post",
+      pageTitle: "Create Post - Rabbit Hole",
       mainCSS: true,
       mainJS: true,
       userNav: true,
@@ -172,6 +172,7 @@ router.get("/view/:id", async (req, res) => {
     const comments = postData.comments.map(comment => comment.get({ plain: true }));
     const post = postData.get({ plain: true });
     const post_id = postId;
+    const postTitle = postData.dataValues.post_title;
     
 
     console.log('------------------------');
@@ -182,7 +183,7 @@ router.get("/view/:id", async (req, res) => {
       post_id,
       username,
       comments,
-      pageTitle: `view-post`,
+      pageTitle: `${postTitle} - Rabbit Hole`,
       loggedIn: req.session.loggedIn,
       userNav: true,
       mainCSS: true,

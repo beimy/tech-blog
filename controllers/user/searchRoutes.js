@@ -54,7 +54,7 @@ router.get('/', async(req, res) => {
         res.status(200).render('home', { 
         posts,
         loggedIn: req.session.loggedIn,
-        pageTitle: "search",
+        pageTitle: "Home/Search - Rabbit Hole",
         errorCSS: false,
         mainCSS: true,
         adminCSS: false,
@@ -133,7 +133,7 @@ router.get('/tag/:id', async(req,res) => {
           tags,
           posts,
           loggedIn: req.session.loggedIn,
-          pageTitle: "search",
+          pageTitle: "Home/Search - Rabbit Hole",
           userNav: true,
           mainCSS: true,
           mainJS: true

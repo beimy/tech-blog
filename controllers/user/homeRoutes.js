@@ -63,7 +63,7 @@ router.get('/', async(req, res) => {
       tags,
       posts,
       loggedIn: req.session.loggedIn,
-      pageTitle: "Home",
+      pageTitle: "Rabbit Hole",
       userNav: true,
       mainCSS: true,
       mainJS: true,
