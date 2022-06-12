@@ -13,7 +13,7 @@ const loginFunction = async(userEmail, userPassword) => {
       });
 
       if(response.ok){
-        document.location.replace('/');
+        document.location.replace('/dashboard');
       }else{
         alert('Invalid Credentials')
       }
