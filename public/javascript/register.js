@@ -23,19 +23,49 @@ const submitFunction = async(e) => {
 
           console.log(response)
           if(response.ok){
-            console.log(`It Worked! ${response}`)
+            console.log(`It Worked! ${response}`);
+            autoLogin(user_email, password);
           } else {
             console.log(`It didnt work.`)
           }
-          
         }else{
-          console.log('passwords dont match')
+          console.alert('Passwords do not match!')
         }
       } catch (err) {
         console.error(`error encountered in submit function: ${err}`)
       }
   }
     
+}
+
+async function autoLogin(email, password) {
+  try {
+    const response = await fetch('/user-login/validate', {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password
+      }),
+      headers: {'Content-Type' : 'application/json'}
+    });
+
+    if(response.ok) {
+      console.log('user found, logging in');
+      autoNavigateToDash();
+    } else {
+      console.log('user not found');
+    }
+  } catch (err) {
+    console.error(`error encountered in auto login:  ${err}`);
+  }
+};
+
+async function autoNavigateToDash() {
+  try {
+    window.location.replace('/dashboard');
+  } catch (err) {
+    console.error(`error encoutered in autoNavigateToDash: ${err}`)
+  }
 }
 
 $('#registerBtn').on('click', submitFunction);
