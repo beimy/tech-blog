@@ -10,7 +10,7 @@ USER DASHBOARD ROUTE - /dashboard
 */
 router.get('/', async(req, res) => {
   try {
-    const userId = parseInt(req.session.user_id);
+    const userId = req.session.user_id;
    const userData = await User.findAll({
       where: {
         user_id: userId
@@ -51,11 +51,14 @@ router.get('/', async(req, res) => {
     })
 
     console.log('---------------Made it to the dashboard route----------------')
-    console.log(userData)
+    
 
-    // const username = userData.dataValues.username;
-    const posts = userData.posts.map(post => post.get({ plain: true }));
-    const comments = userData.comments.map(comment => comment.get({ plain: true }));
+    const tempUserData = userData[0];
+    console.log(tempUserData)
+
+    const username = tempUserData.username;
+    const posts = tempUserData.posts.map(post => post.get({ plain: true }));
+    const comments = tempUserData.comments.map(comment => comment.get({ plain: true }));
     
     
     res.status(200).render('user-page', {
