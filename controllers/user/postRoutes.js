@@ -77,6 +77,55 @@ router.get('/', async (req, res) => {
   }
 });
 
+//GET POSTS BY USER ID
+router.get('/user', async (req, res) => {
+  try{
+    const userId = req.session.user_id;
+    const postData = await Post.findAll({
+      where:{
+        user_id: userId
+      },
+      attributes: [
+        'post_id',
+        'post_title',
+        'post_content',
+      ],
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+        {
+          model: Category,
+          attributes: ['category_id', 'category_name']
+        },
+        {
+          model: Tag,
+          as: 'tags',
+        },
+        {
+          model: Comment,
+          attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
+          include: [
+            {
+              model: User,
+              attributes: ['username'],
+            },
+            {
+              model: Tag,
+              as: 'tags'
+            }
+          ]
+        },
+      ]
+    });
+    res.status(200).json(postData);
+  }catch(err){
+    res.status(500).json(`Unexpected error encountered in GET all Posts By User route: ${err}`)
+ }
+});
+
+
 // GET POST BY ID
 router.get("/:id", async (req, res) => {
   try {
@@ -125,6 +174,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(`Unexpected error encountered in GET Post by id route: ${err}`)
   }
 });
+
 
 // DISPLAY SINGLE POST PAGE
 router.get("/view/:id", async (req, res) => {
@@ -193,54 +243,7 @@ router.get("/view/:id", async (req, res) => {
   }
 });
 
-//GET POSTS BY USER ID
-router.get('/user/:id', async (req, res) => {
-  try{
-    const userId = req.params.id;
-    const postData = await Post.findAll({
-      where:{
-        user_id: userId
-      },
-      attributes: [
-        'post_id',
-        'post_title',
-        'post_content',
-      ],
-      include: [
-        {
-          model: User,
-          attributes: ["username"],
-        },
-        {
-          model: Category,
-          attributes: ['category_id', 'category_name']
-        },
-        {
-          model: Tag,
-          as: 'tags',
-        },
-        {
-          model: Comment,
-          attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
-          include: [
-            {
-              model: User,
-              attributes: ['username'],
-            },
-            {
-              model: Tag,
-              as: 'tags'
-            }
-          ]
-        },
-      ]
-    });
 
-    res.status(200).json(postData);
-  }catch(err){
-    res.status(500).json(`Unexpected error encountered in GET all Posts By User route: ${err}`)
- }
-});
 
 
 // GET POSTS BY TAG ID

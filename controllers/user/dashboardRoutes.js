@@ -15,97 +15,22 @@ router.get('/', async(req, res) => {
       where: {
         user_id: userId
       },
-      attributes: ['username', 'email'],
-      include: [
-        {
-          model: Comment,
-          where: {
-            user_id: userId
-          },
-          attributes: ['comment_id', 'comment_title', 'comment_content'],
-        },
-        {
-          model: Post,
-          where: {
-            user_id: userId
-          },
-          attributes: ['post_id', 'post_title', 'post_content', 'created_at', 'updated_at'],
-          include: [
-            {
-              model: Comment,
-              attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
-              include: [
-                {
-                  model: User,
-                  attributes: ['username'],
-                },
-                {
-                  model: Tag,
-                  as: 'tags'
-                }
-              ]
-            },
-            {
-              model: Tag,
-              as: 'tags',
-            }
-          ]
-        }
-      ]
+      attributes: ['username', 'email', 'about'],
     })
 
     console.log('---------------Made it to the dashboard route----------------')
-    console.log(req.session)
-  
-    const tempUserData = userData[0];
-    console.log(tempUserData)
-
-    if(tempUserData) {
-      const username = tempUserData.username;
-      const posts = tempUserData.posts.map(post => post.get({ plain: true }));
-      const comments = tempUserData.comments.map(comment => comment.get({ plain: true }));
+    const username = userData[0].dataValues.username;
+    const about = userData[0].dataValues.about;
 
       res.status(200).render('user-page', {
-        userData,
-        username,
-        posts,
-        comments,
-        // pageTitle: `${username}'s Dashboard`,
+        username: username,
+        pageTitle: `${username}'s Dashboard`,
         loggedIn: true,
         userNav: true,
         mainCSS: true,
-        mainJS: true
+        mainJS: true,
+        dashboardJS: true
       });
-    } else {
-      const username = "no name found";
-      const posts = [];
-      const comments = [];
-
-      res.status(200).render('user-page', {
-        userData,
-        username,
-        posts,
-        comments,
-        // pageTitle: `${username}'s Dashboard`,
-        loggedIn: true,
-        userNav: true,
-        mainCSS: true,
-        mainJS: true
-      });
-    }
-    
-    // res.status(200).render('user-page', {
-    //   userData,
-    //   username,
-    //   posts,
-    //   comments,
-    //   // pageTitle: `${username}'s Dashboard`,
-    //   loggedIn: true,
-    //   userNav: true,
-    //   mainCSS: true,
-    //   mainJS: true
-    // });
-    
   } catch (err) { 
     res.status(500).json(`Unexpected error encountered in Dashboard Route ${err}`)
   }
