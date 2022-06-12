@@ -38,12 +38,14 @@ router.get('/', withAuth, async(req, res) => {
         }
       ]
     })
-    const username = userData.dataValues.username;
+
+    console.log('-------------------------------')
+    console.log(userData)
+
+    const username = userData.username;
     const posts = userData.posts.map(post => post.get({ plain: true }));
     const comments = userData.comments.map(comment => comment.get({ plain: true }));
-
-    console.log('-----------------------------')
-    console.log(comments);
+    
     
     res.status(200).render('user-page', {
       userData,

@@ -94,7 +94,8 @@ $(document).on("click", "#goToPost-btn", goToPostHandler);
 $(document).on("click", "#comments-btn", collapseToggle);
 $(document).on("click", "#sendComment-btn", commentFormHandler);
 
-$('#login').on('click', function() {
+$('#login').on('click', function(e) {
+  e.preventDefault();
   const userEmail = $(this).siblings()[0].children[0].value.trim();
   const userPassword = $(this).siblings()[1].children[0].value.trim();
 

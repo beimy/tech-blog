@@ -34,22 +34,21 @@ router.post('/validate', async(req, res) => {
       },
       attributes: ['user_id', 'username', 'email', 'password']
     });
-    const userPwd = userData.dataValues.password;
 
+    const validPassword = userData.checkPassword(password);
 
-    if(userPwd === password){
+    if(validPassword){
       req.session.save(() => {
-        req.session.user_id = userData.dataValues.user_id;
-        req.session.username = userData.dataValues.username;
+        req.session.user_id = userData.user_id;
+        req.session.username = userData.username;
         req.session.loggedIn = true;
   
         res.status(200).json({
           user: userData,
           message: "You are now logged in!",
         });
-      });
-      
-    }else{
+      }); 
+    } else {
       res.status(400).json(`incorrect password`);
     }
 
@@ -66,6 +65,7 @@ router.post("/register", (req, res) => {
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
+    about: 'Write a little something about yourself'
   })
     .then((dbUserData) => {
       req.session.save(() => {
