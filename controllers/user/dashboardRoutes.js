@@ -3,21 +3,32 @@ const { User, Post, Comment, Tag } = require('../../models');
 const withAuth = require('../../utils/auth');
 const sequelize = require('../../config/connection');
 
-
-router.get('/', withAuth, async(req, res) => {
+/*
+================================================
+USER DASHBOARD ROUTE - /dashboard
+================================================
+*/
+router.get('/', async(req, res) => {
   try {
     const userId = req.session.user_id;
-    const userData = await User.findByPk(userId, {
+   const userData = await User.findAll({
+      where: {
+        user_id: userId
+      },
       attributes: ['username', 'email'],
       include: [
         {
           model: Comment,
-          where: user_id = userId,
+          where: {
+            user_id: userId
+          },
           attributes: ['comment_id', 'comment_title', 'comment_content'],
         },
         {
           model: Post,
-          where: user_id = userId,
+          where: {
+            user_id: userId
+          },
           attributes: ['post_id', 'post_title', 'post_content', 'created_at', 'updated_at'],
           include: [
             {
@@ -42,27 +53,61 @@ router.get('/', withAuth, async(req, res) => {
         }
       ]
     })
-    const username = userData.dataValues.username;
-    const posts = userData.posts.map(post => post.get({ plain: true }));
-    const comments = userData.comments.map(comment => comment.get({ plain: true }));
 
-    console.log('-----------------------------')
-    console.log(comments);
+    console.log('---------------Made it to the dashboard route----------------')
+    console.log(req.session)
+  
+    const tempUserData = userData[0];
+    console.log(tempUserData)
+
+    if(tempUserData) {
+      const username = tempUserData.username;
+      const posts = tempUserData.posts.map(post => post.get({ plain: true }));
+      const comments = tempUserData.comments.map(comment => comment.get({ plain: true }));
+
+      res.status(200).render('user-page', {
+        userData,
+        username,
+        posts,
+        comments,
+        // pageTitle: `${username}'s Dashboard`,
+        loggedIn: true,
+        userNav: true,
+        mainCSS: true,
+        mainJS: true
+      });
+    } else {
+      const username = "no name found";
+      const posts = [];
+      const comments = [];
+
+      res.status(200).render('user-page', {
+        userData,
+        username,
+        posts,
+        comments,
+        // pageTitle: `${username}'s Dashboard`,
+        loggedIn: true,
+        userNav: true,
+        mainCSS: true,
+        mainJS: true
+      });
+    }
     
-    res.status(200).render('user-page', {
-      userData,
-      username,
-      posts,
-      comments,
-      pageTitle: `${username}'s Dashboard`,
-      loggedIn: req.session.loggedIn,
-      userNav: true,
-      mainCSS: true,
-      mainJS: true
-    });
+    // res.status(200).render('user-page', {
+    //   userData,
+    //   username,
+    //   posts,
+    //   comments,
+    //   // pageTitle: `${username}'s Dashboard`,
+    //   loggedIn: true,
+    //   userNav: true,
+    //   mainCSS: true,
+    //   mainJS: true
+    // });
     
-  } catch (err) {
-    res.status(500).json(`Unexpected error encountered in Test User Route ${err}`)
+  } catch (err) { 
+    res.status(500).json(`Unexpected error encountered in Dashboard Route ${err}`)
   }
 })
 

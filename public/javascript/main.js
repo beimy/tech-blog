@@ -6,14 +6,14 @@ const loginFunction = async(userEmail, userPassword) => {
       const response = await fetch('/user-login/validate', {
         method: 'post',
         body: JSON.stringify({
-          email,
-          password,
+          email: email,
+          password: password,
         }),
         headers: { 'Content-Type': 'application/json' }
       });
 
       if(response.ok){
-        document.location.replace('/dashboard');
+        document.location.replace('/');
       }else{
         alert('Invalid Credentials')
       }
@@ -94,7 +94,8 @@ $(document).on("click", "#goToPost-btn", goToPostHandler);
 $(document).on("click", "#comments-btn", collapseToggle);
 $(document).on("click", "#sendComment-btn", commentFormHandler);
 
-$('#login').on('click', function() {
+$('#login').on('click', function(e) {
+  e.preventDefault();
   const userEmail = $(this).siblings()[0].children[0].value.trim();
   const userPassword = $(this).siblings()[1].children[0].value.trim();
 

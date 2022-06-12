@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { keyBy } = require("lodash");
+const bcrypt = require('bcrypt');
 const { User, Post, Comment } = require("../../models");
 
 /*
@@ -8,18 +9,11 @@ LOGIN ROUTES default: localhost:3010/user-login/
 ================================================
 */
 
-// DEFAULT => RENDER LOGIN-SIGNUP-PAGE
-router.get('/', async(req, res) => {
-  res.status(200).render('loginSignUpPage', {
-    pageTitle: 'Login',
-  })
-})
-
 // RENDER REGISTRATION PAGE
 router.get('/register', (req, res, next) => {
   res.status(200).render('registrationPage', {
     pageTitle: "Sign Up",
-    loggedIn: false
+    registerJS: true
   })
 });
 
@@ -28,29 +22,30 @@ router.post('/validate', async(req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
+    
     const userData = await User.findOne({
       where: {
         email: email
       },
       attributes: ['user_id', 'username', 'email', 'password']
     });
-    const userPwd = userData.dataValues.password;
 
+    const userPassword = userData.dataValues.password;
 
-    if(userPwd === password){
+    const validPassword = await bcrypt.compare(password, userPassword);
+
+    if(validPassword){
+      console.log(userData)
       req.session.save(() => {
         req.session.user_id = userData.dataValues.user_id;
         req.session.username = userData.dataValues.username;
         req.session.loggedIn = true;
   
-        res.status(200).json({
-          user: userData,
-          message: "You are now logged in!",
-        });
-      });
-      
-    }else{
+        res.status(200).json(userData);
+      }); 
+    } else {
       res.status(400).json(`incorrect password`);
+      console.log('incorrect password')
     }
 
   } catch(error) {
@@ -66,6 +61,7 @@ router.post("/register", (req, res) => {
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
+    about: 'Write a little something about yourself'
   })
     .then((dbUserData) => {
       req.session.save(() => {
