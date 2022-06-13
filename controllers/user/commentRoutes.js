@@ -74,67 +74,63 @@ router.get("/user", withAuth, async(req, res) => {
   }
 });
 
-
-router.post("/", (req, res) => {
-  console.log(req.session)
-  Comment.create({
-    comment_title: req.body.comment_title,
-    comment_content: req.body.comment_content,
-    post_id: req.body.post_id,
-    user_id: req.session.user_id,
-  })
-    .then((dbCommentData) => res.status(200).json(dbCommentData))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
-
-});
-
-
-// edit a comment
-router.put("/:id", (req, res) => {
-  Comment.update(
-    {
+//CREATE NEW COMMENT
+router.post('/', withAuth, async(req,res) => {
+  try {
+    const dbCommentData = await Comment.create({
+      comment_title: req.body.comment_title,
       comment_content: req.body.comment_content,
-    },
-    {
-      where: {
-        comment_id: req.params.id,
-      },
-    }
-  )
-    .then((dbCommentData) => {
-      if (!dbCommentData) {
-        res.status(404).json({ message: "No comment found with this id" });
-        return;
-      }
-      res.status(200).json({ message: `Comment has been updated` });
+      post_id: req.body.post_id,
+      user_id: req.session.user_id,
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    res.status(200).json(dbCommentData);
+  } catch (err) {
+    res.status(500).json({message: `Unexpected error encountered in Create New Comment Route: ${err}`});
+    console.error(err);
+  }
 });
 
-// delete a comment
-router.delete("/:id", (req, res) => {
-  Comment.destroy({
-    where: {
-      comment_id: req.params.id,
-    },
-  })
-    .then((dbCommentData) => {
-      if (!dbCommentData) {
-        res.status(404).json({ message: "No comment found with this id" });
-        return;
-      }
-      res.status(200).json({ message: `comment has been deleted` });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+// EDIT COMMENT 
+router.put("/", async (req, res) => {
+  try {
+    const dbCommentData = await Comment.update(
+      {
+      comment_content: req.body.comment_content,
+      },
+      {
+      where: {
+        comment_id: req.body.comment_id,
+      },
+  });
+    if (!dbCommentData) {
+      res.status(400).json({ message: `No comment found` });
+    } else {
+      res.status(200).json(dbCommentData);
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({
+        message: `Unexpected error encountered in Edit Comment Route: ${err}`,
+      });
+    console.log(err);
+  }
 });
+
+// DELETE COMMENT
+router.delete('/', async(req,res) => {
+  try {
+    const deleteComment = await Comment.destroy({
+      where: {
+        comment_id: req.body.comment_id
+      }
+    })
+    res.status(200).json(deleteComment);
+  } catch (err) {
+    res.status(500).json({message: `Unexpected error encountered in (route name here): ${err}`});
+    console.log(err);
+  }
+});
+
 
 module.exports = router;
