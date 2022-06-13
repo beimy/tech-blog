@@ -2,7 +2,9 @@
     {{!-- User Navigation Partial --}}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">RH</a>
+        <a class="navbar-brand" href="/">
+          <img src="/images/hole.png" alt="hole img" class="img-fluid" width="30" height="24"/>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -10,11 +12,19 @@
           <div class="navbar-nav me-auto mb-2 mb-lg-0">
             <div class="nav-item">
               <!-- HOME/MAIL LANDING PAGE -->
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              <a class="nav-link active d-none d-lg-block" aria-current="page" href="/">Home</a>
             </div>
             <div class="nav-item flex-grow-1">
+              <!-- USER DASH ON MOBILE -->
+              {{#if loggedIn}}
+              <a id="home-btn" type="button" class="nav-link active d-xs-flex d-lg-none">Dashboard</a>
+              <a id="new-post-btn" type="button" class="nav-link active d-xs-flex d-lg-none">Create Post</a>
+              {{else}}
+              <a type="button" class="nav-link active side-bar-btn d-xs-block d-lg-none" data-bs-toggle="modal" data-bs-target="#myModal">Dashboard</a>
+              <a type="button" class="nav-link active side-bar-btn d-xs-block d-lg-none" data-bs-toggle="modal" data-bs-target="#myModal">Create Post</a>
+              {{/if}}
               <!-- ABOUT -->
-              <a class="nav-link active" href="/about">About Rabbit Holes</a>
+              <a class="nav-link active" href="/about">About Us</a>
             </div>
             <div class="justify-content-end">
               <!--Search Bar -->
