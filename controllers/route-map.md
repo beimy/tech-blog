@@ -23,7 +23,7 @@ all routes in this document have been tested and verified as fully functional.
     Expected Response: Renders the user dashboard </br>
     Method: GET <br>
     URL: http://localhost:3010/dashboard </br>
-    
+
 ---
 ## User Routes
 
@@ -80,9 +80,12 @@ all routes in this document have been tested and verified as fully functional.
 
 ### Post Routes
 
-* **Test Post-Page:** </br>
-
-  URL: http://localhost:3010/post/post-test </br>
+* **Render Create Post Page:** </br>
+    Request Requirements: none, </br>
+    Expected Response: rendered page </br>
+    Method: GET <br>
+    URL: http://localhost:3010/post/create </br>
+    Example: "" </br>
 
 * **GET All Posts:** (no auth required) </br>
     Expected Response: All posts and associated data including comments, tags, comments tags, user id, category, ect. </br>
