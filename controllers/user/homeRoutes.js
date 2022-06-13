@@ -13,6 +13,9 @@ router.get('/', async(req, res) => {
         'created_at',
         'updated_at'
       ],
+      order: [
+        ['created_at', 'DESC']
+      ],
       include: [
         {
   
@@ -30,6 +33,9 @@ router.get('/', async(req, res) => {
         {
           model: Comment,
           attributes: ['comment_id', 'comment_title', 'comment_content', 'user_id', 'created_at'],
+          order: [
+            ['created_at', 'DESC']
+          ],
           include: [
             {
               model: User,

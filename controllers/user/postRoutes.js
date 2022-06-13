@@ -20,7 +20,8 @@ router.get("/create", async (req, res) => {
       mainCSS: true,
       mainJS: true,
       userNav: true,
-      createPostCSS: true
+      createPostCSS: true,
+      loggedIn: true
     });
   } catch (err) {
     res.status(400).json(`Error encountered in test-post route: ${err}`);

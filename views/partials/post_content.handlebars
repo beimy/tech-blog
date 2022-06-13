@@ -7,10 +7,10 @@
       <div class="card-body ps-8" id="comment-card">
         <h5 class="card-title h-25"> {{post_title}} </h5>
         <p class="card-text mh-50 overflow-auto post-content" id="post-content"> {{post_content}} </p>
-        <div class="row px-2">
-          <button type="button" id="follow-post-btn" class="col-2">Follow</button>
-          <button type="button" id="comments-btn" class="col-2">Comments</button>
-          <button type="button" id="goToPost-btn" class="col-2" data-post_id={{post_id}}>Go To Post</button>
+        <div class="row px-2 pt-2 border-top flex gap-2">
+          <button type="button" id="follow-post-btn" class="col-3 btn-sm p-0 text-nowrap" style="max-height: 25px; max-width: 100px;">Follow</button>
+          <button type="button" id="comments-btn" class="col-3 btn-sm p-0 text-nowrap" style="max-height: 25px; max-width: 100px;">Comments</button>
+          <button type="button" id="goToPost-btn" class="col-3 btn-sm p-0 text-nowrap" style="max-height: 25px; max-width: 100px;" data-post_id={{post_id}}>Go To Post</button>
           {{!-- <button type="button" id="Expand" class="col-2">Expand...</button> --}}
         </div>
         <div class="collapse flex overflow-auto" id="commentSection">
