@@ -1,7 +1,8 @@
 # Route Map
 In the interest of making this map more human-readable the example urls's are all written out to reflect the test environment, not the production environment, since thats where this information is most likely to be referenced. To test any of these routes in the production environment replace localhost:3010 with the deployment URL.</br>
 all routes in this document have been tested and verified as fully functional. 
-* **Default Route:**</br>
+
+* **Default/Home Route:**</br>
     Expected response: Renders Home Page</br>
     Method: GET</br>
     URL: http://localhost:3010/</br>
@@ -11,8 +12,16 @@ all routes in this document have been tested and verified as fully functional.
   Method: GET</br>
   URL: http://localhost:3010/{any invalid route}</br>
 
+* **About Us Page:** </br>
+    Request Requirements: none </br>
+    Expected Response: Rendered About-Us Page </br>
+    Method: GET <br>
+    URL: http://localhost:3010/about </br>
+
 ---
 ## User Routes
+
+
 
 ### Tag Routes
 
