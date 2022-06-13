@@ -18,6 +18,12 @@ all routes in this document have been tested and verified as fully functional.
     Method: GET <br>
     URL: http://localhost:3010/about </br>
 
+* **User Dashboard:** </br>
+    Request Requirements: valid session cookie with logged in user </br>
+    Expected Response: Renders the user dashboard </br>
+    Method: GET <br>
+    URL: http://localhost:3010/dashboard </br>
+    
 ---
 ## User Routes
 
