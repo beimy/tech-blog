@@ -1,5 +1,6 @@
 # Route Map
-In the interest of making this map more human-readable the example urls's are all written out to reflect the test environment, not the production environment, since thats where this information is most likely to be referenced. To test any of these routes in the production environment replace localhost:3010 with the deployment URL.
+In the interest of making this map more human-readable the example urls's are all written out to reflect the test environment, not the production environment, since thats where this information is most likely to be referenced. To test any of these routes in the production environment replace localhost:3010 with the deployment URL.</br>
+all routes in this document have been tested and verified as fully functional. 
 * **Default Route:**</br>
     Expected response: Renders Home Page</br>
     Method: GET</br>
