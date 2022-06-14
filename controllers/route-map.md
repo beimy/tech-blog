@@ -1,7 +1,8 @@
 # Route Map
 In the interest of making this map more human-readable the example urls's are all written out to reflect the test environment, not the production environment, since thats where this information is most likely to be referenced. To test any of these routes in the production environment replace localhost:3010 with the deployment URL.</br>
 all routes in this document have been tested and verified as fully functional. 
-* **Default Route:**</br>
+
+* **Default/Home Route:**</br>
     Expected response: Renders Home Page</br>
     Method: GET</br>
     URL: http://localhost:3010/</br>
@@ -11,8 +12,22 @@ all routes in this document have been tested and verified as fully functional.
   Method: GET</br>
   URL: http://localhost:3010/{any invalid route}</br>
 
+* **About Us Page:** </br>
+    Request Requirements: none </br>
+    Expected Response: Rendered About-Us Page </br>
+    Method: GET <br>
+    URL: http://localhost:3010/about </br>
+
+* **User Dashboard:** </br>
+    Request Requirements: valid session cookie with logged in user </br>
+    Expected Response: Renders the user dashboard </br>
+    Method: GET <br>
+    URL: http://localhost:3010/dashboard </br>
+
 ---
 ## User Routes
+
+
 
 ### Tag Routes
 
@@ -42,10 +57,12 @@ all routes in this document have been tested and verified as fully functional.
     Method: POST <br>
     URL: http://localhost:3010/tag/post </br>
     Example Request Body: </br>
-      ```{
+    ```
+      {
 	      "tag_id": 1,
 	      "post_id": 10
-      }```
+      }
+    ```
 
 * **Create new comment-tag correlation:** </br>
     Request Requirements: JSON: post_id, tag_id </br>
@@ -53,17 +70,22 @@ all routes in this document have been tested and verified as fully functional.
     Method: POST <br>
     URL: http://localhost:3010/tag/comment </br>
     Example Request Body: </br>
-      ```{
+    ```
+      {
 	      "tag_id": 1,
 	      "comment_id": 10
-      }```
+      }
+    ```
 
 
 ### Post Routes
 
-* **Test Post-Page:** </br>
-
-  URL: http://localhost:3010/post/post-test </br>
+* **Render Create Post Page:** </br>
+    Request Requirements: none, </br>
+    Expected Response: rendered page </br>
+    Method: GET <br>
+    URL: http://localhost:3010/post/create </br>
+    Example: "" </br>
 
 * **GET All Posts:** (no auth required) </br>
     Expected Response: All posts and associated data including comments, tags, comments tags, user id, category, ect. </br>
@@ -92,28 +114,34 @@ all routes in this document have been tested and verified as fully functional.
     Example: http://localhost:3010/post/tag/1 </br>
 
 * **Create New Post:** </br>
-    Request Requirements: Json Object: </br>
-    ``{
+    Request Requirements: Json Object, withAuth </br>
+    Expected Response: (200) - success, (500) - fail </br>
+    Method: POST <br>
+    URL: http://localhost:3010/post/ </br>
+    Example Request Body: </br>
+    ```
+      {
 	      "post_title": "STRING",
 	      "post_content": "TEXT",
 	      "category_id": INTEGER,
 	      "user_id": INTEGER
-      }``
-    Expected Response: (200) - success, (500) - fail </br>
-    Method: POST <br>
-    URL: http://localhost:3010/post/ </br>
+      }
+    ```
 
 
 * **Edit Post By ID:** (withAuth currently disabled for testing, will need to be reactivated before live deployment) </br>
   Request Requirements: Json Object:  </br>
-  ``{
-	"title": "STRING",
-	"content": "TEXT",
-	"category": INTEGER
-} ``
   Expected response: res.status(200)/(500) success/fail </br>
   Method: PUT </br>
   URL: http://localhost:3010/post/:id </br>
+  Example Request Body: </br>
+  ```
+  {
+	"title": "STRING",
+	"content": "TEXT",
+	"category": INTEGER
+  } 
+  ```
   Notes: This only updates title, content, and category - tags, comments, and user data cannot be updated by the user through this route. 
 
 * **Delete Post By ID:** </br>
@@ -131,29 +159,51 @@ all routes in this document have been tested and verified as fully functional.
     Expected Response: json object of all comments with user, tag, and post data. </br>
     Method: GET <br>
     URL: http://localhost:3010/comments </br>
-    Example: "" </br>
 
 * **Get comments by user ID:** </br>
-    Request Requirements: "" </br>
-    Expected Response: "" </br>
-    Method: "" <br>
-    URL: "" </br>
-    Example: "" </br>
+    Request Requirements: withAuth, will not work if user is not logged in with valid session cookie </br>
+    Expected Response: All comment data associated with that user </br>
+    Method: GET <br>
+    URL: http://localhost:3010/comments/user </br>
+
+* **Create New Comment:** </br>
+    Request Requirements: withAuth, json body with new comment data </br>
+    Expected Response: Success: new comment data, Fail: status 500 and error message </br>
+    Method: POST <br>
+    URL: http://localhost:3010/comments/ </br>
+    Example Request Body: </br>
+    ```
+    {
+      "comment_title": "STRING, allowNull is true",
+      "comment_content": "TEXT allowNull is false",
+      "post_id": "INTEGER allowNull is false"
+    }
+    ```
 
 * **Edit a comment:** </br>
-    Request Requirements: "" </br>
-    Expected Response: "" </br>
-    Method: "" <br>
-    URL: "" </br>
-    Example: "" </br>
+    Request Requirements: Json body </br>
+    Expected Response: comment data </br>
+    Method: PUT <br>
+    URL: http://localhost:3010/comments/ </br>
+    Example Request Body: </br>
+    ```
+    {
+	    "comment_id": 5,
+	    "comment_content": "This comment has been edited"
+    }
+    ```
 
 * **Delete a comment:** </br>
-    Request Requirements: "" </br>
-    Expected Response: "" </br>
-    Method: "" <br>
-    URL: "" </br>
-    Example: "" </br>
-
+    Request Requirements: json body with comment_id</br>
+    Expected Response: success: 1, fail: 0 </br>
+    Method: DELETE <br>
+    URL:  http://localhost:3010/comments/ </br>
+    Example Request Body: </br>
+    ```
+    {
+	    "comment_id": 1
+    }
+    ```
 
 ### Login Routes
 
